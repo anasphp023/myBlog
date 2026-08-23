@@ -1,0 +1,486 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap");
+/* Modern CSS Reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: clip; /* Prevents horizontal scroll without breaking position: sticky */
+}
+
+:root {
+  /* Nebula Glass Color Palette */
+  --bg-deep: #0a0606; /* Deep Midnight Blue */
+  --accent-primary: #ff3b3b; /* Primary Red */
+  --primary-color: #ff3b3b;
+  --accent-mid-purple: #ff5c5c; /* Mid Purple */
+  --accent-light-purple: #ff8f8f; /* Light Purple */
+  --accent-secondary: #ff4d4d; /* Cyber Cyan */
+  --glass-surface: rgba(255, 255, 255, 0.05);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-block: rgb(255, 255, 255);
+
+  /* Legacy variables for compatibility */
+  --bg-primary: var(--bg-deep);
+  --bg-secondary: var(--glass-surface);
+  --bg-tertiary: rgba(255, 255, 255, 0.08);
+  --text-primary: #f1f5f9;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
+  --accent-hover: #ff5c5c;
+  --border-color: var(--glass-border);
+  /* Dark theme rgba values for effects */
+  --accent-primary-rgba-03: rgba(255, 59, 59, 0.3);
+  --accent-primary-rgba-05: rgba(255, 59, 59, 0.5);
+  --accent-light-purple-rgba-01: rgba(255, 143, 143, 0.1);
+  --accent-light-purple-rgba-03: rgba(255, 143, 143, 0.3);
+  --accent-mid-purple-rgba-05: rgba(255, 92, 92, 0.05);
+  --accent-mid-purple-rgba-01: rgba(255, 92, 92, 0.1);
+  --accent-mid-purple-rgba-02: rgba(255, 120, 120, 0.18);
+  /* Tag styling for dark theme */
+  --tag-bg: rgba(0, 0, 0, 0.4);
+  --tag-color: var(--accent-light-purple);
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+
+  /* Scroll to top & Buy Me a Coffee */
+  --yellow-accent: #ffdd00;
+  --yellow-hover: #ffc700;
+
+  /* Spacing */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 3rem;
+
+  /* Typography - Nebula Glass Theme */
+  --font-heading:
+    "Space Grotesk", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-body:
+    "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  --font-logo:
+    "Outfit", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-sans: var(--font-body); /* Legacy support */
+  --font-mono:
+    "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
+
+  /* Transitions */
+  --transition-fast: 150ms ease-in-out;
+  --transition-base: 300ms ease-in-out;
+  --transition-slow: 500ms ease-in-out;
+
+  /* Icon sizes */
+  --icon-sm: 1rem;
+  --icon-md: 1.25rem;
+  --icon-lg: 1.5rem;
+}
+
+[data-theme="light"] {
+  --bg-primary: #ffffff;
+  /* Light theme glassmorphism - minimal white overlay, backdrop blur creates the glassy effect */
+  --glass-surface: rgba(
+    255,
+    255,
+    255,
+    0.2
+  ); /* Minimal white overlay - backdrop blur does the work */
+  --glass-border: rgba(252, 165, 165, 0.5); /* More defined purple-tinted border for better visibility */
+  --glass-block: rgba(255, 255, 255, 0.8);
+  --bg-secondary: var(--glass-surface); /* Use glass-surface for glass effect */
+  --bg-tertiary: rgba(
+    255,
+    255,
+    255,
+    0.25
+  ); /* Slightly more visible for tertiary surfaces */
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #64748b;
+  /* Light theme purple palette - much darker, more saturated for contrast on light backgrounds */
+  --accent-primary: #c81e2c; /* Very dark red for primary */
+  --primary-color: #c81e2c;
+  --accent-mid-purple: #dc2626; /* Dark purple for mid */
+  --accent-light-purple: #ef4444; /* Medium-dark purple for light accent */
+  --accent-secondary: #dc2626;
+  --accent-hover: #dc2626;
+  --border-color: var(--glass-border);
+  /* Light theme rgba values for effects - darker purples for better contrast */
+  --accent-primary-rgba-03: rgba(200, 30, 44, 0.3);
+  --accent-primary-rgba-05: rgba(200, 30, 44, 0.5);
+  --accent-light-purple-rgba-01: rgba(239, 68, 68, 0.1);
+  --accent-light-purple-rgba-03: rgba(239, 68, 68, 0.3);
+  --accent-mid-purple-rgba-05: rgba(220, 38, 38, 0.05);
+  --accent-mid-purple-rgba-01: rgba(220, 38, 38, 0.1);
+  --accent-mid-purple-rgba-02: rgba(220, 38, 38, 0.2);
+  /* Tag styling for light theme - lighter background, darker purple text */
+  --tag-bg: rgba(220, 38, 38, 0.1);
+  --tag-color: #c81e2c;
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg-deep);
+  color: var(--text-primary);
+  line-height: 1.6;
+  min-height: 100vh;
+  transition:
+    background-color var(--transition-base),
+    color var(--transition-base);
+
+  /* Nebula Glass Background: Radial gradient (lighter blue in center, black at edges) */
+  background-image: radial-gradient(
+    circle at center,
+    rgba(120, 20, 28, 0.28) 0%,
+    rgba(18, 10, 12, 0.5) 40%,
+    var(--bg-deep) 100%
+  );
+  background-attachment: fixed;
+  background-size: 100% 100%;
+  background-position: center center;
+
+  position: relative;
+}
+
+/* Light theme background */
+[data-theme="light"] {
+  --bg-deep: #ffffff; /* Override bg-deep for light theme */
+}
+
+[data-theme="light"] body {
+  background-color: #ffffff;
+  /* Light theme radial gradient: subtle purple/lavender tint in center, fading to white at edges */
+  background-image: radial-gradient(
+    circle at center,
+    rgba(255, 120, 120, 0.18) 0%,
+    rgba(255, 235, 235, 0.4) 40%,
+    #ffffff 100%
+  );
+  background-attachment: fixed;
+  background-size: 100% 100%;
+  background-position: center center;
+}
+
+/* SVG noise/grain texture overlay with opacity 0.05 to prevent banding */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  background-size: 400px 400px;
+  background-repeat: repeat;
+  opacity: 0.05;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Ensure content sits above the noise overlay */
+body > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* ============================================================
+   CUSTOM OVERRIDES  (red terminal / neon)
+   ============================================================ */
+.hero-title .hero-title-line2 {
+  color: var(--accent-primary);
+  -webkit-text-stroke: 0;
+  text-stroke: 0;
+  font-size: clamp(1.2rem, 2.4vw, 2rem);
+  margin-top: 0.6rem;                 /* space between name and tagline */
+  text-shadow: 0 0 8px rgba(255, 59, 59, 0.45), 0 0 22px rgba(255, 59, 59, 0.25);
+  animation: heroNeon 4s ease-in-out infinite;
+}
+@keyframes heroNeon {
+  0%, 100% { opacity: 1; text-shadow: 0 0 8px rgba(255,59,59,0.45), 0 0 22px rgba(255,59,59,0.25); }
+  6% { opacity: 0.82; } 8% { opacity: 1; }
+  50% { text-shadow: 0 0 14px rgba(255,59,59,0.75), 0 0 34px rgba(255,59,59,0.5), 0 0 52px rgba(255,59,59,0.28); }
+  73% { opacity: 0.9; } 75% { opacity: 1; }
+}
+.hero-title .hero-title-line2:hover { animation: heroGlitch 0.32s steps(2, end) 2; }
+@keyframes heroGlitch {
+  0%   { transform: translate(0,0);      text-shadow:  2px 0 rgba(255,59,59,0.9), -2px 0 rgba(255,255,255,0.4); }
+  25%  { transform: translate(-2px,1px); text-shadow: -2px 0 rgba(255,59,59,0.9),  2px 0 rgba(255,255,255,0.4); }
+  50%  { transform: translate(2px,-1px); text-shadow:  2px 0 rgba(255,59,59,0.9), -2px 0 rgba(255,255,255,0.4); }
+  75%  { transform: translate(-1px,0);   text-shadow: -1px 0 rgba(255,59,59,0.9),  1px 0 rgba(255,255,255,0.4); }
+  100% { transform: translate(0,0);      text-shadow: 0 0 10px rgba(255,59,59,0.6); }
+}
+/* Red scrambling characters while the name "decodes" in on load */
+.hero-title-line1 .scramble-char {
+  color: var(--accent-primary);
+  text-shadow: 0 0 6px rgba(255, 59, 59, 0.55);
+}
+/* Terminal prompt '>' — steady red */
+.hero-subtitle .term-caret { color: var(--accent-primary); font-weight: 700; text-shadow: 0 0 8px rgba(255,59,59,0.75); }
+/* Blinking '|' cursor at end of typed line */
+.hero-subtitle .type-cursor {
+  color: var(--accent-primary); font-weight: 700; margin-left: 2px;
+  text-shadow: 0 0 8px rgba(255,59,59,0.75);
+  animation: caretBlink 1.05s steps(1, end) infinite;
+}
+@keyframes caretBlink { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) {
+  .hero-title .hero-title-line2, .hero-subtitle .type-cursor { animation: none; }
+}
+
+/* ---- Hacker terminal (right side of hero) ---- */
+.hacker-terminal {
+  width: 100%;
+  max-width: 480px;
+  background: rgba(10, 8, 9, 0.9);
+  border: 1px solid rgba(255, 59, 59, 0.28);
+  border-radius: 10px;
+  box-shadow: 0 0 30px rgba(255, 59, 59, 0.15), 0 20px 45px rgba(0, 0, 0, 0.6);
+  overflow: hidden;
+  font-family: var(--font-mono);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+.term-bar {
+  display: flex; align-items: center; gap: 7px;
+  padding: 10px 14px;
+  background: rgba(255, 255, 255, 0.03);
+  border-bottom: 1px solid rgba(255, 59, 59, 0.18);
+}
+.term-dot { width: 11px; height: 11px; border-radius: 50%; background: #ff5c5c; }
+.term-dot:nth-child(2) { background: #ffb454; }
+.term-dot:nth-child(3) { background: #3ecf8e; }
+.term-title { margin-left: 8px; font-size: 0.8rem; color: var(--text-muted); }
+.term-body {
+  padding: 16px;
+  height: 320px;
+  overflow: hidden;
+  font-size: 0.82rem;
+  line-height: 1.55;
+  color: #cbd5e1;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+.term-body .cmd  { color: #f1f5f9; }
+.term-body .ok   { color: #3ecf8e; }
+.term-body .warn { color: #ffb454; }
+.term-body .crit { color: var(--accent-primary); font-weight: 600; }
+.term-body .cursor { color: var(--accent-primary); }
+@media (max-width: 768px) {
+  .hero-content .hero-image { order: 1; }
+  .hacker-terminal { max-width: 100%; }
+  .term-body { height: 240px; font-size: 0.76rem; }
+}
+
+/* ---- Brand-colored social icons ---- */
+.social-link { transition: color var(--transition-fast), transform 0.2s ease, filter 0.2s ease; }
+.social-link[aria-label="LinkedIn"],    .social-link[aria-label="LinkedIn"]:hover    { color: #0A66C2; }
+.social-link[aria-label="X (Twitter)"], .social-link[aria-label="X (Twitter)"]:hover { color: #ffffff; }
+.social-link[aria-label="YouTube"],     .social-link[aria-label="YouTube"]:hover     { color: #FF0000; }
+.social-link[aria-label="Medium"],      .social-link[aria-label="Medium"]:hover      { color: #ffffff; }
+.social-link[aria-label="Telegram"],    .social-link[aria-label="Telegram"]:hover    { color: #229ED9; }
+.social-link[aria-label="Email"],       .social-link[aria-label="Email"]:hover       { color: #d1d5db; }
+/* subtle lift + glow in each icon's own color on hover */
+.social-links .social-link:hover { transform: translateY(-2px); filter: drop-shadow(0 0 7px currentColor); }
+
+/* ---- About page tweaks: bigger avatar, hide tagline ---- */
+.about-page .about-page-avatar {
+  width: 200px;
+  height: 200px;
+  box-shadow: 0 0 22px rgba(255, 59, 59, 0.25);
+}
+.about-page .about-page-description { display: none; }
+
+/* ---- About & CV: red section titles ---- */
+.about-page .about-content-full h2 {
+  color: var(--accent-primary);
+  border-bottom: 1px solid rgba(255, 59, 59, 0.22);
+  padding-bottom: 0.3rem;
+  margin-top: 2.2rem;
+}
+.about-page .about-content-full h3 { color: var(--accent-primary); }
+
+/* ---- red content links site-wide (posts + about + cv) ---- */
+.post-content-main a,
+.about-content-full a {
+  color: var(--accent-primary);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.post-content-main a:hover,
+.about-content-full a:hover {
+  color: #ff7a7a;
+}
+
+/* ---- blue content links (posts + about + cv) ---- */
+.about-page .about-content-full a,
+.post-content-main a {
+  color: #58a6ff;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.about-page .about-content-full a:hover,
+.post-content-main a:hover {
+  color: #79c0ff;
+}
+
+/* ---- images inside articles: clean, centered, constrained ---- */
+.post-content-main img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 1.75rem auto;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+
+/* ---- Medium-style post header: tag chips on top, cover below ---- */
+.post-tags-top {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+.post-tags-top .post-tag {
+  display: inline-block;
+  padding: 0.25rem 0.7rem;
+  font-size: 0.8rem;
+  border: 1px solid var(--border-color);
+  border-radius: 999px;
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+.post-tags-top .post-tag:hover {
+  border-color: var(--accent-primary);
+  color: var(--accent-primary);
+}
+.post-image-single { margin-top: 1.5rem; }
+
+/* ---- Solid, professional section titles (POSTS / ABOUT / CV / TAGS) ---- */
+.list-title .list-title-line2,
+.about-page-name .list-title-line2 {
+  color: var(--text-primary);
+  -webkit-text-stroke: 0;
+  text-stroke: 0;
+}
+
+/* ===== Professional slate palette + gradient titles + video embeds ===== */
+:root:not([data-theme="light"]) {
+  --bg-deep: #23272f;
+}
+body {
+  background-image: radial-gradient(
+    circle at 50% 0%,
+    rgba(255, 255, 255, 0.05) 0%,
+    rgba(0, 0, 0, 0.18) 55%,
+    var(--bg-deep) 100%
+  );
+}
+.list-title .list-title-line2,
+.about-page-name .list-title-line2 {
+  background: linear-gradient(180deg, #ffffff 0%, var(--accent-primary) 170%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+.video-embed {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  margin: 1.5rem 0;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+.video-embed iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* ---- Section titles: SOLID, covers Posts / Tags / About / CV / YouTube ---- */
+.list-title .list-title-line2,
+.about-page-name .list-title-line2,
+.tags-title .list-title-line2 {
+  background: none;
+  -webkit-text-fill-color: currentColor;
+  -webkit-text-stroke: 0;
+  text-stroke: 0;
+  color: var(--accent-primary);
+}
+
+/* ---- YouTube subscribe button ---- */
+.yt-subscribe {
+  display: inline-block;
+  margin: 0.5rem 0 1.5rem;
+  background: #ff0000;
+  color: #fff !important;
+  padding: 0.65rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none !important;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.yt-subscribe:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(255, 0, 0, 0.4);
+}
+
+/* ---- Font: Nunito (headings + body + logo); code stays monospace ---- */
+:root {
+  --font-heading: "Nunito", system-ui, sans-serif;
+  --font-body: "Nunito", system-ui, sans-serif;
+  --font-logo: "Nunito", system-ui, sans-serif;
+}
+
+/* ---- Refined subscribe button (ghost + YouTube icon, less red) ---- */
+.yt-subscribe {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  margin: 0.5rem 0 1.75rem;
+  background: transparent;
+  color: #ff5c5c !important;
+  border: 1px solid rgba(255, 92, 92, 0.45);
+  padding: 0.5rem 1.1rem; border-radius: 8px;
+  font-weight: 700; font-size: 0.95rem;
+  text-decoration: none !important; box-shadow: none;
+  transition: all 0.2s ease;
+}
+.yt-subscribe svg { width: 20px; height: 20px; flex-shrink: 0; }
+.yt-subscribe:hover {
+  background: #ff0000; border-color: #ff0000; color: #fff !important;
+  transform: translateY(-2px); box-shadow: 0 6px 18px rgba(255, 0, 0, 0.3);
+}
+
+/* ---- Buy me a coffee button (footer) ---- */
+.bmc-link {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  margin: 0.75rem 0; padding: 0.5rem 1.1rem;
+  border: 1px solid var(--border-color); border-radius: 8px;
+  color: var(--text-secondary) !important;
+  font-weight: 600; font-size: 0.9rem;
+  text-decoration: none !important;
+  transition: all 0.2s ease;
+}
+.bmc-link:hover {
+  border-color: #ffdd00; color: #ffdd00 !important;
+  transform: translateY(-2px);
+}

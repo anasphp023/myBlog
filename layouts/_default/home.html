@@ -1,0 +1,128 @@
+{{ define "main" }}
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-container">
+      <div class="hero-content">
+        <div class="hero-text">
+          <h1 class="hero-title">
+            {{ if site.Params.heroTitleLine1 }}
+              <span class="hero-title-line1">{{ site.Params.heroTitleLine1 }}</span>
+            {{ else }}
+              <span class="hero-title-line1">{{ site.Title }}</span>
+            {{ end }}
+            {{ if site.Params.heroTitleLine2 }}
+              <span class="hero-title-line2">{{ site.Params.heroTitleLine2 }}</span>
+            {{ end }}
+          </h1>
+          {{ if site.Params.description }}
+            <p class="hero-subtitle"><span class="term-caret">&gt;</span> <span class="typed-text" data-typed="{{ site.Params.description }}"></span><span class="type-cursor">|</span></p>
+          {{ else if .Description }}
+            <p class="hero-subtitle"><span class="term-caret">&gt;</span> <span class="typed-text" data-typed="{{ .Description }}"></span><span class="type-cursor">|</span></p>
+          {{ end }}
+          {{ if site.Params.social }}
+            <div class="hero-social">
+              {{ partial "social-links.html" . }}
+            </div>
+          {{ end }}
+        </div>
+        <div class="hero-image">
+          <div class="hacker-terminal" aria-hidden="true">
+            <div class="term-bar">
+              <span class="term-dot"></span><span class="term-dot"></span><span class="term-dot"></span>
+              <span class="term-title">anas@kali: ~</span>
+            </div>
+            <div class="term-body" id="term-body"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="home-container">
+    <!-- Posts List -->
+    <section class="posts-section">
+      <h2 class="posts-title">{{ i18n "recentPosts" }}</h2>
+
+      <div class="posts-list">
+        {{ range where site.RegularPages "Type" "posts" | first 10 }}
+          {{ partial "post-card.html" (dict "page" . "limit" 3) }}
+        {{ end }}
+      </div>
+    </section>
+  </div>
+
+  <script>
+    (function () {
+      var CH = '!<>-_/[]{}=+*^?#%01ABCDEF';
+      function reduced(){ return window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches; }
+      function esc(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+      function scramble(el, cb){
+        var target = (el.textContent || '').trim();
+        if(!target){ if(cb) cb(); return; }
+        if(reduced()){ el.textContent = target; if(cb) cb(); return; }
+        var q=[]; for(var i=0;i<target.length;i++){ var s=Math.floor(Math.random()*15); var e=s+12+Math.floor(Math.random()*24); q.push({to:target.charAt(i),s:s,e:e,c:''}); }
+        var frame=0;
+        (function upd(){
+          var out='', done=0;
+          for(var i=0;i<q.length;i++){ var it=q[i];
+            if(it.to===' '){ out+=' '; done++; continue; }
+            if(frame>=it.e){ out+=it.to; done++; }
+            else if(frame>=it.s){ if(!it.c || Math.random()<0.3){ it.c=CH.charAt(Math.floor(Math.random()*CH.length)); } out+='<span class="scramble-char">'+it.c+'</span>'; }
+          }
+          el.innerHTML=out;
+          if(done===q.length){ el.textContent=target; if(cb) cb(); return; }
+          frame++; requestAnimationFrame(upd);
+        })();
+      }
+      function typeDesc(){
+        var el=document.querySelector('.hero-subtitle .typed-text'); if(!el) return;
+        var full=el.getAttribute('data-typed')||'';
+        if(reduced()){ el.textContent=full; return; }
+        el.textContent=''; var i=0, speed=30;
+        (function step(){ if(i<=full.length){ el.textContent=full.slice(0,i); i++; setTimeout(step,speed);} })();
+      }
+      function runTerminal(){
+        var body=document.getElementById('term-body'); if(!body) return;
+        var lines=[
+          {t:'$ whoami', c:'cmd'},
+          {t:'anas :: offensive security & bug bounty', c:''},
+          {t:'$ nmap -sV -T4 target.htb', c:'cmd'},
+          {t:'[+] 22/tcp   ssh    OpenSSH 8.9', c:'ok'},
+          {t:'[+] 80/tcp   http   nginx 1.18', c:'ok'},
+          {t:'[+] 443/tcp  https  nginx 1.18', c:'ok'},
+          {t:'$ ffuf -u https://target.htb/FUZZ -w list.txt', c:'cmd'},
+          {t:'200  /admin', c:'ok'},
+          {t:'200  /api/v1', c:'ok'},
+          {t:'$ nuclei -u https://target.htb', c:'cmd'},
+          {t:'[CRIT] exposed .git directory', c:'crit'},
+          {t:'[HIGH] reflected xss in /search', c:'warn'},
+          {t:'$ report --responsible-disclosure', c:'cmd'},
+          {t:'[ok] submitted. bounty pending...', c:'ok'}
+        ];
+        if(reduced()){ body.innerHTML=lines.map(function(l){return '<div class="'+(l.c||'')+'">'+esc(l.t)+'</div>';}).join(''); return; }
+        var li=0, ci=0, lineDiv=null;
+        function typeLine(){
+          if(ci===0){ lineDiv=document.createElement('div'); lineDiv.className=lines[li].c||''; body.appendChild(lineDiv); }
+          var full=lines[li].t;
+          if(ci<=full.length){
+            lineDiv.innerHTML=esc(full.slice(0,ci))+'<span class="cursor">&#9611;</span>';
+            ci++; body.scrollTop=body.scrollHeight;
+            var d=full.charAt(ci-1)===' '?16:(26+Math.random()*30); setTimeout(typeLine,d);
+          } else {
+            lineDiv.innerHTML=esc(full); li++; ci=0; body.scrollTop=body.scrollHeight;
+            if(li>=lines.length){ setTimeout(function(){ body.innerHTML=''; li=0; ci=0; typeLine(); },2400); }
+            else { setTimeout(typeLine,260); }
+          }
+        }
+        typeLine();
+      }
+      function start(){
+        var name=document.querySelector('.hero-title-line1');
+        if(name){ scramble(name, typeDesc); } else { typeDesc(); }
+        runTerminal();
+      }
+      if(document.readyState==='loading'){ document.addEventListener('DOMContentLoaded', start); } else { start(); }
+    })();
+  </script>
+
+{{ end }}

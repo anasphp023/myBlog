@@ -1,0 +1,111 @@
+# =============================================================================
+# Example: Single content folder, single language
+# Content: content/posts/post.md (all content in one folder, no translations)
+# See: https://gohugo.io/content-management/multilingual/
+# =============================================================================
+
+baseURL = 'https://example.com/'
+theme = "mana"
+defaultContentLanguage = "en"
+
+[pagination]
+  pageSize = 10
+
+[markup]
+  [markup.tableOfContents]
+    startLevel = 1
+    endLevel = 6
+    ordered = false
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+    [markup.goldmark.parser]
+      [markup.goldmark.parser.attribute]
+        block = true
+        title = true
+  [markup.highlight]
+    codeFences = true
+    guessSyntax = true
+    noClasses = false
+    style = "catppuccin-macchiato"
+
+[outputs]
+  home = ["HTML", "JSON"]
+
+[sitemap]
+  changefreq = "weekly"
+  priority = 0.5
+  filename = "sitemap.xml"
+
+[params]
+  enableIntegrity = false
+  relatedPostsCount = 3
+  description = "Personal blog on offensive security: Bug Bounty, Penetration Test, write-ups, tooling notes, and curated cyber news."
+  author = "Anas Hamidi"
+  heroTitleLine1 = "Anas Hamidi"
+  heroTitleLine2 = "Hack & Write"
+  footerText = "Built with Hugo and Mana theme"
+
+  [params.social]
+    linkedin = "https://www.linkedin.com/in/anas-hmaidy/"
+    twitter = "anasbetis023"
+    youtube = "https://www.youtube.com/@anashamidii"
+    medium = "https://anasbetis023.medium.com/"
+    telegram = "https://t.me/anas_hmaidy"
+    email = "contact@anashamidi.com"
+
+  [params.buyMeACoffee]
+    enabled = false
+    id = "anshmaidy2k"
+    message = ""
+    color = "#FF3B3B"
+    position = "Right"
+    x_margin = 18
+    y_margin = 18
+
+  [params.codeHighlight]
+    darkTheme = "catppuccin-macchiato"
+    lightTheme = "catppuccin-frappe"
+
+  [params.copyright]
+    startYear = 2025
+    owner = "Anas Hamidi"
+
+  [params.admonitions]
+    alertStyle = "favicon"
+
+# Single language: use root-level menus. No [languages] block needed.
+[[menus.main]]
+  name = "Home"
+  pageRef = "/"
+  weight = 10
+
+[[menus.main]]
+  name = "Posts"
+  pageRef = "/posts"
+  weight = 20
+
+[[menus.main]]
+  name = "Tags"
+  pageRef = "/tags"
+  weight = 30
+
+[[menus.main]]
+  name = "About"
+  url = "/about/"
+  weight = 40
+
+[params.avatar.home]
+  assetPath = "images/me.png"
+[params.avatar.about]
+  assetPath = "images/me.png"
+
+[[menus.main]]
+  name = "CV"
+  url = "/cv/"
+  weight = 45
+
+[[menus.main]]
+  name = "YouTube"
+  url = "/youtube/"
+  weight = 50

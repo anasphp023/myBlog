@@ -1,0 +1,20 @@
+<footer class="site-footer">
+  <div class="footer-content">
+    <p class="footer-text">
+      &copy;
+      {{ if site.Params.copyright.startYear }}{{ site.Params.copyright.startYear }}-{{ end }}{{ now.Year }}
+      {{ site.Params.copyright.owner | default site.Title }}.
+      {{ if site.Params.footerText }}
+        {{ site.Params.footerText }}
+      {{ end }}
+    </p>
+
+    <a class="bmc-link" href="https://buymeacoffee.com/anshmaidy2k" target="_blank" rel="noopener">☕ Buy me a coffee</a>
+
+    {{ if site.Params.social }}
+      <div class="footer-social">
+        {{ partial "social-links.html" . }}
+      </div>
+    {{ end }}
+  </div>
+</footer>
