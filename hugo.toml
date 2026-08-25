@@ -95,6 +95,8 @@ defaultContentLanguage = "en"
   url = "/about/"
   weight = 40
 
+[params.avatar]
+  url = "https://anashamidi.com/images/og-image.png"
 [params.avatar.home]
   assetPath = "images/me.png"
 [params.avatar.about]

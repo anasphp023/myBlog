@@ -1,6 +1,7 @@
 ---
 title: "YouTube"
 type: "page"
+description: "Offensive-security and bug-bounty videos by Anas Hamidi — recon, web exploitation, and practical hunting, mostly in Arabic."
 ---
 
 I make videos on offensive security and bug bounty — mostly in Arabic, for beginners and beyond. If they help, subscribe so you don't miss the next one.

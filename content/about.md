@@ -1,6 +1,7 @@
 ---
 title: "About"
 type: "about"
+description: "Anas Hamidi — Application Security Researcher and Penetration Tester based in Germany. 50+ vulnerabilities responsibly disclosed to Canva, Pexels, Lichess and others via HackerOne and Bugcrowd."
 ---
 
 I'm **Anas Hamidi** — an Application Security Researcher and Penetration Tester based in Germany, focused on web and API security.

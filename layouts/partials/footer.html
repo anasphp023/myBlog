@@ -20,3 +20,17 @@
     {{ end }}
   </div>
 </footer>
+
+{{/* Toggle `.scrolled` on the sticky header so it gets a solid background + shadow once scrolled. */}}
+<script>
+(function () {
+  var header = document.querySelector(".sticky-header");
+  if (!header) return;
+  var ticking = false;
+  function update() { header.classList.toggle("scrolled", window.scrollY > 10); ticking = false; }
+  window.addEventListener("scroll", function () {
+    if (!ticking) { window.requestAnimationFrame(update); ticking = true; }
+  }, { passive: true });
+  update();
+})();
+</script>

@@ -2,7 +2,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="language" content="{{ site.Language.LanguageCode }}">
-<meta name="theme-color" content="#BD5FFF">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0f172a" media="(prefers-color-scheme: dark)">
 <script>
   // Set theme immediately to prevent flash
   (function () {
@@ -21,14 +22,7 @@
 <title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} | {{ site.Title }}{{ end }}</title>
 <meta
   name="description"
-  content="{{ if .Description }}
-    {{ .Description }}
-  {{ else if .IsHome }}
-    {{ site.Params.description }}
-  {{ else }}
-    {{ .Summary | plainify | truncate 160 }}
-  {{ end }}
-  ">
+  content="{{ if .Description }}{{ .Description }}{{ else if .IsHome }}{{ site.Params.description }}{{ else }}{{ .Summary | plainify | truncate 160 }}{{ end }}">
 
 {{ if .Params.tags }}
   <meta name="keywords" content="{{ delimit .Params.tags ", " }}">
@@ -63,16 +57,30 @@
 {{ partial "head/opengraph.html" . }}
 {{ partial "head/json-ld.html" . }}
 
+{{/* Person structured data on the home page (recruiter / Google Knowledge Graph) */}}
+{{ if .IsHome }}
+  {{ $social := site.Params.social }}
+  {{ $sameAs := slice }}
+  {{ with $social.linkedin }}{{ $sameAs = $sameAs | append . }}{{ end }}
+  {{ with $social.youtube }}{{ $sameAs = $sameAs | append . }}{{ end }}
+  {{ with $social.medium }}{{ $sameAs = $sameAs | append . }}{{ end }}
+  {{ with $social.telegram }}{{ $sameAs = $sameAs | append . }}{{ end }}
+  {{ with $social.twitter }}{{ $sameAs = $sameAs | append (printf "https://x.com/%s" .) }}{{ end }}
+  {{ $person := dict
+      "@context" "https://schema.org"
+      "@type" "Person"
+      "name" (site.Params.author | default site.Title)
+      "url" site.BaseURL
+      "jobTitle" "Penetration Tester & Application Security Specialist"
+      "image" (printf "%simages/me.png" site.BaseURL)
+      "address" (dict "@type" "PostalAddress" "addressCountry" "DE")
+      "knowsAbout" (slice "Web Application Security" "API Security" "Penetration Testing" "Bug Bounty" "OWASP Top 10")
+  }}
+  {{ with $social.email }}{{ $person = merge $person (dict "email" (printf "mailto:%s" .)) }}{{ end }}
+  {{ if $sameAs }}{{ $person = merge $person (dict "sameAs" $sameAs) }}{{ end }}
+  {{ printf "<script type=\"application/ld+json\">%s</script>" ($person | jsonify) | safeHTML }}
+{{ end }}
 
-<!-- Google Fonts: Space Grotesk (headings), Inter (body), Outfit (logo), and JetBrains Mono (code) -->
-<link
-  rel="stylesheet"
-  media="print"
-  onload="this.media='all'">
-<noscript>
-  <link
-    rel="stylesheet">
-</noscript>
 {{ partial "head/css.html" . }}
 
 {{ partial "head/favicon.html" . }}

@@ -14,10 +14,8 @@
               <span class="hero-title-line2">{{ site.Params.heroTitleLine2 }}</span>
             {{ end }}
           </h1>
-          {{ if site.Params.description }}
-            <p class="hero-subtitle"><span class="term-caret">&gt;</span> <span class="typed-text" data-typed="{{ site.Params.description }}"></span><span class="type-cursor">|</span></p>
-          {{ else if .Description }}
-            <p class="hero-subtitle"><span class="term-caret">&gt;</span> <span class="typed-text" data-typed="{{ .Description }}"></span><span class="type-cursor">|</span></p>
+          {{ with (or site.Params.description .Description) }}
+            <p class="hero-subtitle">{{ . }}</p>
           {{ end }}
           {{ if site.Params.social }}
             <div class="hero-social">
@@ -26,13 +24,11 @@
           {{ end }}
         </div>
         <div class="hero-image">
-          <div class="hacker-terminal" aria-hidden="true">
-            <div class="term-bar">
-              <span class="term-dot"></span><span class="term-dot"></span><span class="term-dot"></span>
-              <span class="term-title">anas@kali: ~</span>
+          {{ with resources.Get "images/me.png" }}
+            <div class="hero-photo">
+              <img src="{{ .RelPermalink }}" alt="{{ site.Params.author | default site.Title }}" width="340" height="340">
             </div>
-            <div class="term-body" id="term-body"></div>
-          </div>
+          {{ end }}
         </div>
       </div>
     </div>
@@ -50,66 +46,4 @@
       </div>
     </section>
   </div>
-
-  <script>
-    (function () {
-      var CH = '!<>-_/[]{}=+*^?#%01ABCDEF';
-      function reduced(){ return window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches; }
-      function esc(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
-      function scramble(el, cb){
-        var target=(el.textContent||'').trim();
-        if(!target){ if(cb) cb(); return; }
-        if(reduced()){ el.textContent=target; if(cb) cb(); return; }
-        var q=[]; for(var i=0;i<target.length;i++){ var s=Math.floor(Math.random()*15); var e=s+12+Math.floor(Math.random()*24); q.push({to:target.charAt(i),s:s,e:e,c:''}); }
-        var frame=0;
-        (function upd(){
-          var out='', done=0;
-          for(var i=0;i<q.length;i++){ var it=q[i];
-            if(it.to===' '){ out+=' '; done++; continue; }
-            if(frame>=it.e){ out+=it.to; done++; }
-            else if(frame>=it.s){ if(!it.c||Math.random()<0.3){ it.c=CH.charAt(Math.floor(Math.random()*CH.length)); } out+='<span class="scramble-char">'+it.c+'</span>'; }
-          }
-          el.innerHTML=out;
-          if(done===q.length){ el.textContent=target; if(cb) cb(); return; }
-          frame++; requestAnimationFrame(upd);
-        })();
-      }
-      function typeDesc(){
-        var el=document.querySelector('.hero-subtitle .typed-text'); if(!el) return;
-        var full=el.getAttribute('data-typed')||'';
-        if(reduced()){ el.textContent=full; return; }
-        el.textContent=''; var i=0, speed=22;
-        (function step(){ if(i<=full.length){ el.textContent=full.slice(0,i); i++; setTimeout(step,speed);} })();
-      }
-      function renderTerminal(){
-        var body=document.getElementById('term-body'); if(!body) return;
-        var lines=[
-          {t:'$ whoami', c:'cmd'},
-          {t:'anas :: offensive security & bug bounty', c:''},
-          {t:'$ nmap -sV -T4 target.htb', c:'cmd'},
-          {t:'[+] 22/tcp   ssh    OpenSSH 8.9', c:'ok'},
-          {t:'[+] 80/tcp   http   nginx 1.18', c:'ok'},
-          {t:'[+] 443/tcp  https  nginx 1.18', c:'ok'},
-          {t:'$ ffuf -u https://target.htb/FUZZ -w list.txt', c:'cmd'},
-          {t:'200  /admin', c:'ok'},
-          {t:'200  /api/v1', c:'ok'},
-          {t:'$ nuclei -u https://target.htb', c:'cmd'},
-          {t:'[CRIT] exposed .git directory', c:'crit'},
-          {t:'[HIGH] reflected xss in /search', c:'warn'},
-          {t:'$ report --responsible-disclosure', c:'cmd'},
-          {t:'[ok] submitted. bounty pending...', c:'ok'}
-        ];
-        var html = lines.map(function(l){ return '<div class="'+(l.c||'')+'">'+esc(l.t)+'</div>'; }).join('');
-        html += '<div><span class="cursor" style="animation: caretBlink 1.05s steps(1,end) infinite;">&#9611;</span></div>';
-        body.innerHTML = html;
-      }
-      function start(){
-        var name=document.querySelector('.hero-title-line1');
-        if(name){ scramble(name, typeDesc); } else { typeDesc(); }
-        renderTerminal();
-      }
-      if(document.readyState==='loading'){ document.addEventListener('DOMContentLoaded', start); } else { start(); }
-    })();
-  </script>
-
 {{ end }}

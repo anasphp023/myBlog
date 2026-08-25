@@ -1,24 +1,111 @@
 {{ define "main" }}
-  <article class="cv-page about-page">
+{{ $L := .Params.labels | default dict }}
+  <article class="cv-page">
+
     <header class="cv-header">
       <div class="cv-header-photo">
         {{ with resources.Get "images/me.png" }}
-          <img src="{{ .RelPermalink }}" alt="{{ site.Title }}">
+          <img src="{{ .RelPermalink }}" alt="{{ site.Params.author | default site.Title }}" width="130" height="130">
         {{ end }}
       </div>
       <div class="cv-header-info">
-        <h1 class="cv-name">{{ site.Title }}</h1>
+        <h1 class="cv-name">{{ site.Params.author | default site.Title }}</h1>
         {{ with .Params.subtitle }}<p class="cv-title">{{ . }}</p>{{ end }}
         <div class="cv-contact">
-          <a href="mailto:contact@anashamidi.com">contact@anashamidi.com</a>
-          <a href="https://www.linkedin.com/in/anas-hmaidy/" target="_blank" rel="noopener">LinkedIn</a>
-          <a href="https://hackerone.com/albetisi" target="_blank" rel="noopener">HackerOne</a>
+          {{ with .Params.location }}
+            <span class="cv-contact-item">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5Z"/></svg>
+              {{ . }}
+            </span>
+          {{ end }}
+          {{ with .Params.contact.email }}
+            <a class="cv-contact-item" href="mailto:{{ . }}">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Zm0 2v.5l8 5 8-5V6H4Zm16 3-8 5-8-5v9h16V9Z"/></svg>
+              {{ . }}
+            </a>
+          {{ end }}
+          {{ range .Params.contact.links }}
+            <a class="cv-contact-item" href="{{ .url }}" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10.6 13.4a1 1 0 0 0 1.4 0l4-4a3 3 0 1 0-4.2-4.2l-1 1a1 1 0 1 0 1.4 1.4l1-1a1 1 0 0 1 1.4 1.4l-4 4a1 1 0 0 0 0 1.4Zm2.8-2.8a1 1 0 0 0-1.4 0l-4 4a3 3 0 1 0 4.2 4.2l1-1a1 1 0 1 0-1.4-1.4l-1 1a1 1 0 0 1-1.4-1.4l4-4a1 1 0 0 0 0-1.4Z"/></svg>
+              {{ .label }}
+            </a>
+          {{ end }}
         </div>
-        <a class="cv-download" href="/Anas-Hamidi-CV.pdf" download>&#8681; Download CV (PDF)</a>
+        <div class="cv-actions">
+          {{ with .Params.pdf }}
+            <a class="cv-download" href="{{ . }}" download>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a1 1 0 0 1 1 1v8.6l2.3-2.3a1 1 0 0 1 1.4 1.4l-4 4a1 1 0 0 1-1.4 0l-4-4a1 1 0 0 1 1.4-1.4l2.3 2.3V4a1 1 0 0 1 1-1ZM5 19a1 1 0 0 1 1-1h12a1 1 0 0 1 0 2H6a1 1 0 0 1-1-1Z"/></svg>
+              {{ $L.download | default "Download CV (PDF)" }}
+            </a>
+          {{ end }}
+          {{ with .Params.lang_switch }}
+            <a class="cv-langswitch" href="{{ .url }}">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-2.6a15.7 15.7 0 0 0-1.2-3.2A8 8 0 0 1 18.9 8ZM12 4c.8 1 1.4 2.4 1.8 4h-3.6C10.6 6.4 11.2 5 12 4ZM4.3 14A8 8 0 0 1 4 12c0-.7.1-1.4.3-2h3a17.6 17.6 0 0 0 0 4h-3Zm.8 2h2.6c.3 1.2.7 2.3 1.2 3.2A8 8 0 0 1 5.1 16Zm2.6-8H5.1a8 8 0 0 1 3.8-3.2C8.4 5.7 8 6.8 7.7 8ZM12 20c-.8-1-1.4-2.4-1.8-4h3.6c-.4 1.6-1 3-1.8 4Zm2.1-6H9.9a15.6 15.6 0 0 1 0-4h4.2a15.6 15.6 0 0 1 0 4Zm.9 5.2c.5-.9.9-2 1.2-3.2h2.6a8 8 0 0 1-3.8 3.2ZM16.7 14a17.6 17.6 0 0 0 0-4h3c.2.6.3 1.3.3 2s-.1 1.4-.3 2h-3Z"/></svg>
+              {{ .label }}
+            </a>
+          {{ end }}
+        </div>
       </div>
     </header>
-    <div class="about-content-full cv-content">
-      {{ .Content }}
+
+    <div class="cv-grid">
+      <div class="cv-main about-content-full">
+        {{ .Content }}
+      </div>
+
+      <aside class="cv-side">
+        {{ with .Params.skills }}
+          <section class="cv-block">
+            <h2 class="cv-block-title">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m21.7 13.4-1.4-1.4a2 2 0 0 0-2.6-.2l-1-1a4 4 0 0 0-5-5l1.8 1.8-1.4 1.4L10.3 6a4 4 0 0 0 5 5l1 1a2 2 0 0 0 .2 2.6l1.4 1.4a2 2 0 0 0 2.8 0l.8-.8a2 2 0 0 0 0-2.8ZM4.7 20.7l6-6-1.4-1.4-6 6a1 1 0 1 0 1.4 1.4Z"/></svg>
+              {{ $L.skills | default "Skills &amp; Tools" }}
+            </h2>
+            <ul class="cv-skills">
+              {{ range . }}
+                <li><span class="cv-skill-group">{{ .group }}</span><span class="cv-skill-items">{{ .items }}</span></li>
+              {{ end }}
+            </ul>
+          </section>
+        {{ end }}
+
+        {{ with .Params.focus }}
+          <section class="cv-block">
+            <h2 class="cv-block-title">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm0 4a6 6 0 1 1 0 12 6 6 0 0 1 0-12Zm0 3a3 3 0 1 0 0 6 3 3 0 0 0 0-6Z"/></svg>
+              {{ $L.focus | default "Areas of Focus" }}
+            </h2>
+            <p class="cv-focus">{{ . }}</p>
+          </section>
+        {{ end }}
+
+        {{ with .Params.education }}
+          <section class="cv-block">
+            <h2 class="cv-block-title">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 1 8l11 5 9-4.1V15h2V8L12 3ZM5 13.2V17c0 1.7 3.1 3 7 3s7-1.3 7-3v-3.8l-7 3.2-7-3.4Z"/></svg>
+              {{ $L.education | default "Education" }}
+            </h2>
+            <ul class="cv-list">
+              {{ range . }}
+                <li><strong>{{ .degree }}</strong><span>{{ .org }}</span></li>
+              {{ end }}
+            </ul>
+          </section>
+        {{ end }}
+
+        {{ with .Params.languages }}
+          <section class="cv-block">
+            <h2 class="cv-block-title">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm7.9 6h-2.6a15.7 15.7 0 0 0-1.2-3.2A8 8 0 0 1 18.9 8ZM12 4c.8 1 1.4 2.4 1.8 4h-3.6C10.6 6.4 11.2 5 12 4ZM4.3 14A8 8 0 0 1 4 12c0-.7.1-1.4.3-2h3a17.6 17.6 0 0 0 0 4h-3Zm.8 2h2.6c.3 1.2.7 2.3 1.2 3.2A8 8 0 0 1 5.1 16Zm2.6-8H5.1a8 8 0 0 1 3.8-3.2C8.4 5.7 8 6.8 7.7 8ZM12 20c-.8-1-1.4-2.4-1.8-4h3.6c-.4 1.6-1 3-1.8 4Zm.9-.8c.5-.9.9-2 1.2-3.2h2.6a8 8 0 0 1-3.8 3.2ZM16.7 14a17.6 17.6 0 0 0 0-4h3c.2.6.3 1.3.3 2s-.1 1.4-.3 2h-3Z"/></svg>
+              {{ $L.languages | default "Languages" }}
+            </h2>
+            <ul class="cv-langs">
+              {{ range . }}
+                <li><span class="cv-lang-name">{{ .name }}</span><span class="cv-lang-level">{{ .level }}</span></li>
+              {{ end }}
+            </ul>
+          </section>
+        {{ end }}
+      </aside>
     </div>
   </article>
 {{ end }}
