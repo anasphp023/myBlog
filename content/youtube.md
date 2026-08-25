@@ -1,6 +1,6 @@
 ---
 title: "YouTube"
-type: "cv"
+type: "page"
 ---
 
 I make videos on offensive security and bug bounty — mostly in Arabic, for beginners and beyond. If they help, subscribe so you don't miss the next one.

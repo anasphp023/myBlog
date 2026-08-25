@@ -4,7 +4,7 @@
 # See: https://gohugo.io/content-management/multilingual/
 # =============================================================================
 
-baseURL = 'https://example.com/'
+baseURL = 'https://anashamidi.com/'
 theme = "mana"
 defaultContentLanguage = "en"
 
@@ -43,7 +43,7 @@ defaultContentLanguage = "en"
   description = "Personal blog on offensive security: Bug Bounty, Penetration Test, write-ups, tooling notes, and curated cyber news."
   author = "Anas Hamidi"
   heroTitleLine1 = "Anas Hamidi"
-  heroTitleLine2 = "Hack & Write"
+  heroTitleLine2 = "Application Security & Penetration Testing"
   footerText = "Built with Hugo and Mana theme"
 
   [params.social]
