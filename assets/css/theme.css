@@ -744,3 +744,18 @@ body .sticky-header.scrolled {
   font-style: italic;
   font-display: swap;
 }
+
+/* ---- footer legal links ---- */
+.footer-legal { display: flex; gap: 0.6rem; align-items: center; margin: 0.5rem 0; font-size: 0.85rem; }
+.footer-legal a { color: var(--text-muted); text-decoration: none; }
+.footer-legal a:hover { color: var(--accent-primary); }
+
+/* ---- lighter display titles (less heavy) ---- */
+.hero-title .hero-title-line1,
+.hero-title .hero-title-line2,
+.list-title .list-title-line2,
+.about-page-name .list-title-line2,
+.tags-title .list-title-line2,
+.cv-name {
+  font-weight: 700;
+}

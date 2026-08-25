@@ -4,12 +4,14 @@
       &copy;
       {{ if site.Params.copyright.startYear }}{{ site.Params.copyright.startYear }}-{{ end }}{{ now.Year }}
       {{ site.Params.copyright.owner | default site.Title }}.
-      {{ if site.Params.footerText }}
-        {{ site.Params.footerText }}
-      {{ end }}
+      {{ if site.Params.footerText }}{{ site.Params.footerText }}{{ end }}
     </p>
 
-    <a class="bmc-link" href="https://buymeacoffee.com/anshmaidy2k" target="_blank" rel="noopener">☕ Buy me a coffee</a>
+    <nav class="footer-legal">
+      <a href="/impressum/">Impressum</a>
+      <span>·</span>
+      <a href="/datenschutz/">Datenschutz</a>
+    </nav>
 
     {{ if site.Params.social }}
       <div class="footer-social">
@@ -18,21 +20,3 @@
     {{ end }}
   </div>
 </footer>
-
-{{/* Toggle a `.scrolled` class on the sticky header so it gets a solid,
-     blurred background once the user scrolls past the top. */}}
-<script>
-(function () {
-  var header = document.querySelector(".sticky-header");
-  if (!header) return;
-  var ticking = false;
-  function update() {
-    header.classList.toggle("scrolled", window.scrollY > 10);
-    ticking = false;
-  }
-  window.addEventListener("scroll", function () {
-    if (!ticking) { window.requestAnimationFrame(update); ticking = true; }
-  }, { passive: true });
-  update();
-})();
-</script>

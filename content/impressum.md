@@ -1,5 +1,6 @@
 ---
 title: "Impressum"
+type: "page"
 date: 2026-08-25
 draft: false
 ---
