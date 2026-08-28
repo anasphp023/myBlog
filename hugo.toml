@@ -95,12 +95,13 @@ defaultContentLanguage = "en"
   url = "/about/"
   weight = 40
 
-[params.avatar]
-  url = "https://anashamidi.com/images/og-image.png"
+# NOTE: do not set a top-level `url` here. The about/home layouts resolve
+# `avatar.<page>.url | default avatar.url` BEFORE falling back to assetPath,
+# so a top-level url silently overrides these assetPaths.
 [params.avatar.home]
-  assetPath = "images/me.png"
+  assetPath = "images/me.jpg"
 [params.avatar.about]
-  assetPath = "images/me.png"
+  assetPath = "images/me.jpg"
 
 [[menus.main]]
   name = "CV"

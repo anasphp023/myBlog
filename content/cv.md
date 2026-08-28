@@ -43,6 +43,7 @@ Penetration Tester and Application Security specialist with 3+ years of hands-on
 - Consistent five-figure (USD) bug-bounty payouts through sustained research
 - **50+ verified reports** across HackerOne and Bugcrowd
 - Recognized reports at Canva, Pexels, Lichess, Glance CX, Inshur, and ClassDojo
+{.cv-cols-2}
 
 ## Experience
 

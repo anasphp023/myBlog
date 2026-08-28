@@ -4,7 +4,7 @@
 
     <header class="cv-header">
       <div class="cv-header-photo">
-        {{ with resources.Get "images/me.png" }}
+        {{ with resources.Get "images/me.jpg" }}
           <img src="{{ .RelPermalink }}" alt="{{ site.Params.author | default site.Title }}" width="130" height="130">
         {{ end }}
       </div>
@@ -58,7 +58,7 @@
           <section class="cv-block">
             <h2 class="cv-block-title">
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m21.7 13.4-1.4-1.4a2 2 0 0 0-2.6-.2l-1-1a4 4 0 0 0-5-5l1.8 1.8-1.4 1.4L10.3 6a4 4 0 0 0 5 5l1 1a2 2 0 0 0 .2 2.6l1.4 1.4a2 2 0 0 0 2.8 0l.8-.8a2 2 0 0 0 0-2.8ZM4.7 20.7l6-6-1.4-1.4-6 6a1 1 0 1 0 1.4 1.4Z"/></svg>
-              {{ $L.skills | default "Skills &amp; Tools" }}
+              {{ $L.skills | default "Skills & Tools" }}
             </h2>
             <ul class="cv-skills">
               {{ range . }}

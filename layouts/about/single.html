@@ -1,0 +1,38 @@
+{{ define "main" }}
+  {{ $name := site.Params.author | default site.Title }}
+  <article class="about-page about-split">
+    <aside class="about-side">
+      <div class="about-card">
+        {{ $avatarUrl := site.Params.avatar.about.url | default site.Params.avatar.url }}
+        {{ $avatarAsset := site.Params.avatar.about.assetPath | default site.Params.avatar.assetPath }}
+        {{ if $avatarUrl }}
+          <img src="{{ $avatarUrl }}" alt="{{ $name }}" class="about-page-avatar" width="200" height="200">
+        {{ else if $avatarAsset }}
+          {{ with resources.Get $avatarAsset }}
+            <img src="{{ .RelPermalink }}" alt="{{ $name }}" class="about-page-avatar" width="200" height="200">
+          {{ end }}
+        {{ end }}
+
+        <h1 class="about-card-name">{{ $name }}</h1>
+        {{ with site.Params.heroTitleLine2 }}
+          <p class="about-card-role">{{ . }}</p>
+        {{ end }}
+
+        {{ if site.Params.social }}
+          <div class="about-page-social">
+            {{ partial "social-links.html" . }}
+          </div>
+        {{ end }}
+
+        <a class="about-card-cta" href="{{ "/cv/" | relLangURL }}">
+          <svg viewBox="0 0 24 24" aria-hidden="true" width="16" height="16"><path fill="currentColor" d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6Zm0 2.5L17.5 8H14V4.5ZM8 12h8v2H8v-2Zm0 4h8v2H8v-2Z"/></svg>
+          {{ i18n "viewCV" | default "View full CV" }}
+        </a>
+      </div>
+    </aside>
+
+    <div class="about-main about-content-full">
+      {{ .Content }}
+    </div>
+  </article>
+{{ end }}

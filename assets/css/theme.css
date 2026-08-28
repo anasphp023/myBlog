@@ -877,3 +877,120 @@ body .sticky-header.scrolled {
   .cv-page .cv-header { flex-direction: column; text-align: center; align-items: center; }
   .cv-page .cv-contact, .cv-page .cv-actions { justify-content: center; }
 }
+
+/* ==========================================================================
+   About page: two-column split (sticky profile card + content)
+   Replaces the old stacked header so the page fills the width and
+   needs far less scrolling.
+   ========================================================================== */
+.about-page.about-split {
+  max-width: 1080px;
+  display: grid;
+  grid-template-columns: 300px minmax(0, 1fr);
+  gap: 3rem;
+  align-items: start;
+  padding-top: 0.5rem;
+}
+
+.about-split .about-side { position: sticky; top: 96px; }
+
+.about-split .about-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 1.75rem 1.25rem;
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  background: var(--bg-secondary);
+  box-shadow: var(--shadow-md);
+}
+
+.about-split .about-card-name {
+  font-size: 1.35rem;
+  margin: 1rem 0 0.15rem;
+  color: var(--text-primary);
+  line-height: 1.2;
+}
+.about-split .about-card-role {
+  font-size: 0.86rem;
+  color: var(--accent-primary);
+  font-weight: 600;
+  margin: 0 0 1rem;
+  line-height: 1.4;
+}
+.about-split .about-page-social { margin: 0; }
+
+.about-split .about-card-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-top: 1.25rem;
+  padding: 0.55rem 1.1rem;
+  border-radius: 999px;
+  font-size: 0.86rem;
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--bg-deep);
+  background: var(--accent-primary);
+  transition: background var(--transition-fast), transform 0.2s ease;
+}
+.about-split .about-card-cta:hover {
+  background: var(--accent-hover);
+  transform: translateY(-1px);
+  color: var(--bg-deep);
+}
+
+/* Content column: first paragraph reads as a lead, tighter headings */
+.about-split .about-main > p:first-child {
+  font-size: 1.08rem;
+  line-height: 1.75;
+  color: var(--text-secondary);
+}
+.about-split .about-main h2:first-of-type { margin-top: 1.6rem; }
+
+@media (max-width: 860px) {
+  .about-page.about-split { grid-template-columns: 1fr; gap: 1.75rem; }
+  .about-split .about-side { position: static; }
+  .about-split .about-card { padding: 1.5rem 1.25rem; }
+}
+
+/* ==========================================================================
+   CV: denser layout so the page fits with less scrolling
+   ========================================================================== */
+.cv-page { max-width: 1180px; }
+.cv-grid { grid-template-columns: minmax(0, 1.75fr) minmax(0, 1fr); gap: 2.25rem; }
+.cv-side { padding-left: 2.25rem; }
+
+/* Header: smaller photo + tighter padding buys back vertical space */
+.cv-page .cv-header { gap: 1.5rem; padding-bottom: 1.15rem; margin-bottom: 1.25rem; }
+.cv-page .cv-header-photo img { width: 104px; height: 104px; }
+
+/* Tighter vertical rhythm in the main column */
+.cv-main.about-content-full h2 { margin: 1.35rem 0 0.55rem; }
+.cv-main.about-content-full > p:first-child { line-height: 1.65; margin-bottom: 0.4rem; }
+.cv-main.about-content-full li { margin: 0.18rem 0; line-height: 1.55; }
+.cv-main.about-content-full p { margin: 0.4rem 0; }
+
+/* Short-bullet lists run 2-up on wide screens; prose lists stay full width */
+@media (min-width: 900px) {
+  .cv-main.about-content-full ul.cv-cols-2 {
+    column-count: 2;
+    column-gap: 1.75rem;
+  }
+  .cv-main.about-content-full ul.cv-cols-2 li {
+    break-inside: avoid;
+    -webkit-column-break-inside: avoid;
+  }
+}
+
+/* Sidebar density */
+.cv-block { margin-bottom: 1.4rem; }
+.cv-block-title { margin-bottom: 0.55rem; }
+.cv-skills li { margin-bottom: 0.5rem; }
+.cv-focus { line-height: 1.6; }
+.cv-list li { margin-bottom: 0.5rem; }
+
+@media (max-width: 820px) {
+  .cv-side { padding-left: 0; }
+}
