@@ -44,26 +44,6 @@
 
     <div class="about-main about-content-full">
       {{ .Content }}
-
-      {{ $posts := first 3 (where site.RegularPages "Type" "posts") }}
-      {{ with $posts }}
-        <section class="about-latest">
-          <div class="section-head">
-            <h2>Latest write-ups</h2>
-            <a class="section-more" href="{{ "/posts/" | relLangURL }}">All posts &rarr;</a>
-          </div>
-          <ul class="about-latest-list">
-            {{ range . }}
-              <li>
-                <a href="{{ .RelPermalink }}">
-                  <span class="about-latest-title">{{ .Title }}</span>
-                  <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2, 2006" }}</time>
-                </a>
-              </li>
-            {{ end }}
-          </ul>
-        </section>
-      {{ end }}
     </div>
   </article>
 {{ end }}
