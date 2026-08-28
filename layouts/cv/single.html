@@ -105,6 +105,27 @@
             </ul>
           </section>
         {{ end }}
+
+        {{/* Closes the gap left by the shorter sidebar, and repeats the PDF
+             download at the point where someone finishes reading. */}}
+        <section class="cv-block cv-cta">
+          <h2 class="cv-block-title">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Zm0 2v.5l8 5 8-5V6H4Zm16 3-8 5-8-5v9h16V9Z"/></svg>
+            {{ $L.getInTouch | default "Get in touch" }}
+          </h2>
+          <p class="cv-cta-text">
+            {{ $L.ctaText | default "Open to Penetration Testing, Application Security and Security Engineering roles in Germany." }}
+          </p>
+          {{ with .Params.contact.email }}
+            <a class="cv-cta-link" href="mailto:{{ . }}">{{ . }}</a>
+          {{ end }}
+          {{ with .Params.pdf }}
+            <a class="cv-download cv-cta-download" href="{{ . }}" download>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a1 1 0 0 1 1 1v8.6l2.3-2.3a1 1 0 0 1 1.4 1.4l-4 4a1 1 0 0 1-1.4 0l-4-4a1 1 0 0 1 1.4-1.4l2.3 2.3V4a1 1 0 0 1 1-1ZM5 19a1 1 0 0 1 1-1h12a1 1 0 0 1 0 2H6a1 1 0 0 1-1-1Z"/></svg>
+              {{ $L.download | default "Download CV (PDF)" }}
+            </a>
+          {{ end }}
+        </section>
       </aside>
     </div>
   </article>

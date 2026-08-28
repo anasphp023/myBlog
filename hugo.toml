@@ -91,14 +91,14 @@ defaultContentLanguage = "en"
   weight = 20
 
 [[menus.main]]
-  name = "Tags"
-  pageRef = "/tags"
+  name = "About"
+  url = "/about/"
   weight = 30
 
 [[menus.main]]
-  name = "About"
-  url = "/about/"
-  weight = 40
+  name = "Tags"
+  pageRef = "/tags"
+  weight = 60
 
 # NOTE: do not set a top-level `url` here. The about/home layouts resolve
 # `avatar.<page>.url | default avatar.url` BEFORE falling back to assetPath,
@@ -107,6 +107,26 @@ defaultContentLanguage = "en"
   assetPath = "images/me.jpg"
 [params.avatar.about]
   assetPath = "images/me.jpg"
+
+# Social-proof strip under the hero description. Numbers come from the CV.
+[[params.heroStats]]
+  value = "50+"
+  label = "Reports"
+[[params.heroStats]]
+  value = "#1"
+  label = "Hall of Fame"
+[[params.heroStats]]
+  value = "3+"
+  label = "Years"
+[[params.heroStats]]
+  value = "B2"
+  label = "German"
+
+# "Latest video" card on the home page.
+[params.youtube]
+  channel = "https://www.youtube.com/@anashamidii"
+  latestTitle = "Dorking for Bug Bounty — Recon with Search Engines (EP 01)"
+  latestId = "8Qdxsi_jSKo"
 
 [[menus.main]]
   name = "CV"

@@ -1,0 +1,5 @@
+# Project overrides for the Mana theme's i18n strings.
+# Hugo merges this over themes/mana/i18n/en.toml, so only changed keys go here.
+
+recentPosts = "Latest Write-ups"
+allPosts = "All posts"

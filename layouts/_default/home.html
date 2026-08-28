@@ -1,6 +1,8 @@
 {{ define "main" }}
-  <!-- Hero Section -->
-  <section class="hero-section">
+  {{ $posts := where site.RegularPages "Type" "posts" }}
+
+  <!-- Hero: deliberately compact so the first post is visible without scrolling -->
+  <section class="hero-section hero-compact">
     <div class="hero-container">
       <div class="hero-content">
         <div class="hero-text">
@@ -17,6 +19,18 @@
           {{ with (or site.Params.description .Description) }}
             <p class="hero-subtitle">{{ . }}</p>
           {{ end }}
+
+          {{ with site.Params.heroStats }}
+            <ul class="hero-stats" aria-label="At a glance">
+              {{ range . }}
+                <li>
+                  <span class="hero-stat-value">{{ .value }}</span>
+                  <span class="hero-stat-label">{{ .label }}</span>
+                </li>
+              {{ end }}
+            </ul>
+          {{ end }}
+
           {{ if site.Params.social }}
             <div class="hero-social">
               {{ partial "social-links.html" . }}
@@ -26,7 +40,11 @@
         <div class="hero-image">
           {{ with resources.Get "images/me.jpg" }}
             <div class="hero-photo">
-              <img src="{{ .RelPermalink }}" alt="{{ site.Params.author | default site.Title }}" width="340" height="340">
+              <img
+                src="{{ .RelPermalink }}"
+                alt="{{ site.Params.author | default site.Title }}"
+                width="260"
+                height="260">
             </div>
           {{ end }}
         </div>
@@ -35,15 +53,66 @@
   </section>
 
   <div class="home-container">
-    <!-- Posts List -->
     <section class="posts-section">
-      <h2 class="posts-title">{{ i18n "recentPosts" }}</h2>
+      <div class="section-head">
+        <h2 class="posts-title">{{ i18n "recentPosts" }}</h2>
+        <a class="section-more" href="{{ "/posts/" | relLangURL }}">
+          {{ i18n "allPosts" | default "All posts" }} &rarr;
+        </a>
+      </div>
 
       <div class="posts-list">
-        {{ range where site.RegularPages "Type" "posts" | first 10 }}
+        {{ range first 6 $posts }}
           {{ partial "post-card.html" (dict "page" . "limit" 3) }}
         {{ end }}
       </div>
     </section>
+
+    {{ with site.Params.youtube }}
+      <section class="home-youtube">
+        <div class="yt-card">
+          {{ with .latestId }}
+            <a
+              class="yt-thumb"
+              href="https://www.youtube.com/watch?v={{ . }}"
+              target="_blank"
+              rel="noopener"
+              aria-label="Watch the latest video on YouTube">
+              {{/* Self-hosted: hotlinking i.ytimg.com would leak visitor IPs to
+                   Google, which is why the fonts are self-hosted and the embeds
+                   use youtube-nocookie. Refresh with:
+                   curl -L -o assets/images/youtube-latest.jpg \
+                     "https://i.ytimg.com/vi/<id>/hqdefault.jpg" */}}
+              {{ with resources.Get "images/youtube-latest.jpg" }}
+                <img
+                  src="{{ .RelPermalink }}"
+                  alt=""
+                  loading="lazy"
+                  width="480"
+                  height="360">
+              {{ end }}
+              <span class="yt-play" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path fill="currentColor" d="M8 5v14l11-7z"/></svg>
+              </span>
+            </a>
+          {{ end }}
+          <div class="yt-body">
+            <p class="yt-eyebrow">
+              <svg viewBox="0 0 24 24" aria-hidden="true" width="16" height="16"><path fill="currentColor" d="M23.5 6.2a3 3 0 0 0-2.12-2.14C19.5 3.55 12 3.55 12 3.55s-7.5 0-9.38.51A3 3 0 0 0 .5 6.2C0 8.08 0 12 0 12s0 3.92.5 5.8a3 3 0 0 0 2.12 2.14c1.88.51 9.38.51 9.38.51s7.5 0 9.38-.51A3 3 0 0 0 23.5 17.8C24 15.92 24 12 24 12s0-3.92-.5-5.8ZM9.55 15.57V8.43L15.82 12l-6.27 3.57Z"/></svg>
+              Latest video
+            </p>
+            {{ with .latestTitle }}<h2 class="yt-title">{{ . }}</h2>{{ end }}
+            <div class="yt-actions">
+              <a class="yt-btn" href="{{ "/youtube/" | relLangURL }}">All videos</a>
+              {{ with .channel }}
+                <a class="yt-btn yt-btn-ghost" href="{{ . }}" target="_blank" rel="noopener">
+                  Subscribe
+                </a>
+              {{ end }}
+            </div>
+          </div>
+        </div>
+      </section>
+    {{ end }}
   </div>
 {{ end }}

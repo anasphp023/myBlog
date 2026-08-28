@@ -1,0 +1,137 @@
+{{ define "main" }}
+  {{ $allPosts := where site.RegularPages "Type" "posts" }}
+  {{ $allTags := slice }}
+  {{ range $allPosts }}
+    {{ range .Params.tags }}
+      {{ $allTags = $allTags | append . }}
+    {{ end }}
+  {{ end }}
+  {{ $uniqueTags := $allTags | uniq | sort }}
+  {{ $uniqueYearMonths := slice }}
+  {{ range $allPosts }}
+    {{ $uniqueYearMonths = $uniqueYearMonths | append (.Date.Format "2006-01") }}
+  {{ end }}
+  {{ $uniqueYearMonths = $uniqueYearMonths | uniq | sort }}
+
+  <div class="list-container posts-with-side">
+    <div class="posts-main">
+      <header class="list-header">
+        <h1 class="list-title">
+          <span class="list-title-line2">{{ i18n "posts" | upper }}</span>
+        </h1>
+        {{ with .Description }}<p class="list-description">{{ . }}</p>{{ end }}
+        {{ partial "list-count.html" . }}
+      </header>
+
+      <!-- Filter Controls -->
+      <div class="filter-accordion">
+        <button
+          class="filter-toggle-btn"
+          id="filter-toggle-btn"
+          aria-expanded="false"
+          aria-label="{{ i18n "filters" }}"
+          aria-controls="posts-filter-content">
+          <span class="filter-toggle-text">{{ i18n "filters" }}</span>
+          <svg
+            class="filter-toggle-icon"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </button>
+        <div class="posts-filter" id="posts-filter-content">
+          <div class="filter-group filter-group-tags">
+            <label class="filter-label" for="tag-search-input">{{ i18n "tagsLabel" }}</label>
+            <div class="tag-search-container" data-no-tags="{{ i18n "searchNoTagsFound" }}">
+              <input
+                type="text"
+                id="tag-search-input"
+                class="tag-search-input"
+                placeholder="{{ i18n "searchTags" }}"
+                aria-label="{{ i18n "searchTags" }}">
+              <div id="tag-search-results" class="tag-search-results" role="listbox" aria-label="Tag search results"></div>
+            </div>
+            <div class="filter-tags" id="selected-tags-container"></div>
+            <div id="all-tags-data" style="display: none;">
+              {{ range $uniqueTags }}<span data-tag="{{ . }}">{{ . }}</span>{{ end }}
+            </div>
+          </div>
+
+          <div class="filter-group">
+            <label for="filter-year-month" class="filter-label">{{ i18n "yearMonth" }}</label>
+            <select id="filter-year-month" class="filter-select" aria-label="{{ i18n "yearMonth" }}">
+              <option value="">{{ i18n "allDates" }}</option>
+              {{ range $uniqueYearMonths }}
+                {{ $t := (printf "%s-01" .) | time.AsTime }}
+                <option value="{{ . }}">{{ $t | time.Format ":date_long" }}</option>
+              {{ end }}
+            </select>
+          </div>
+
+          <button id="clear-filters" class="filter-clear-btn" aria-label="{{ i18n "clearFilters" }}">
+            {{ i18n "clearFilters" }}
+          </button>
+        </div>
+      </div>
+
+      <div class="posts-list" id="posts-container">
+        {{ range .Paginator.Pages }}
+          {{ $dataTags := "" }}
+          {{ with .Params.tags }}{{ $dataTags = delimit . "," }}{{ end }}
+          {{ partial "post-card.html" (dict
+            "page" .
+            "limit" 3
+            "dataYearMonth" (.Date.Format "2006-01")
+            "dataTags" $dataTags)
+          }}
+        {{ end }}
+      </div>
+
+      {{ partial "pagination.html" . }}
+      {{ partial "back-to-home.html" . }}
+    </div>
+
+    <aside class="posts-side" aria-label="Browse">
+      {{ with site.Taxonomies.tags }}
+        <section class="side-block">
+          <h2 class="side-title">Popular tags</h2>
+          <div class="side-tags">
+            {{ range first 12 .ByCount }}
+              <a href="{{ .Page.RelPermalink }}" class="side-tag">
+                {{ .Page.Title }}<span class="side-tag-count">{{ .Count }}</span>
+              </a>
+            {{ end }}
+          </div>
+        </section>
+      {{ end }}
+
+      <section class="side-block">
+        <h2 class="side-title">Archive</h2>
+        <ul class="side-list">
+          {{/* Plain rows, not links: the theme's date filter keys on "2006-01",
+               so there is no per-year URL to point at. */}}
+          {{ range $allPosts.GroupByDate "2006" }}
+            <li>
+              <span>{{ .Key }}</span>
+              <span class="side-count">{{ len .Pages }} {{ cond (eq (len .Pages) 1) "post" "posts" }}</span>
+            </li>
+          {{ end }}
+        </ul>
+      </section>
+
+      <section class="side-block">
+        <h2 class="side-title">Elsewhere</h2>
+        <ul class="side-links">
+          <li><a href="{{ "/about/" | relLangURL }}">About me</a></li>
+          <li><a href="{{ "/cv/" | relLangURL }}">CV</a></li>
+          <li><a href="{{ "/youtube/" | relLangURL }}">YouTube</a></li>
+          {{ with site.Home.OutputFormats.Get "RSS" }}
+            <li><a href="{{ .RelPermalink }}">RSS feed</a></li>
+          {{ end }}
+        </ul>
+      </section>
+    </aside>
+  </div>
+{{ end }}

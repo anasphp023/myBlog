@@ -28,11 +28,42 @@
           <svg viewBox="0 0 24 24" aria-hidden="true" width="16" height="16"><path fill="currentColor" d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6Zm0 2.5L17.5 8H14V4.5ZM8 12h8v2H8v-2Zm0 4h8v2H8v-2Z"/></svg>
           {{ i18n "viewCV" | default "View full CV" }}
         </a>
+
+        {{ with site.Params.heroStats }}
+          <ul class="about-card-stats" aria-label="At a glance">
+            {{ range . }}
+              <li>
+                <span class="about-stat-value">{{ .value }}</span>
+                <span class="about-stat-label">{{ .label }}</span>
+              </li>
+            {{ end }}
+          </ul>
+        {{ end }}
       </div>
     </aside>
 
     <div class="about-main about-content-full">
       {{ .Content }}
+
+      {{ $posts := first 3 (where site.RegularPages "Type" "posts") }}
+      {{ with $posts }}
+        <section class="about-latest">
+          <div class="section-head">
+            <h2>Latest write-ups</h2>
+            <a class="section-more" href="{{ "/posts/" | relLangURL }}">All posts &rarr;</a>
+          </div>
+          <ul class="about-latest-list">
+            {{ range . }}
+              <li>
+                <a href="{{ .RelPermalink }}">
+                  <span class="about-latest-title">{{ .Title }}</span>
+                  <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2, 2006" }}</time>
+                </a>
+              </li>
+            {{ end }}
+          </ul>
+        </section>
+      {{ end }}
     </div>
   </article>
 {{ end }}
