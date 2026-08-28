@@ -1,0 +1,49 @@
+{{/*
+  Overrides the theme partial.
+
+  Hugo returns `<nav id="TableOfContents"></nav>` for a page with no headings,
+  which is truthy — so the theme's `{{ if .TableOfContents }}` rendered an empty
+  TOC box on every post that has no H2/H3. Test for a real link instead.
+*/}}
+{{ $toc := .TableOfContents }}
+{{ if strings.Contains $toc "<a href=" }}
+  <aside class="post-toc" id="post-toc" aria-label="{{ i18n "tableOfContents" }}">
+    <button
+      class="toc-toggle"
+      id="toc-toggle"
+      aria-expanded="true"
+      aria-controls="toc-content"
+      aria-label="{{ i18n "toggleToc" }}">
+      <svg
+        class="toc-burger-icon"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true">
+        <line x1="3" y1="6" x2="21" y2="6"></line>
+        <line x1="3" y1="12" x2="21" y2="12"></line>
+        <line x1="3" y1="18" x2="21" y2="18"></line>
+      </svg>
+      <span class="toc-toggle-text">{{ i18n "tableOfContents" }}</span>
+      <svg
+        class="toc-chevron-icon"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true">
+        <polyline points="6 9 12 15 18 9"></polyline>
+      </svg>
+    </button>
+    <div class="toc-content" id="toc-content">
+      <div class="toc-nav" aria-label="{{ i18n "tableOfContents" }}">
+        {{ $toc }}
+      </div>
+    </div>
+  </aside>
+{{ end }}

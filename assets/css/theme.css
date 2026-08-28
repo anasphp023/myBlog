@@ -716,8 +716,9 @@ body .sticky-header.scrolled {
   height: auto;
   aspect-ratio: 1 / 1;
   object-fit: cover;
-  border-radius: 16px;
-  border: 1px solid var(--border-color);
+  /* circular, matching the About and CV avatars */
+  border-radius: 50%;
+  border: 3px solid var(--accent-primary);
   box-shadow: var(--shadow-lg);
   background: var(--bg-secondary);
 }
@@ -994,3 +995,141 @@ body .sticky-header.scrolled {
 @media (max-width: 820px) {
   .cv-side { padding-left: 0; }
 }
+
+/* ==========================================================================
+   Post TOC: numbered index with hover + active tracking
+   (inspired by the section index on labs.apisec.ai)
+   ========================================================================== */
+
+/* Clean card. The theme painted a fixed-attachment radial gradient here, which
+   shimmered while scrolling and fought the sticky positioning. */
+.post-toc {
+  background-image: none;
+  background-attachment: scroll;
+  background-color: var(--bg-secondary);
+  border-radius: 14px;
+}
+.post-toc::before { display: none; }
+
+.toc-nav {
+  padding: 0 0.75rem 0.9rem;
+  line-height: 1.5;
+}
+.toc-nav #TableOfContents > ul { counter-reset: tocnum; }
+.toc-nav ul { list-style: none; margin: 0; padding-left: 0; }
+.toc-nav li { margin: 0; }
+
+/* ---- top-level entries: numbered 01, 02, 03 ---- */
+.toc-nav #TableOfContents > ul > li { counter-increment: tocnum; }
+
+.toc-nav #TableOfContents > ul > li > a {
+  display: grid;
+  grid-template-columns: 1.65rem 1fr;
+  align-items: baseline;
+  gap: 0.1rem 0.55rem;
+  padding: 0.5rem 0.6rem;
+  margin: 0.1rem 0;
+  border: 0;
+  border-radius: 8px;
+  border-left: 2px solid transparent;
+  font-size: 0.85rem;
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color 0.18s ease, background-color 0.18s ease,
+              border-color 0.18s ease, transform 0.18s ease;
+}
+
+.toc-nav #TableOfContents > ul > li > a::before {
+  content: counter(tocnum, decimal-leading-zero);
+  font-size: 0.7rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
+  color: var(--text-muted);
+  transition: color 0.18s ease;
+}
+
+.toc-nav #TableOfContents > ul > li > a:hover {
+  color: var(--accent-primary);
+  background-color: var(--accent-mid-purple-rgba-01);
+  transform: translateX(3px);
+}
+.toc-nav #TableOfContents > ul > li > a:hover::before { color: var(--accent-primary); }
+
+.toc-nav #TableOfContents > ul > li > a.active {
+  color: var(--accent-primary);
+  background-color: var(--accent-mid-purple-rgba-02);
+  border-left-color: var(--accent-primary);
+}
+.toc-nav #TableOfContents > ul > li > a.active::before { color: var(--accent-primary); }
+
+/* ---- nested (H3) entries: indented, unnumbered, lighter ---- */
+.toc-nav ul ul {
+  margin: 0.1rem 0 0.35rem 1.55rem;
+  padding-left: 0.6rem;
+  border-left: 1px solid var(--border-color);
+}
+.toc-nav ul ul a {
+  display: block;
+  padding: 0.28rem 0.5rem;
+  border-radius: 6px;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.18s ease, background-color 0.18s ease, transform 0.18s ease;
+}
+.toc-nav ul ul a:hover {
+  color: var(--accent-primary);
+  background-color: var(--accent-mid-purple-rgba-01);
+  transform: translateX(3px);
+}
+.toc-nav ul ul a.active {
+  color: var(--accent-primary);
+  background-color: var(--accent-mid-purple-rgba-01);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .toc-nav a,
+  .toc-nav #TableOfContents > ul > li > a { transition: none; }
+  .toc-nav a:hover,
+  .toc-nav #TableOfContents > ul > li > a:hover { transform: none; }
+}
+
+/* Reading-progress bar: the theme renders it 3px in the header. Make it read
+   clearly against both themes. */
+.reading-progress-bar {
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent-primary), var(--accent-light-purple));
+}
+
+/* ---- Footer: nav row + RSS ---- */
+.site-footer .footer-nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin: 0.75rem 0 0.35rem;
+  font-size: 0.86rem;
+}
+.site-footer .footer-nav a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+.site-footer .footer-nav a:hover { color: var(--accent-primary); }
+.site-footer .footer-nav span { color: var(--text-muted); }
+.site-footer .footer-rss {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+.site-footer .footer-text a {
+  color: var(--text-secondary);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.site-footer .footer-text a:hover { color: var(--accent-primary); }

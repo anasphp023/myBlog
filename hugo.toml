@@ -13,8 +13,11 @@ defaultContentLanguage = "en"
 
 [markup]
   [markup.tableOfContents]
-    startLevel = 1
-    endLevel = 6
+    # startLevel must be 2: posts have no H1 in the body (the title is separate),
+    # so startLevel=1 wrapped every H2 in a phantom <li> and made them all render
+    # with the nested "sub-item" styling.
+    startLevel = 2
+    endLevel = 3
     ordered = false
   [markup.goldmark]
     [markup.goldmark.renderer]
@@ -30,7 +33,9 @@ defaultContentLanguage = "en"
     style = "catppuccin-macchiato"
 
 [outputs]
-  home = ["HTML", "JSON"]
+  # RSS must be listed explicitly: setting `home` at all replaces Hugo's default
+  # ["HTML", "RSS"], which silently dropped the site's main feed (/index.xml).
+  home = ["HTML", "JSON", "RSS"]
 
 [sitemap]
   changefreq = "weekly"

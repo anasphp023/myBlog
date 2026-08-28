@@ -1,23 +1,41 @@
 <footer class="site-footer">
   <div class="footer-content">
-    <p class="footer-text">
-      &copy;
-      {{ if site.Params.copyright.startYear }}{{ site.Params.copyright.startYear }}-{{ end }}{{ now.Year }}
-      {{ site.Params.copyright.owner | default site.Title }}.
-      {{ if site.Params.footerText }}{{ site.Params.footerText }}{{ end }}
-    </p>
-
-    <nav class="footer-legal">
-      <a href="/impressum/">Impressum</a>
-      <span>·</span>
-      <a href="/datenschutz/">Datenschutz</a>
-    </nav>
-
     {{ if site.Params.social }}
       <div class="footer-social">
         {{ partial "social-links.html" . }}
       </div>
     {{ end }}
+
+    <nav class="footer-nav" aria-label="Footer navigation">
+      <a href="{{ "/posts/" | relLangURL }}">Posts</a>
+      <span aria-hidden="true">·</span>
+      <a href="{{ "/tags/" | relLangURL }}">Tags</a>
+      <span aria-hidden="true">·</span>
+      <a href="{{ "/about/" | relLangURL }}">About</a>
+      <span aria-hidden="true">·</span>
+      <a href="{{ "/cv/" | relLangURL }}">CV</a>
+      {{ with site.Home.OutputFormats.Get "RSS" }}
+        <span aria-hidden="true">·</span>
+        <a href="{{ .RelPermalink }}" class="footer-rss">
+          <svg viewBox="0 0 24 24" aria-hidden="true" width="13" height="13"><path fill="currentColor" d="M6.18 15.64a2.18 2.18 0 1 1 0 4.36 2.18 2.18 0 0 1 0-4.36ZM4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27V4.44Zm0 5.66A9.9 9.9 0 0 1 13.9 20h-2.83A7.07 7.07 0 0 0 4 12.93V10.1Z"/></svg>
+          RSS
+        </a>
+      {{ end }}
+    </nav>
+
+    <nav class="footer-legal" aria-label="Legal">
+      <a href="{{ "/impressum/" | relLangURL }}">Impressum</a>
+      <span aria-hidden="true">·</span>
+      <a href="{{ "/datenschutz/" | relLangURL }}">Datenschutz</a>
+    </nav>
+
+    <p class="footer-text">
+      &copy;
+      {{ if site.Params.copyright.startYear }}{{ site.Params.copyright.startYear }}-{{ end }}{{ now.Year }}
+      {{ site.Params.copyright.owner | default site.Title }}.
+      Built with <a href="https://gohugo.io/" rel="noopener">Hugo</a>
+      and the <a href="https://github.com/Livour/hugo-mana-theme" rel="noopener">Mana</a> theme.
+    </p>
   </div>
 </footer>
 
