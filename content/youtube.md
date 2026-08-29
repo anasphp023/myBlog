@@ -5,9 +5,10 @@ description: "Offensive-security and bug-bounty videos by Anas Hamidi — recon,
 channel: "https://www.youtube.com/@anashamidii"
 # Thumbnails are self-hosted so the page does not leak visitor IPs to Google
 # (same reason the fonts are local and the embeds use youtube-nocookie).
-# Add one with:
-#   curl -L -o assets/images/yt-<id>.jpg "https://i.ytimg.com/vi/<id>/hqdefault.jpg"
-# A video with no thumb still renders, with a placeholder tile.
+# Add one by saving the video's thumbnail to assets/images/yt-<id>.jpg -- the
+# per-id name matters because YouTube calls every download maxresdefault.jpg,
+# so a second one would overwrite the first. The layout downscales anything
+# wider than 800px, and a video with no thumb renders a placeholder tile.
 videos:
   - id: "8Qdxsi_jSKo"
     title: "Dorking for Bug Bounty — Recon with Search Engines (EP 01)"
@@ -16,8 +17,6 @@ videos:
   - id: "ly-5VRldmSE"
     title: "Bug Bounty for Beginners (Arabic) — How to Start"
     description: "What bug bounty is and how it works, how a security researcher looks at a website, a hands-on IDOR example, and the right way to start — step by step."
-    # File not present yet: the card shows the placeholder until it is, then
-    # picks it up with no further edit.
     thumb: "images/yt-ly-5VRldmSE.jpg"
 ---
 
