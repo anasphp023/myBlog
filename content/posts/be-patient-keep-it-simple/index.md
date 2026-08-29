@@ -3,6 +3,8 @@ title: "Be Patient and Keep it Simple, The Bug is There"
 date: 2025-08-02
 draft: false
 description: "Two simple but high-impact findings, and the lessons that led me to them."
+title_de: "Geduld und Einfachheit — der Bug ist da"
+description_de: "Zwei einfache, aber wirkungsvolle Funde und die Lektionen, die mich dorthin geführt haben."
 tags: ["bug-bounty", "idor", "access-control", "web-security"]
 image: "cover.jpg"
 ---

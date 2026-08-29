@@ -1,6 +1,12 @@
-{{- /* Copy of the theme's header.html. The only change is the logo: a bug mark
-       instead of the site title text. site.Title still drives <title>,
-       og:site_name and the RSS channel, so it stays set in hugo.toml. */ -}}
+{{- /* Copy of the theme's header.html with two changes:
+
+  1. The logo is a bug mark plus the site title, instead of the title alone.
+  2. The search control moved out of the right-hand menu and became a
+     field-looking button sitting between the logo and the nav. It keeps
+     id="search-toggle", so the theme's existing search JS (and the mobile
+     search button, which forwards a click to this element) still drives the
+     search modal -- nothing about the search itself is reimplemented.
+*/ -}}
 <nav class="header-nav" role="navigation" aria-label="Main navigation">
   <div class="header-content">
     <div class="header-logo">
@@ -12,6 +18,21 @@
         </span>
       </a>
     </div>
+
+    <button
+      id="search-toggle"
+      class="header-search"
+      type="button"
+      aria-label="{{ i18n "search" }}">
+      <svg class="search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+      </svg>
+      <span class="header-search-text">{{ i18n "searchPosts" | default "Search posts..." }}</span>
+    </button>
 
     <!-- Hamburger menu button (mobile only) -->
     <button
@@ -29,16 +50,6 @@
 
     <div class="header-menu">
       {{ partial "menu.html" . }}
-
-      <button id="search-toggle" class="search-toggle" aria-label="{{ i18n "search" }}" type="button">
-        <svg class="search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-        </svg>
-      </button>
 
       {{ partial "language-switcher.html" . }}
 

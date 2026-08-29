@@ -1,0 +1,44 @@
+{{ $page := .page }}
+{{/* Project override: posts are written in English only, but the listings
+     render inside the German site too. When the current language is not the
+     post's own, prefer the language-specific title/description from front
+     matter (title_de / description_de) so the German listings read German
+     while each card still links to the English article. */}}
+{{ $lang := site.Language.Lang }}
+{{ $title := $page.Title }}
+{{ $desc := $page.Description }}
+{{ with (index $page.Params (printf "title_%s" $lang)) }}{{ $title = . }}{{ end }}
+{{ with (index $page.Params (printf "description_%s" $lang)) }}{{ $desc = . }}{{ end }}
+{{ $limit := default 3 .limit }}
+{{ $dataYearMonth := .dataYearMonth }}
+{{ $dataTags := .dataTags }}
+{{ if and (not $dataYearMonth) $page.Date }}
+  {{ $dataYearMonth = $page.Date.Format "2006-01" }}
+{{ end }}
+{{ if and (not $dataTags) $page.Params.tags }}
+  {{ $dataTags = delimit $page.Params.tags "," }}
+{{ end }}
+<article
+  class="post-card"
+  data-post-url="{{ $page.RelPermalink }}"
+  {{ if $dataYearMonth }}data-year-month="{{ $dataYearMonth }}"{{ end }}
+  {{ if $dataTags }}data-tags="{{ $dataTags }}"{{ end }}>
+  {{ partial "post-image.html" $page }}
+
+
+  <div class="post-content">
+    <h3 class="post-title">
+      <a href="{{ $page.RelPermalink }}" onclick="event.stopPropagation();">{{ $title }}</a>
+    </h3>
+
+    {{ if $desc }}
+      <p class="post-description">{{ $desc }}</p>
+    {{ else if $page.Summary }}
+      <p class="post-description">{{ $page.Summary | truncate 150 }}</p>
+    {{ end }}
+
+    {{ partial "post-meta-inline.html" $page }}
+
+    {{ partial "post-tags-inline.html" (dict "Params" $page.Params "limit" $limit) }}
+  </div>
+</article>

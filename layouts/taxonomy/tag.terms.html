@@ -1,0 +1,60 @@
+{{ define "main" }}
+  {{/* Project override. .Data.Terms is per-language and the posts are English
+       only, so on the German site the tag cloud came out empty. Fall back to
+       the default language's terms there; the chips then link to the English
+       tag pages, which is where the posts actually live. */}}
+  {{ $terms := .Data.Terms.ByCount }}
+  {{ $fallback := false }}
+  {{ if not $terms }}
+    {{ with (index site.Sites 0).Taxonomies.tags }}
+      {{ $terms = .ByCount }}
+      {{ $fallback = true }}
+    {{ end }}
+  {{ end }}
+
+  <div class="tags-page">
+    <h1 class="tags-title">
+      <span class="list-title-line2">{{ i18n "tags" | upper }}</span>
+    </h1>
+
+    <div class="tags-help">
+      <p>{{ i18n "tagsHelp" }}</p>
+      {{ if $fallback }}
+        <p class="tags-lang-note">
+          {{ i18n "postsInEnglish" | default "The write-ups themselves are in English." }}
+        </p>
+      {{ end }}
+    </div>
+
+    <div class="tags-cloud">
+      <div class="tags-list">
+        {{ range $terms }}
+          <a href="{{ .Page.RelPermalink }}" class="tag-item">
+            <div class="tag-chip-large">
+              <span class="tag-name">{{ .Page.Title }}</span>
+              <span class="tag-count-badge">{{ .Count }}</span>
+            </div>
+          </a>
+        {{ end }}
+      </div>
+    </div>
+
+    <div class="tags-back">
+      <a href="{{ "/" | relLangURL }}" class="tags-back-link">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="back-icon"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor">
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+        </svg>
+        {{ i18n "backToHome" }}
+      </a>
+    </div>
+  </div>
+{{ end }}

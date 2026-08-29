@@ -11,6 +11,8 @@ baseURL = 'https://anashamidi.com/'
 title = 'Anas Hamidi'
 theme = "mana"
 defaultContentLanguage = "en"
+# English stays at the site root, German lives under /de/.
+defaultContentLanguageInSubdir = false
 
 [pagination]
   pageSize = 10
@@ -94,27 +96,6 @@ defaultContentLanguage = "en"
   [params.admonitions]
     alertStyle = "favicon"
 
-# Single language: use root-level menus. No [languages] block needed.
-[[menus.main]]
-  name = "Home"
-  pageRef = "/"
-  weight = 10
-
-[[menus.main]]
-  name = "Posts"
-  pageRef = "/posts"
-  weight = 20
-
-[[menus.main]]
-  name = "About"
-  url = "/about/"
-  weight = 30
-
-[[menus.main]]
-  name = "Tags"
-  pageRef = "/tags"
-  weight = 60
-
 # NOTE: do not set a top-level `url` here. The about/home layouts resolve
 # `avatar.<page>.url | default avatar.url` BEFORE falling back to assetPath,
 # so a top-level url silently overrides these assetPaths.
@@ -123,19 +104,6 @@ defaultContentLanguage = "en"
 [params.avatar.about]
   assetPath = "images/me.jpg"
 
-# Social-proof strip under the hero description. Numbers come from the CV.
-[[params.heroStats]]
-  value = "50+"
-  label = "Reports"
-[[params.heroStats]]
-  value = "#1"
-  label = "Hall of Fame"
-[[params.heroStats]]
-  value = "3+"
-  label = "Years"
-[[params.heroStats]]
-  value = "B2"
-  label = "German"
 
 # "Latest video" card on the home page.
 [params.youtube]
@@ -143,12 +111,102 @@ defaultContentLanguage = "en"
   latestTitle = "Dorking for Bug Bounty — Recon with Search Engines (EP 01)"
   latestId = "8Qdxsi_jSKo"
 
-[[menus.main]]
-  name = "CV"
-  url = "/cv/"
-  weight = 45
+# =============================================================================
+# Languages. English is the full site; German covers the recruiter-facing
+# pages (home, About, CV, YouTube, legal). Posts stay English on purpose --
+# the language switcher only shows on pages that actually have a translation,
+# so nobody lands on an empty German blog.
+# =============================================================================
+[languages]
+  [languages.en]
+    languageName = "English"
+    languageCode = "en"
+    weight = 1
+    title = "Anas Hamidi"
+    [languages.en.params]
+      description = "Personal blog on offensive security: Bug Bounty, Penetration Test, write-ups, tooling notes, and curated cyber news."
+      heroTitleLine1 = "Anas Hamidi"
+      heroTitleLine2 = "Application Security & Penetration Testing"
+      [[languages.en.params.heroStats]]
+        value = "50+"
+        label = "Reports"
+      [[languages.en.params.heroStats]]
+        value = "#1"
+        label = "Hall of Fame"
+      [[languages.en.params.heroStats]]
+        value = "3+"
+        label = "Years"
+      [[languages.en.params.heroStats]]
+        value = "B2"
+        label = "German"
+  [[languages.en.menus.main]]
+    name = "Home"
+    pageRef = "/"
+    weight = 10
+  [[languages.en.menus.main]]
+    name = "Posts"
+    pageRef = "/posts"
+    weight = 20
+  [[languages.en.menus.main]]
+    name = "About"
+    url = "/about/"
+    weight = 30
+  [[languages.en.menus.main]]
+    name = "CV"
+    url = "/cv/"
+    weight = 45
+  [[languages.en.menus.main]]
+    name = "YouTube"
+    url = "/youtube/"
+    weight = 50
+  [[languages.en.menus.main]]
+    name = "Tags"
+    pageRef = "/tags"
+    weight = 60
 
-[[menus.main]]
-  name = "YouTube"
-  url = "/youtube/"
-  weight = 50
+  [languages.de]
+    languageName = "Deutsch"
+    languageCode = "de"
+    weight = 2
+    title = "Anas Hamidi"
+    [languages.de.params]
+      description = "Blog über Offensive Security: Bug Bounty, Penetration Testing, Write-ups, Tooling-Notizen und ausgewählte Security-News."
+      heroTitleLine1 = "Anas Hamidi"
+      heroTitleLine2 = "Application Security & Penetration Testing"
+      [[languages.de.params.heroStats]]
+        value = "50+"
+        label = "Reports"
+      [[languages.de.params.heroStats]]
+        value = "#1"
+        label = "Hall of Fame"
+      [[languages.de.params.heroStats]]
+        value = "3+"
+        label = "Jahre"
+      [[languages.de.params.heroStats]]
+        value = "B2"
+        label = "Deutsch"
+  [[languages.de.menus.main]]
+    name = "Start"
+    pageRef = "/"
+    weight = 10
+  [[languages.de.menus.main]]
+    name = "Beiträge"
+    pageRef = "/posts"
+    weight = 20
+  [[languages.de.menus.main]]
+    name = "Über mich"
+    url = "/de/about/"
+    weight = 30
+  [[languages.de.menus.main]]
+    name = "CV"
+    url = "/de/cv/"
+    weight = 45
+  [[languages.de.menus.main]]
+    name = "YouTube"
+    url = "/de/youtube/"
+    weight = 50
+  [[languages.de.menus.main]]
+    name = "Tags"
+    pageRef = "/tags"
+    weight = 60
+

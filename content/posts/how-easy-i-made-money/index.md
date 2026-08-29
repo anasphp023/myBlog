@@ -3,6 +3,8 @@ title: "How easy I made $$$$"
 date: 2024-04-23
 draft: false
 description: "A reality check on bug bounty and the myth of easy money."
+title_de: "Wie leicht ich $$$$ verdient habe"
+description_de: "Ein Realitätscheck zu Bug Bounty und dem Mythos vom schnellen Geld."
 tags: ["bug-bounty", "mindset", "career"]
 image: "cover.jpg"
 ---

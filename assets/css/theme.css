@@ -2010,3 +2010,80 @@ body .post-image-single { margin: 1.5rem 0 2rem; }
 .social-link[aria-label="HackerOne"],
 .social-link[aria-label="HackerOne"]:hover { color: #ffffff; }
 [data-theme="light"] .social-link[aria-label="HackerOne"] { color: #1a1a1a; }
+
+/* ==========================================================================
+   Header: bug mark + name on the left, search field in the middle, nav right
+   ========================================================================== */
+
+/* A button dressed as a search field. It keeps id="search-toggle", so the
+   theme's search modal opens exactly as before. */
+.header-search {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex: 0 1 300px;
+  min-width: 0;
+  margin: 0 auto;
+  padding: 0.45rem 0.85rem;
+  border: 1px solid var(--border-color);
+  border-radius: 999px;
+  background-color: var(--bg-secondary);
+  color: var(--text-muted);
+  font-family: inherit;
+  font-size: 0.88rem;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color var(--transition-fast), color var(--transition-fast),
+    background-color var(--transition-fast);
+}
+.header-search:hover,
+.header-search:focus-visible {
+  border-color: var(--accent-primary);
+  color: var(--text-secondary);
+}
+.header-search .search-icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+.header-search-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Below the nav breakpoint the hamburger takes over and the mobile menu has
+   its own search button, so the field would only crowd the bar. */
+@media (max-width: 900px) {
+  .header-search { display: none; }
+}
+
+/* ==========================================================================
+   Author byline: smaller social icons
+   The shared partial renders inline SVG, a masked span and an <img>, so all
+   three need sizing here, not just `svg`.
+   ========================================================================== */
+.author-card-links .social-link svg,
+.author-card-links .social-link .social-mask,
+.author-card-links .social-link .social-img {
+  width: 15px;
+  height: 15px;
+}
+.author-card-links .social-link .social-img { max-height: 15px; }
+.author-card-links .social-links { gap: 0.8rem; }
+
+/* Note on the German posts list: the articles are English. */
+.posts-lang-note {
+  margin: 0 0 1.25rem;
+  padding: 0.6rem 0.9rem;
+  border-left: 3px solid var(--accent-primary);
+  background-color: var(--bg-secondary);
+  border-radius: 0 0.4rem 0.4rem 0;
+  color: var(--text-secondary);
+  font-size: 0.88rem;
+}
+.tags-lang-note {
+  margin-top: 0.5rem;
+  color: var(--text-muted);
+  font-size: 0.88rem;
+}

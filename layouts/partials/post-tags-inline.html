@@ -1,0 +1,26 @@
+{{/* Project override: tag links use relURL, not relLangURL. Tags come from
+     the English-only posts, so /de/tags/<term> is never generated. */}}
+{{ $limit := default 0 .limit }}
+{{ if .Params.tags }}
+  <div class="post-tags">
+    {{ if gt $limit 0 }}
+      {{ range first $limit .Params.tags }}
+        <a
+          href="{{ "/tags/" | relURL }}{{ . | urlize }}"
+          class="post-tag"
+          onclick="event.stopPropagation();"
+          >{{ . }}</a
+        >
+      {{ end }}
+    {{ else }}
+      {{ range .Params.tags }}
+        <a
+          href="{{ "/tags/" | relURL }}{{ . | urlize }}"
+          class="post-tag"
+          onclick="event.stopPropagation();"
+          >{{ . }}</a
+        >
+      {{ end }}
+    {{ end }}
+  </div>
+{{ end }}

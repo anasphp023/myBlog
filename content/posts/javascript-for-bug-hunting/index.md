@@ -3,6 +3,8 @@ title: "Bugs & JS: A Closer Look at JavaScript for Successful Bug Hunting"
 date: 2024-01-10
 draft: false
 description: "Why JavaScript files are a goldmine for bug hunters — the tools (JSleak, JSecret, jsluice), the workflow, and the resources I use to dig secrets, endpoints, and client-side bugs out of JS."
+title_de: "Bugs & JS: JavaScript als Fundgrube für Bug Hunter"
+description_de: "Warum JavaScript-Dateien eine Goldgrube sind — die Tools (JSleak, JSecret, jsluice), der Workflow und die Quellen, mit denen ich Secrets, Endpunkte und Client-side-Bugs aus JS hole."
 tags: ["bug-bounty", "javascript", "recon", "web-security"]
 image: "cover.jpg"   # add a cover image to this folder, then remove the "#"
 ---

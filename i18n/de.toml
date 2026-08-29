@@ -1,0 +1,112 @@
+# German UI strings. The theme ships en/fr/he/ja only, so every key the site
+# uses has to be here or it falls back to English mid-sentence.
+
+# Alerts / admonitions
+note = "Hinweis"
+tip = "Tipp"
+important = "Wichtig"
+warning = "Warnung"
+caution = "Achtung"
+info = "Info"
+success = "Erfolg"
+question = "Frage"
+danger = "Gefahr"
+bug = "Bug"
+example = "Beispiel"
+
+# Header & navigation
+menu = "Menü"
+search = "Suche"
+searchPlaceholder = "Suchen..."
+searchPosts = "Beiträge durchsuchen..."
+clearSearch = "Suche zurücksetzen"
+closeSearch = "Suche schließen"
+toggleMenu = "Menü umschalten"
+closeMenu = "Menü schließen"
+toggleTheme = "Design umschalten"
+language = "Sprache"
+
+# Accessibility
+skipToMain = "Zum Inhalt springen"
+scrollToTop = "Nach oben"
+
+# Home
+home = "Start"
+recentPosts = "Neueste Write-ups"
+allPosts = "Alle Beiträge"
+
+# List & filters
+posts = "Beiträge"
+filters = "Filter"
+searchTags = "Tags durchsuchen..."
+tagsLabel = "Tags"
+yearMonth = "Jahr & Monat"
+allDates = "Alle Zeiträume"
+clearFilters = "Filter zurücksetzen"
+
+# Pagination
+pageOf = "Seite %s von %s"
+postSingular = "Beitrag"
+postPlural = "Beiträge"
+pageSingular = "Seite"
+pagePlural = "Seiten"
+postsOnThisPage = "auf dieser Seite"
+paginationFirst = "Erste"
+paginationPrev = "Zurück"
+paginationNext = "Weiter"
+paginationLast = "Letzte"
+
+# Navigation links
+backToHome = "Zurück zur Startseite"
+allTags = "Alle Tags"
+readMore = "Weiterlesen"
+
+# Archive
+archive = "Archiv"
+
+# Single post
+relatedPosts = "Ähnliche Beiträge"
+tags = "Tags"
+navPrev = "Zurück"
+navNext = "Weiter"
+author = "Autor"
+
+# Post meta
+wordCount = "Wörter"
+readingTime = "Min."
+
+# Table of contents
+tableOfContents = "Inhaltsverzeichnis"
+toggleToc = "Inhaltsverzeichnis umschalten"
+
+# Tags page
+tagsHelp = "Auf ein Tag klicken, um passende Beiträge zu sehen"
+searchNoResults = "Keine Ergebnisse gefunden"
+searchNoTagsFound = "Keine Tags gefunden"
+
+# YouTube page
+youtubeChannel = "YouTube-Kanal"
+subscribe = "Abonnieren"
+allVideos = "Alle Videos"
+moreVideos = "Weitere Videos"
+watchOnYouTube = "Auf YouTube ansehen"
+playVideo = "Abspielen"
+backToVideos = "Zurück zu allen Videos"
+
+# CV / About
+viewCV = "Vollständigen Lebenslauf ansehen"
+
+# Buy Me a Coffee
+buyMeACoffeeDescription = "Unterstütze mich auf Buy me a coffee!"
+
+# 404
+404Title = "Diese Seite existiert nicht"
+404DefaultMessage = "Die gesuchte Seite konnte leider nicht gefunden werden."
+404ReturnHome = "Zurück zur Startseite"
+aboutLabel = "Über mich"
+readBlog = "Zum Blog"
+seeAllPosts = "Alle Beiträge ansehen"
+postsInEnglish = "Die Write-ups selbst sind auf Englisch."
+latestVideo = "Neuestes Video"
+popularTags = "Beliebte Tags"
+elsewhere = "Mehr von mir"

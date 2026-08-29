@@ -3,6 +3,8 @@ title: "Click, Intercept, Hack: Checkmate on Access Control Vulnerability"
 date: 2024-03-07
 draft: false
 description: "A Broken Access Control bug on a chess platform, via request interception and cookie swapping."
+title_de: "Klicken, Abfangen, Hacken: Schachmatt für eine Access-Control-Lücke"
+description_de: "Eine Broken-Access-Control-Schwachstelle auf einer Schachplattform — über abgefangene Requests und getauschte Cookies."
 tags: ["bug-bounty", "access-control", "burp-suite", "web-security"]
 image: "cover.jpg"
 ---

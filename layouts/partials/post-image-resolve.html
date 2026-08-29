@@ -1,0 +1,84 @@
+{{/*
+  Project override of the theme's post-image-resolve.html.
+
+  The theme's version ends by recursing into .AllTranslations to inherit a
+  cover from another language. With two translations that both lack a
+  discoverable image, English calls German, German calls English, and Hugo
+  stops with "maximum template call stack size exceeded". It only shows up
+  once a page actually has a translation, which is why it appeared the moment
+  the German pages were added.
+
+  This version takes either a page (as before) or a dict
+  {"page": PAGE, "recurse": false}, and passes recurse=false when it walks
+  into a translation, so the inheritance is one level deep instead of
+  ping-ponging.
+
+  Everything else is the theme's logic, unchanged.
+*/}}
+{{ $page := . }}
+{{ $recurse := true }}
+{{ if reflect.IsMap . }}
+  {{ $page = .page }}
+  {{ $recurse = .recurse }}
+{{ end }}
+
+{{ $image := $page.Params.image }}
+{{ $imageResource := false }}
+
+{{ if $image }}
+  {{/* Try to resolve as page resource first (content folder) */}}
+  {{ $imageResource = $page.Resources.Get $image }}
+  {{ if not $imageResource }}
+    {{ $imageResource = $page.Resources.GetMatch $image }}
+  {{ end }}
+
+  {{/* If not found as page resource, try as asset resource (assets folder) */}}
+  {{ if not $imageResource }}
+    {{ $imageResource = resources.Get $image }}
+  {{ end }}
+{{ else }}
+  {{/* Auto-discovery: try to find image based on title or filename */}}
+  {{ $titleSlug := "" }}
+  {{ if $page.File }}
+    {{ $titleSlug = $page.File.TranslationBaseName | urlize }}
+  {{ else }}
+    {{ $titleSlug = $page.Title | urlize }}
+  {{ end }}
+  {{ $imageExtensions := slice ".png" ".jpg" ".jpeg" ".webp" }}
+  {{ range $imageExtensions }}
+    {{ $potentialImage := printf "/images/%s%s" $titleSlug . }}
+    {{ $staticPath := printf "static/images/%s%s" $titleSlug . }}
+    {{ $assetPath := printf "assets/images/%s%s" $titleSlug . }}
+
+    {{ if not (findRE "%" $staticPath) }}
+      {{ if fileExists $staticPath }}
+        {{ $image = $potentialImage }}
+        {{ break }}
+      {{ end }}
+    {{ end }}
+
+    {{ if not (findRE "%" $assetPath) }}
+      {{ if fileExists $assetPath }}
+        {{ $image = $potentialImage }}
+        {{ $imageResource = resources.Get (printf "images/%s%s" $titleSlug .) }}
+        {{ break }}
+      {{ end }}
+    {{ end }}
+  {{ end }}
+
+  {{/* Inherit a cover from another translation, but only one level deep. */}}
+  {{ if and (not $image) $recurse }}
+    {{ range $page.AllTranslations }}
+      {{ if ne .Lang $page.Lang }}
+        {{ $resolved := partial "post-image-resolve.html" (dict "page" . "recurse" false) }}
+        {{ if $resolved.image }}
+          {{ $image = $resolved.image }}
+          {{ $imageResource = $resolved.imageResource }}
+          {{ break }}
+        {{ end }}
+      {{ end }}
+    {{ end }}
+  {{ end }}
+{{ end }}
+
+{{ return (dict "image" $image "imageResource" $imageResource) }}

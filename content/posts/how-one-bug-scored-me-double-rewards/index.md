@@ -3,6 +3,8 @@ title: "How One Bug Scored Me Double Rewards!"
 date: 2023-12-19
 draft: false
 description: "A forgotten subdomain, a Shodan dork, and a single PUT request — how one overlooked endpoint led to an information disclosure and then an IDOR into users' video session data."
+title_de: "Wie ein einziger Bug mir die doppelte Prämie einbrachte"
+description_de: "Eine vergessene Subdomain, ein Shodan-Dork und ein einzelner PUT-Request — wie ein übersehener Endpunkt erst zu einer Information Disclosure und dann zu einer IDOR in Video-Session-Daten führte."
 tags: ["bug-bounty", "idor", "recon", "web-security"]
 image: "cover.jpg"   # add a cover image to this folder, then remove the "#"
 ---

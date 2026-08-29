@@ -3,6 +3,8 @@ title: "Hunting for Hidden API Endpoints Using Katana and Hakrawler"
 date: 2024-09-09
 draft: false
 description: "Crawling a target I thought I knew — with Katana, hakrawler, waybackurls, and unfurl — surfaced a hidden /HelpApi/ endpoint and an IDOR leaking users' PII."
+title_de: "Versteckte API-Endpunkte finden mit Katana und Hakrawler"
+description_de: "Ein Ziel neu gecrawlt, das ich zu kennen glaubte — mit Katana, hakrawler, waybackurls und unfurl — und dabei einen versteckten /HelpApi/-Endpunkt sowie eine IDOR mit Nutzerdaten gefunden."
 tags: ["bug-bounty", "recon", "idor", "api", "web-security"]
 image: "cover.jpg"
 ---

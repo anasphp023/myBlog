@@ -1,5 +1,14 @@
 {{ define "main" }}
+  {{/* Posts are written in English only. On the German site this section has
+       no pages of its own, so fall back to the default language's posts: the
+       listing, filters and headings render in German while each card links
+       straight to the English article. */}}
   {{ $allPosts := where site.RegularPages "Type" "posts" }}
+  {{ $fallback := false }}
+  {{ if not $allPosts }}
+    {{ $allPosts = where (index site.Sites 0).RegularPages "Type" "posts" }}
+    {{ $fallback = true }}
+  {{ end }}
   {{ $allTags := slice }}
   {{ range $allPosts }}
     {{ range .Params.tags }}
@@ -20,7 +29,12 @@
           <span class="list-title-line2">{{ i18n "posts" | upper }}</span>
         </h1>
         {{ with .Description }}<p class="list-description">{{ . }}</p>{{ end }}
-        {{ partial "list-count.html" . }}
+        {{/* Counted from $allPosts, not the paginator: on the German site the
+             paginator is empty and the theme's partial reported "0". */}}
+        <div class="list-count">
+          <span id="filtered-count">{{ len $allPosts }}</span>
+          {{ if eq (len $allPosts) 1 }}{{ i18n "postSingular" }}{{ else }}{{ i18n "postPlural" }}{{ end }}
+        </div>
       </header>
 
       <!-- Filter Controls -->
@@ -76,8 +90,16 @@
         </div>
       </div>
 
+      {{ if $fallback }}
+        <p class="posts-lang-note">
+          {{ i18n "postsInEnglish" | default "The write-ups themselves are in English." }}
+        </p>
+      {{ end }}
+
       <div class="posts-list" id="posts-container">
-        {{ range .Paginator.Pages }}
+        {{ $listed := $allPosts }}
+        {{ if not $fallback }}{{ $listed = .Paginator.Pages }}{{ end }}
+        {{ range $listed }}
           {{ $dataTags := "" }}
           {{ with .Params.tags }}{{ $dataTags = delimit . "," }}{{ end }}
           {{ partial "post-card.html" (dict
@@ -89,14 +111,18 @@
         {{ end }}
       </div>
 
-      {{ partial "pagination.html" . }}
+      {{ if not $fallback }}{{ partial "pagination.html" . }}{{ end }}
       {{ partial "back-to-home.html" . }}
     </div>
 
     <aside class="posts-side" aria-label="Browse">
-      {{ with site.Taxonomies.tags }}
+      {{/* Taxonomies follow the current language and are empty on the German
+           site, so borrow the default language's tag cloud there too. */}}
+      {{ $tags := site.Taxonomies.tags }}
+      {{ if $fallback }}{{ $tags = (index site.Sites 0).Taxonomies.tags }}{{ end }}
+      {{ with $tags }}
         <section class="side-block">
-          <h2 class="side-title">Popular tags</h2>
+          <h2 class="side-title">{{ i18n "popularTags" | default "Popular tags" }}</h2>
           <div class="side-tags">
             {{ range first 12 .ByCount }}
               <a href="{{ .Page.RelPermalink }}" class="side-tag">
@@ -108,28 +134,27 @@
       {{ end }}
 
       <section class="side-block">
-        <h2 class="side-title">Archive</h2>
+        <h2 class="side-title">{{ i18n "archive" }}</h2>
         <ul class="side-list">
           {{/* Plain rows, not links: the theme's date filter keys on "2006-01",
                so there is no per-year URL to point at. */}}
           {{ range $allPosts.GroupByDate "2006" }}
             <li>
               <span>{{ .Key }}</span>
-              <span class="side-count">{{ len .Pages }} {{ cond (eq (len .Pages) 1) "post" "posts" }}</span>
+              <span class="side-count">{{ len .Pages }} {{ cond (eq (len .Pages) 1) (i18n "postSingular") (i18n "postPlural") }}</span>
             </li>
           {{ end }}
         </ul>
       </section>
 
       <section class="side-block">
-        <h2 class="side-title">Elsewhere</h2>
+        <h2 class="side-title">{{ i18n "elsewhere" | default "Elsewhere" }}</h2>
         <ul class="side-links">
-          <li><a href="{{ "/about/" | relLangURL }}">About me</a></li>
+          <li><a href="{{ "/about/" | relLangURL }}">{{ i18n "aboutLabel" | default "About" }}</a></li>
           <li><a href="{{ "/cv/" | relLangURL }}">CV</a></li>
           <li><a href="{{ "/youtube/" | relLangURL }}">YouTube</a></li>
-          {{ with site.Home.OutputFormats.Get "RSS" }}
-            <li><a href="{{ .RelPermalink }}">RSS feed</a></li>
-          {{ end }}
+          {{/* relURL: the feed only ever carries English posts. */}}
+          <li><a href="{{ "/index.xml" | relURL }}">RSS feed</a></li>
         </ul>
       </section>
     </aside>

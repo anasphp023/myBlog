@@ -3,6 +3,8 @@ title: "Don't Trust the Cache: Exposing Web Cache Poisoning and Deception Vulner
 date: 2024-04-05
 draft: false
 description: "A field guide to web cache attacks — from CP-DoS tricks (oversize headers, meta characters, method override, unkeyed ports, redirect DoS) to poisoning with XSS payloads and web cache deception via path confusion."
+title_de: "Trau dem Cache nicht: Web Cache Poisoning und Deception aufgedeckt"
+description_de: "Ein Praxisleitfaden zu Web-Cache-Angriffen — von CP-DoS-Tricks (übergroße Header, Meta-Zeichen, Method Override, unkeyed Ports, Redirect-DoS) bis zu Poisoning mit XSS-Payloads und Web Cache Deception über Path Confusion."
 tags: ["bug-bounty", "web-cache-poisoning", "web-security", "dos", "xss"]
 image: "cover.jpg"   # add a cover image to this folder, then remove the "#"
 ---
