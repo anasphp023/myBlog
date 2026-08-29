@@ -39,11 +39,11 @@
       <div class="yt-grid">
         {{ range $i, $v := . }}
           <article class="yt-video-card">
-            {{/* Click-to-load facade: the thumbnail is a button that swaps
-                 itself for the player, so the video plays on this page but
-                 nothing is requested from Google until someone asks for it.
-                 An always-on iframe per card would load a player for every
-                 video on first paint. */}}
+            {{/* Click-to-load facade: the thumbnail opens a full-page player
+                 overlay, so the video plays on this site but nothing is
+                 requested from Google until someone asks for it. An always-on
+                 iframe per card would load a player for every video on first
+                 paint. */}}
             <button
               type="button"
               class="yt-video-thumb yt-video-launch"
@@ -96,30 +96,89 @@
         {{ end }}
       </div>
 
+      <div class="yt-modal" id="yt-modal" hidden>
+        <div class="yt-modal-backdrop" data-yt-close></div>
+        <div class="yt-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="yt-modal-title">
+          <div class="yt-modal-head">
+            <h2 class="yt-modal-title" id="yt-modal-title"></h2>
+            <button type="button" class="yt-modal-close" data-yt-close aria-label="{{ i18n "close" | default "Close" }}">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-width="2" d="M6 6l12 12M18 6L6 18"/></svg>
+            </button>
+          </div>
+          <div class="yt-modal-frame" id="yt-modal-frame"></div>
+          <a class="yt-modal-link" id="yt-modal-link" target="_blank" rel="noopener">
+            {{ i18n "watchOnYouTube" | default "Watch on YouTube" }}
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5h5v5M19 5l-7 7M18 14v5H5V6h5"/></svg>
+          </a>
+        </div>
+      </div>
+
       <script>
-        // Swap a thumbnail button for the real player on click. Kept inline
-        // because the theme concatenates its JS bundle from a fixed list.
-        document.querySelectorAll(".yt-video-launch").forEach(function (btn) {
-          btn.addEventListener("click", function () {
-            var frame = document.createElement("div");
-            frame.className = "yt-video-frame";
+        // Full-page player overlay. The iframe is built on open and thrown
+        // away on close, so the video stops and nothing keeps talking to
+        // Google in the background. Kept inline because the theme
+        // concatenates its JS bundle from a fixed list.
+        (function () {
+          var modal = document.getElementById("yt-modal");
+          var frame = document.getElementById("yt-modal-frame");
+          var titleEl = document.getElementById("yt-modal-title");
+          var linkEl = document.getElementById("yt-modal-link");
+          if (!modal || !frame) return;
+
+          // theme.css sets `body > * { position: relative; z-index: 1 }`, so
+          // <main> is a stacking context and anything inside it -- however
+          // high its z-index -- paints under the z-index:100 sticky header.
+          // Reparenting to <body> is what the theme's own search modal does.
+          document.body.appendChild(modal);
+
+          var lastFocus = null;
+
+          function open(id, title) {
+            lastFocus = document.activeElement;
+            titleEl.textContent = title || "";
+            linkEl.href = "https://www.youtube.com/watch?v=" + encodeURIComponent(id);
 
             var iframe = document.createElement("iframe");
             // youtube-nocookie, same as the old embeds.
             iframe.src =
               "https://www.youtube-nocookie.com/embed/" +
-              encodeURIComponent(btn.dataset.videoId) +
+              encodeURIComponent(id) +
               "?autoplay=1&rel=0";
-            iframe.title = btn.dataset.videoTitle || "";
+            iframe.title = title || "";
             iframe.allow =
               "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
             iframe.allowFullscreen = true;
             iframe.setAttribute("frameborder", "0");
+            frame.replaceChildren(iframe);
 
-            frame.appendChild(iframe);
-            btn.replaceWith(frame);
+            modal.hidden = false;
+            document.body.classList.add("yt-modal-open");
+            modal.querySelector(".yt-modal-close").focus();
+          }
+
+          function close() {
+            // Emptying the container tears the player down; merely hiding it
+            // would leave the audio playing.
+            frame.replaceChildren();
+            modal.hidden = true;
+            document.body.classList.remove("yt-modal-open");
+            if (lastFocus) lastFocus.focus();
+          }
+
+          document.querySelectorAll(".yt-video-launch").forEach(function (btn) {
+            btn.addEventListener("click", function () {
+              open(btn.dataset.videoId, btn.dataset.videoTitle);
+            });
           });
-        });
+
+          modal.querySelectorAll("[data-yt-close]").forEach(function (el) {
+            el.addEventListener("click", close);
+          });
+
+          document.addEventListener("keydown", function (e) {
+            if (e.key === "Escape" && !modal.hidden) close();
+          });
+        })();
       </script>
     {{ end }}
   </article>
