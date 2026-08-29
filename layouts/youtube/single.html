@@ -1,38 +1,54 @@
 {{ define "main" }}
   {{ $channel := .Params.channel }}
+  {{ $videos := .Params.videos }}
   <article class="yt-page">
-    <header class="yt-page-header">
-      <h1 class="list-title">
-        <span class="list-title-line2">{{ .Title | upper }}</span>
-      </h1>
 
-      <div class="yt-page-intro">
-        {{ .Content }}
+    {{/* Channel banner instead of the generic centred page title: the page is
+         a channel landing, so it leads with who/what/subscribe. */}}
+    <header class="yt-hero">
+      <div class="yt-hero-main">
+        <span class="yt-hero-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+        </span>
+
+        <div class="yt-hero-text">
+          <p class="yt-hero-eyebrow">{{ i18n "youtubeChannel" | default "YouTube channel" }}</p>
+          <h1 class="yt-hero-title">{{ site.Params.author | default site.Title }}</h1>
+          <div class="yt-hero-intro">{{ .Content }}</div>
+        </div>
       </div>
 
-      {{ with $channel }}
-        <a class="yt-subscribe" href="{{ . }}" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-          Subscribe
-        </a>
-      {{ end }}
+      <div class="yt-hero-actions">
+        {{ with $channel }}
+          <a class="yt-hero-btn" href="{{ . }}" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            {{ i18n "subscribe" | default "Subscribe" }}
+          </a>
+        {{ end }}
+        {{ with $videos }}
+          <span class="yt-hero-count">
+            {{ len . }} {{ cond (eq (len .) 1) "video" "videos" }}
+          </span>
+        {{ end }}
+      </div>
     </header>
 
-    {{ with .Params.videos }}
+    {{ with $videos }}
+      <h2 class="yt-section-title">{{ i18n "allVideos" | default "All videos" }}</h2>
+
       <div class="yt-grid">
-        {{ range . }}
-          {{/* Opens the video on YouTube rather than embedding it inline: an
-               iframe per card would load a Google player for every video on
-               first paint. */}}
+        {{ range $i, $v := . }}
+          {{/* Links out rather than embedding: an iframe per card would load a
+               Google player for every video on first paint. */}}
           <a
             class="yt-video-card"
-            href="https://www.youtube.com/watch?v={{ .id }}"
+            href="https://www.youtube.com/watch?v={{ $v.id }}"
             target="_blank"
             rel="noopener"
-            aria-label="Watch on YouTube: {{ .title }}">
+            aria-label="Watch on YouTube: {{ $v.title }}">
             <span class="yt-video-thumb">
               {{ $thumb := "" }}
-              {{ with .thumb }}{{ $thumb = resources.Get . }}{{ end }}
+              {{ with $v.thumb }}{{ $thumb = resources.Get . }}{{ end }}
               {{ if $thumb }}
                 <img
                   src="{{ $thumb.RelPermalink }}"
@@ -45,17 +61,23 @@
                   <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
                 </span>
               {{ end }}
+
+              <span class="yt-video-num" aria-hidden="true">{{ printf "%02d" (add $i 1) }}</span>
+
               <span class="yt-video-play" aria-hidden="true">
                 <svg viewBox="0 0 24 24"><path fill="currentColor" d="M8 5v14l11-7z"/></svg>
               </span>
             </span>
 
             <span class="yt-video-body">
-              <span class="yt-video-title">{{ .title }}</span>
-              {{ with .description }}
+              <span class="yt-video-title">{{ $v.title }}</span>
+              {{ with $v.description }}
                 <span class="yt-video-desc">{{ . }}</span>
               {{ end }}
-              <span class="yt-video-cta">Watch on YouTube &rarr;</span>
+              <span class="yt-video-cta">
+                {{ i18n "watchOnYouTube" | default "Watch on YouTube" }}
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7-7 7M3 12h18"/></svg>
+              </span>
             </span>
           </a>
         {{ end }}

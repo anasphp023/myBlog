@@ -6,3 +6,7 @@ allPosts = "All posts"
 
 # Eyebrow above the byline on a post.
 author = "Author"
+youtubeChannel = "YouTube channel"
+subscribe = "Subscribe"
+allVideos = "All videos"
+watchOnYouTube = "Watch on YouTube"

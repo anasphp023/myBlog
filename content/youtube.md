@@ -16,6 +16,9 @@ videos:
   - id: "ly-5VRldmSE"
     title: "Bug Bounty for Beginners (Arabic) — How to Start"
     description: "What bug bounty is and how it works, how a security researcher looks at a website, a hands-on IDOR example, and the right way to start — step by step."
+    # File not present yet: the card shows the placeholder until it is, then
+    # picks it up with no further edit.
+    thumb: "images/yt-ly-5VRldmSE.jpg"
 ---
 
 I make videos on offensive security and bug bounty — mostly in Arabic, for beginners and beyond. If they help, subscribe so you don't miss the next one.
