@@ -1,38 +1,39 @@
 {{ define "main" }}
-  {{/* Copy of the theme's _default/single.html, scoped to the posts section so
-       About / CV / Impressum keep the plain layout. The only change is the
-       author-card partial between the post header and the body. */}}
+  {{/* Medium-style order: tags, title, subtitle, author, meta, then the cover
+       image, then the body. The theme's _default/single.html leads with a
+       full-bleed image, which pushed the title and byline below the fold.
+       Scoped to the posts section so About / CV / legal pages are untouched. */}}
   <div class="single-post-wrapper">
     <article class="single-post">
-      {{ partial "post-image-single.html" . }}
-
       <header class="post-header">
         {{ partial "breadcrumb.html" . }}
+
+        {{ with .Params.tags }}
+          <div class="post-tags-top">
+            {{ range . }}
+              <a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}" class="post-tag">{{ . }}</a>
+            {{ end }}
+          </div>
+        {{ end }}
+
         <h1 class="post-title-main">{{ .Title }}</h1>
 
         {{ if .Description }}
           <p class="post-description-main">{{ .Description }}</p>
         {{ end }}
 
+        {{ partial "author-card.html" . }}
+
         {{ partial "post-meta.html" . }}
       </header>
 
-      {{ partial "author-card.html" . }}
+      {{ partial "post-image-single.html" . }}
 
       <div class="post-content-main">
         {{ .Content }}
       </div>
 
-      {{ if .Params.tags }}
-        <footer class="post-footer">
-          <div class="post-tags-footer">
-            <span class="tags-label">{{ i18n "tags" }}:</span>
-            {{ range .Params.tags }}
-              <a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}" class="post-tag">{{ . }}</a>
-            {{ end }}
-          </div>
-        </footer>
-      {{ end }}
+      {{/* No tag list down here: the same tags already sit above the title. */}}
 
       {{ partial "related-posts.html" . }}
 

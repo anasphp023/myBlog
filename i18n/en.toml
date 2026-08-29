@@ -3,3 +3,6 @@
 
 recentPosts = "Latest Write-ups"
 allPosts = "All posts"
+
+# Eyebrow above the byline on a post.
+author = "Author"

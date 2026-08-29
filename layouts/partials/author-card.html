@@ -12,6 +12,8 @@
   {{ end }}
 
   <div class="author-card-body">
+    <p class="author-card-label">{{ i18n "author" | default "Author" }}</p>
+
     <p class="author-card-name">
       <a href="{{ "/about/" | relLangURL }}">{{ $name }}</a>
     </p>
