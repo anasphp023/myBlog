@@ -1,0 +1,35 @@
+{{/* Project override of the theme's 404.html. The only change is the image
+     path: the theme points at /favicon/logo-transparent/android-chrome-512x512.png,
+     which does not exist here, so the 404 page shipped a broken image. */}}
+{{ define "main" }}
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-container">
+      <div class="hero-content">
+        <div class="hero-text">
+          <h1 class="hero-title">
+            <span class="hero-title-line2">404</span>
+            <span class="hero-title-line1">{{ i18n "404Title" }}</span>
+          </h1>
+          <p class="hero-subtitle">
+            &gt;
+            {{ if site.Params.custom404Message }}
+              {{ site.Params.custom404Message | safeHTML }}
+            {{ else }}
+              {{ i18n "404DefaultMessage" }}
+            {{ end }}
+          </p>
+          <div class="hero-social" style="margin-top: var(--spacing-lg);">
+            <a href="{{ .Site.Home.RelPermalink }}" class="post-tag">{{ i18n "404ReturnHome" }}</a>
+          </div>
+        </div>
+        <div class="hero-image">
+          <img
+            src="/android-chrome-512x512.png"
+            alt="{{ site.Title }}"
+            class="hero-logo">
+        </div>
+      </div>
+    </div>
+  </section>
+{{ end }}

@@ -54,6 +54,11 @@ defaultContentLanguage = "en"
   heroTitleLine1 = "Anas Hamidi"
   heroTitleLine2 = "Application Security & Penetration Testing"
   footerText = "Built with Hugo and Mana theme"
+  # Fallback social preview image for pages with no cover of their own (home,
+  # About, CV, tags); without it those pages shared with no image at all.
+  # Must stay above every [params.*] sub-table: a TOML key written after one
+  # belongs to that sub-table, not to [params].
+  ogImage = "images/og-image.png"
 
   # Byline shown above every post (layouts/partials/author-card.html).
   [params.authorBio]
@@ -61,6 +66,8 @@ defaultContentLanguage = "en"
 
   [params.social]
     linkedin = "https://www.linkedin.com/in/anas-hmaidy/"
+    hackerone = "https://hackerone.com/albetisi"
+    bugcrowd = "https://bugcrowd.com/h/Betisi94"
     twitter = "anasbetis023"
     youtube = "https://www.youtube.com/@anashamidii"
     medium = "https://anasbetis023.medium.com/"

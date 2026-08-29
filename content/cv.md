@@ -13,6 +13,7 @@ contact:
   links:
     - { label: "LinkedIn", url: "https://www.linkedin.com/in/anas-hmaidy/" }
     - { label: "HackerOne", url: "https://hackerone.com/albetisi" }
+    - { label: "Bugcrowd", url: "https://bugcrowd.com/h/Betisi94" }
     - { label: "Telegram", url: "https://t.me/anas_hmaidy" }
 skills:
   - { group: "Web & API Security", items: "Burp Suite, OWASP ZAP, Metasploit, Postman" }
