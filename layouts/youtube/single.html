@@ -1,0 +1,65 @@
+{{ define "main" }}
+  {{ $channel := .Params.channel }}
+  <article class="yt-page">
+    <header class="yt-page-header">
+      <h1 class="list-title">
+        <span class="list-title-line2">{{ .Title | upper }}</span>
+      </h1>
+
+      <div class="yt-page-intro">
+        {{ .Content }}
+      </div>
+
+      {{ with $channel }}
+        <a class="yt-subscribe" href="{{ . }}" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+          Subscribe
+        </a>
+      {{ end }}
+    </header>
+
+    {{ with .Params.videos }}
+      <div class="yt-grid">
+        {{ range . }}
+          {{/* Opens the video on YouTube rather than embedding it inline: an
+               iframe per card would load a Google player for every video on
+               first paint. */}}
+          <a
+            class="yt-video-card"
+            href="https://www.youtube.com/watch?v={{ .id }}"
+            target="_blank"
+            rel="noopener"
+            aria-label="Watch on YouTube: {{ .title }}">
+            <span class="yt-video-thumb">
+              {{ $thumb := "" }}
+              {{ with .thumb }}{{ $thumb = resources.Get . }}{{ end }}
+              {{ if $thumb }}
+                <img
+                  src="{{ $thumb.RelPermalink }}"
+                  alt=""
+                  loading="lazy"
+                  width="480"
+                  height="360">
+              {{ else }}
+                <span class="yt-video-thumb-empty" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                </span>
+              {{ end }}
+              <span class="yt-video-play" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path fill="currentColor" d="M8 5v14l11-7z"/></svg>
+              </span>
+            </span>
+
+            <span class="yt-video-body">
+              <span class="yt-video-title">{{ .title }}</span>
+              {{ with .description }}
+                <span class="yt-video-desc">{{ . }}</span>
+              {{ end }}
+              <span class="yt-video-cta">Watch on YouTube &rarr;</span>
+            </span>
+          </a>
+        {{ end }}
+      </div>
+    {{ end }}
+  </article>
+{{ end }}
