@@ -5,6 +5,10 @@
 # =============================================================================
 
 baseURL = 'https://anashamidi.com/'
+# Fills the header logo (the empty slot on the left of the nav), the <title>
+# on every page, og:site_name, and the RSS channel title. Without it the
+# homepage tab was blank and inner tabs read "Posts | ".
+title = 'Anas Hamidi'
 theme = "mana"
 defaultContentLanguage = "en"
 
