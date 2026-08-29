@@ -15,40 +15,12 @@ html {
 }
 
 :root {
-  /* Nebula Glass Color Palette */
-  --bg-deep: #0a0606; /* Deep Midnight Blue */
-  --accent-primary: #ff3b3b; /* Primary Red */
-  --primary-color: #ff3b3b;
-  --accent-mid-purple: #ff5c5c; /* Mid Purple */
-  --accent-light-purple: #ff8f8f; /* Light Purple */
-  --accent-secondary: #ff4d4d; /* Cyber Cyan */
-  --glass-surface: rgba(255, 255, 255, 0.05);
-  --glass-border: rgba(255, 255, 255, 0.1);
-  --glass-block: rgb(255, 255, 255);
-
-  /* Legacy variables for compatibility */
-  --bg-primary: var(--bg-deep);
-  --bg-secondary: var(--glass-surface);
-  --bg-tertiary: rgba(255, 255, 255, 0.08);
-  --text-primary: #f1f5f9;
-  --text-secondary: #cbd5e1;
-  --text-muted: #94a3b8;
-  --accent-hover: #ff5c5c;
-  --border-color: var(--glass-border);
-  /* Dark theme rgba values for effects */
-  --accent-primary-rgba-03: rgba(255, 59, 59, 0.3);
-  --accent-primary-rgba-05: rgba(255, 59, 59, 0.5);
-  --accent-light-purple-rgba-01: rgba(255, 143, 143, 0.1);
-  --accent-light-purple-rgba-03: rgba(255, 143, 143, 0.3);
-  --accent-mid-purple-rgba-05: rgba(255, 92, 92, 0.05);
-  --accent-mid-purple-rgba-01: rgba(255, 92, 92, 0.1);
-  --accent-mid-purple-rgba-02: rgba(255, 120, 120, 0.18);
-  /* Tag styling for dark theme */
-  --tag-bg: rgba(0, 0, 0, 0.4);
-  --tag-color: var(--accent-light-purple);
-  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+  /* Non-colour design tokens only. Every colour variable now lives in the
+     two palette blocks near the bottom of this file ("Palette: default =
+     professional LIGHT" / "= professional SLATE"). Do not add colours here:
+     `:root` and `[data-theme="..."]` have equal specificity, so a colour set
+     here is only overridden by source order, which is what made this file
+     carry five conflicting palettes. */
 
   /* Scroll to top & Buy Me a Coffee */
   --yellow-accent: #ffdd00;
@@ -86,51 +58,6 @@ html {
   --icon-lg: 1.5rem;
 }
 
-[data-theme="light"] {
-  --bg-primary: #ffffff;
-  /* Light theme glassmorphism - minimal white overlay, backdrop blur creates the glassy effect */
-  --glass-surface: rgba(
-    255,
-    255,
-    255,
-    0.2
-  ); /* Minimal white overlay - backdrop blur does the work */
-  --glass-border: rgba(252, 165, 165, 0.5); /* More defined purple-tinted border for better visibility */
-  --glass-block: rgba(255, 255, 255, 0.8);
-  --bg-secondary: var(--glass-surface); /* Use glass-surface for glass effect */
-  --bg-tertiary: rgba(
-    255,
-    255,
-    255,
-    0.25
-  ); /* Slightly more visible for tertiary surfaces */
-  --text-primary: #0f172a;
-  --text-secondary: #475569;
-  --text-muted: #64748b;
-  /* Light theme purple palette - much darker, more saturated for contrast on light backgrounds */
-  --accent-primary: #c81e2c; /* Very dark red for primary */
-  --primary-color: #c81e2c;
-  --accent-mid-purple: #dc2626; /* Dark purple for mid */
-  --accent-light-purple: #ef4444; /* Medium-dark purple for light accent */
-  --accent-secondary: #dc2626;
-  --accent-hover: #dc2626;
-  --border-color: var(--glass-border);
-  /* Light theme rgba values for effects - darker purples for better contrast */
-  --accent-primary-rgba-03: rgba(200, 30, 44, 0.3);
-  --accent-primary-rgba-05: rgba(200, 30, 44, 0.5);
-  --accent-light-purple-rgba-01: rgba(239, 68, 68, 0.1);
-  --accent-light-purple-rgba-03: rgba(239, 68, 68, 0.3);
-  --accent-mid-purple-rgba-05: rgba(220, 38, 38, 0.05);
-  --accent-mid-purple-rgba-01: rgba(220, 38, 38, 0.1);
-  --accent-mid-purple-rgba-02: rgba(220, 38, 38, 0.2);
-  /* Tag styling for light theme - lighter background, darker purple text */
-  --tag-bg: rgba(220, 38, 38, 0.1);
-  --tag-color: #c81e2c;
-  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-}
-
 body {
   font-family: var(--font-body);
   background-color: var(--bg-deep);
@@ -141,37 +68,8 @@ body {
     background-color var(--transition-base),
     color var(--transition-base);
 
-  /* Nebula Glass Background: Radial gradient (lighter blue in center, black at edges) */
-  background-image: radial-gradient(
-    circle at center,
-    rgba(120, 20, 28, 0.28) 0%,
-    rgba(18, 10, 12, 0.5) 40%,
-    var(--bg-deep) 100%
-  );
-  background-attachment: fixed;
-  background-size: 100% 100%;
-  background-position: center center;
 
   position: relative;
-}
-
-/* Light theme background */
-[data-theme="light"] {
-  --bg-deep: #ffffff; /* Override bg-deep for light theme */
-}
-
-[data-theme="light"] body {
-  background-color: #ffffff;
-  /* Light theme radial gradient: subtle purple/lavender tint in center, fading to white at edges */
-  background-image: radial-gradient(
-    circle at center,
-    rgba(255, 120, 120, 0.18) 0%,
-    rgba(255, 235, 235, 0.4) 40%,
-    #ffffff 100%
-  );
-  background-attachment: fixed;
-  background-size: 100% 100%;
-  background-position: center center;
 }
 
 /* SVG noise/grain texture overlay with opacity 0.05 to prevent banding */
@@ -378,18 +276,7 @@ body > * {
   text-stroke: 0;
 }
 
-/* ===== Professional slate palette + gradient titles + video embeds ===== */
-:root:not([data-theme="light"]) {
-  --bg-deep: #23272f;
-}
-body {
-  background-image: radial-gradient(
-    circle at 50% 0%,
-    rgba(255, 255, 255, 0.05) 0%,
-    rgba(0, 0, 0, 0.18) 55%,
-    var(--bg-deep) 100%
-  );
-}
+/* ===== Gradient titles + video embeds ===== */
 .list-title .list-title-line2,
 .about-page-name .list-title-line2 {
   background: linear-gradient(180deg, #ffffff 0%, var(--accent-primary) 170%);
@@ -484,15 +371,6 @@ body {
   transform: translateY(-2px);
 }
 
-/* ===== Light mode → clean & professional (dark stays red/black) ===== */
-[data-theme="light"] {
-  --bg-deep: #ffffff; --bg-primary: #ffffff;
-  --text-primary: #1a1d23; --text-secondary: #4b5563; --text-muted: #6b7280;
-  --accent-primary: #c1121f; --primary-color: #c1121f;
-  --border-color: rgba(0,0,0,0.1);
-  --glass-surface: rgba(0,0,0,0.025); --glass-border: rgba(0,0,0,0.08);
-}
-[data-theme="light"] body { background-image: none; background-color: #fbfbfc; }
 [data-theme="light"] .hero-title .hero-title-line2 { animation: none; text-shadow: none; }
 [data-theme="light"] .term-caret,
 [data-theme="light"] .hero-subtitle .type-cursor,
@@ -537,7 +415,8 @@ body {
    ========================================================================== */
 
 /* ---- Palette: default = professional LIGHT ---- */
-:root {
+:root,
+[data-theme="light"] {
   --bg-deep: #ffffff;
   --bg-primary: #ffffff;
   --bg-secondary: #f7f8fb;
@@ -574,37 +453,12 @@ body {
   --shadow-lg: 0 12px 28px rgba(15, 23, 42, 0.12);
 }
 
-/* Explicit light selector wins over the older red [data-theme="light"] block */
-[data-theme="light"] {
-  --bg-deep: #ffffff;
-  --bg-primary: #ffffff;
-  --bg-secondary: #f7f8fb;
-  --bg-tertiary: #eef1f7;
-  --glass-surface: #f7f8fb;
-  --glass-border: #eceef2;
-  --glass-block: #ffffff;
-  --text-primary: #1a1a1a;
-  --text-secondary: #4a4a4a;
-  --text-muted: #6b7280;
-  --accent-primary: #2563eb;
-  --primary-color: #2563eb;
-  --accent-hover: #1d4ed8;
-  --accent-secondary: #2563eb;
-  --accent-mid-purple: #3b82f6;
-  --accent-light-purple: #2563eb;
-  --border-color: #eceef2;
-  --accent-primary-rgba-03: rgba(37, 99, 235, 0.30);
-  --accent-primary-rgba-05: rgba(37, 99, 235, 0.50);
-  --tag-bg: #eef2ff;
-  --tag-color: #2563eb;
-  --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.06);
-  --shadow-md: 0 4px 12px rgba(15, 23, 42, 0.08);
-  --shadow-lg: 0 12px 28px rgba(15, 23, 42, 0.12);
-}
-
 /* ---- Palette: toggle "dark" = professional SLATE (not hacker red) ---- */
 [data-theme="dark"] {
-  --bg-deep: #0f172a;
+  /* #23272f, not #0f172a: this is the body colour the site has always
+     rendered. It used to come from `:root:not([data-theme="light"])`, whose
+     (0,2,0) specificity quietly outranked this block. */
+  --bg-deep: #23272f;
   --bg-primary: #0f172a;
   --bg-secondary: #1b2434;
   --bg-tertiary: #273449;
