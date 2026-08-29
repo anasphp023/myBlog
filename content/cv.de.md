@@ -1,7 +1,7 @@
 ---
 title: "Lebenslauf"
 type: "cv"
-description: "Lebenslauf von Anas Hamidi — Penetration Tester und Application-Security-Spezialist in Deutschland. 3+ Jahre Offensive-Security-Erfahrung, 50+ gemeldete Schwachstellen."
+description: "Lebenslauf von Anas Hamidi — Penetration Tester und Application-Security-Spezialist in Deutschland. 2 Jahre Offensive-Security-Erfahrung, 50+ gemeldete Schwachstellen."
 subtitle: "Application Security · Penetration Tester · Cybersecurity-Spezialist"
 location: "Deutschland"
 pdf: "/Anas-Hamidi-CV.pdf"
@@ -40,7 +40,7 @@ languages:
   - { name: "Deutsch", level: "B2 (telc)" }
 ---
 
-Penetration Tester und Application-Security-Spezialist mit mehr als 3 Jahren praktischer Erfahrung in der Offensive Security. Spezialisiert auf Web- und API-Penetrationstests, mit Erfahrung in Mobile-App-Sicherheit, Business-Logic-Schwachstellen und Sicherheitsautomatisierung. Ich setze LLM-gestützte Workflows ein, um Recon, Payload-Generierung und Code-Analyse zu beschleunigen.
+Penetration Tester und Application-Security-Spezialist mit 2 Jahren praktischer Erfahrung in der Offensive Security. Spezialisiert auf Web- und API-Penetrationstests, mit Erfahrung in Mobile-App-Sicherheit, Business-Logic-Schwachstellen und Sicherheitsautomatisierung. Ich setze LLM-gestützte Workflows ein, um Recon, Payload-Generierung und Code-Analyse zu beschleunigen.
 
 ## Kernerfolge
 
