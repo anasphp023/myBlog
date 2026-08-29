@@ -1393,3 +1393,140 @@ body .sticky-header.scrolled {
 .cv-focus { font-size: 0.84rem; line-height: 1.5; }
 .cv-list li { margin-bottom: 0.4rem; }
 .cv-langs li { padding: 0.28rem 0; font-size: 0.84rem; }
+
+/* ==========================================================================
+   Post grid on the home page
+   Cards go vertical (image on top) and drop the description, so six fit in
+   the space the old three-item vertical list used.
+   ========================================================================== */
+.posts-list.posts-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.4rem;
+}
+.posts-grid .post-card {
+  flex-direction: column;
+  gap: 0;
+  padding: 0;
+  overflow: hidden;
+}
+.posts-grid .post-image {
+  width: 100%;
+  height: 158px;
+  border-radius: 0;
+}
+.posts-grid .post-content {
+  padding: 0.95rem 1.05rem 1.1rem;
+  gap: 0.5rem;
+}
+.posts-grid .post-title {
+  font-size: 1.02rem;
+  line-height: 1.35;
+}
+/* The card is a teaser here; the summary lives on /posts/. */
+.posts-grid .post-description { display: none; }
+/* Pins meta + tags to the bottom so uneven title lengths still line up. */
+.posts-grid .post-meta-inline { margin-top: auto; }
+.posts-grid .post-content .post-tags { margin-top: 0.15rem; }
+/* Date + reading time only. Word count and the bullet separators made the
+   meta line wrap in a ~300px column, leaving orphaned "4 min" rows. */
+/* theme.css loads BEFORE the theme's own bundle (see head/css.html), so a tie
+   on specificity loses. .post-meta-inline .post-word-count is (0,2,0) --
+   match it with three classes, not two. */
+.posts-grid .post-meta-inline .post-word-count,
+.posts-grid .post-meta-inline .meta-separator { display: none; }
+.posts-grid .post-meta-inline {
+  gap: 0.85rem;
+  font-size: 0.8rem;
+}
+
+@media (max-width: 1024px) {
+  .posts-list.posts-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 640px) {
+  .posts-list.posts-grid { grid-template-columns: minmax(0, 1fr); }
+  .posts-grid .post-image { height: 180px; }
+}
+
+/* ==========================================================================
+   Author byline above each post
+   ========================================================================== */
+.author-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 0 0 2rem;
+  padding: 1rem 1.15rem;
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 0.6rem;
+}
+.author-card-avatar {
+  width: 72px;
+  height: 72px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--accent-primary);
+}
+.author-card-body {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+.author-card-name {
+  margin: 0;
+  font-weight: 700;
+  font-size: 1.05rem;
+  line-height: 1.2;
+}
+.author-card-name a {
+  color: var(--text-primary);
+  text-decoration: none;
+}
+.author-card-name a:hover { color: var(--accent-primary); }
+.author-card-tagline {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 0.88rem;
+  line-height: 1.45;
+}
+/* The shared partial centres its icons; left-align them under the name. */
+.author-card-links .social-links {
+  justify-content: flex-start;
+  gap: 0.65rem;
+  margin: 0.15rem 0 0;
+}
+.author-card-links .social-link svg { width: 18px; height: 18px; }
+
+@media (max-width: 640px) {
+  .author-card { flex-direction: column; align-items: flex-start; }
+}
+
+/* ==========================================================================
+   Header logo: bug mark in place of the site title
+   ========================================================================== */
+.header-logo .logo-link.logo-bug {
+  display: inline-flex;
+  align-items: center;
+  padding: 0;
+}
+.logo-bug-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  /* 32px matches the line box of the 1.25rem title it replaced, so swapping
+     the logo does not change the header height. */
+  width: 32px;
+  height: 32px;
+  border-radius: 9px;
+  background-color: var(--accent-primary);
+  color: #fff;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+.logo-bug-mark svg { width: 20px; height: 20px; }
+.logo-link.logo-bug:hover .logo-bug-mark {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px var(--accent-primary-rgba-03);
+}

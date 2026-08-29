@@ -1,0 +1,27 @@
+{{- /* Author byline shown above the body of every post. */ -}}
+{{ $name := site.Params.author | default site.Title }}
+<aside class="author-card" aria-label="About the author">
+  {{ with resources.Get "images/me.jpg" }}
+    <img
+      src="{{ .RelPermalink }}"
+      alt="{{ $name }}"
+      class="author-card-avatar"
+      width="72"
+      height="72"
+      loading="lazy">
+  {{ end }}
+
+  <div class="author-card-body">
+    <p class="author-card-name">
+      <a href="{{ "/about/" | relLangURL }}">{{ $name }}</a>
+    </p>
+
+    {{ with site.Params.authorBio.tagline }}
+      <p class="author-card-tagline">{{ . }}</p>
+    {{ end }}
+
+    <div class="author-card-links">
+      {{ partial "social-links.html" . }}
+    </div>
+  </div>
+</aside>

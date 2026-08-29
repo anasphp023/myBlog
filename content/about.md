@@ -12,7 +12,7 @@ I also mentor students in offensive security with [Rushd](https://rushd-sy.org/e
 
 ## Open to Opportunities
 
-I'm currently open to entry-level roles in **Penetration Testing, Application Security, or Security Engineering** (within Germany). For the full picture, check out my **[CV](/cv/)**.
+I'm currently open to roles in **Penetration Testing, Application Security, or Security Engineering** (within Germany). For the full picture, check out my **[CV](/cv/)**.
 
 
 

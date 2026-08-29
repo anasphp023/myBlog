@@ -55,6 +55,10 @@ defaultContentLanguage = "en"
   heroTitleLine2 = "Application Security & Penetration Testing"
   footerText = "Built with Hugo and Mana theme"
 
+  # Byline shown above every post (layouts/partials/author-card.html).
+  [params.authorBio]
+    tagline = "Penetration Tester · AppSec | Bug Bounty Hunter | M.Sc. Information Systems @ JMU Würzburg"
+
   [params.social]
     linkedin = "https://www.linkedin.com/in/anas-hmaidy/"
     twitter = "anasbetis023"
