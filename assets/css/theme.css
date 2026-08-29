@@ -994,7 +994,9 @@ body .sticky-header.scrolled {
 
 /* The hero used to fill the viewport, pushing every post below the fold. */
 .hero-section.hero-compact {
-  padding: 2.25rem var(--spacing-lg) 1.5rem;
+  /* No side padding: main already pads, and the extra 24px here left the
+     hero indented relative to the nav and the post grid. */
+  padding: 2.25rem 0 1.5rem;
   margin-bottom: 1.5rem;
 }
 .hero-compact .hero-content {
@@ -1164,7 +1166,7 @@ body .sticky-header.scrolled {
    /posts/ : content + browse sidebar
    ========================================================================== */
 .list-container.posts-with-side {
-  max-width: 1180px;
+  max-width: 100%;
   display: grid;
   grid-template-columns: minmax(0, 1fr) 260px;
   gap: 2.5rem;
@@ -1356,10 +1358,10 @@ body .sticky-header.scrolled {
 }
 
 /* "All posts" button closing the home page */
-.home-allposts {
+.home-seeall {
   display: flex;
   justify-content: center;
-  margin: 2rem 0 1rem;
+  margin: 1.75rem 0 0.5rem;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1530,3 +1532,70 @@ body .sticky-header.scrolled {
   transform: translateY(-1px);
   box-shadow: 0 4px 12px var(--accent-primary-rgba-03);
 }
+
+/* ==========================================================================
+   One page width for everything
+   The theme capped each page at its own width -- header/main 1200, home and
+   tags 900, about 1080, cv 1152, post article 800 -- so the content edge
+   jumped around: on the home page the nav started at x=137, the hero at 161
+   and the post list at 263. Everything now shares --page-max and lines up
+   with the header, and the cap is wider so less is wasted on a big monitor.
+   theme.css loads before the theme bundle, so these need to out-specify it.
+   ========================================================================== */
+:root { --page-max: 1360px; }
+
+body .header-container,
+body main { max-width: var(--page-max); }
+
+/* Inner containers stop constraining; main already sets the width. */
+body .hero-section .hero-container,
+body .home-container,
+body .list-container,
+body .about-page,
+body .about-page.about-split,
+body .cv-page,
+body .tags-page,
+body .tag-page,
+body .archives-page,
+body .single-post-wrapper {
+  max-width: 100%;
+}
+
+/* Prose keeps a readable measure; the wrapper centres it so a post with no
+   table of contents is not stranded against the left edge. */
+body .single-post-wrapper { justify-content: center; }
+body .single-post { max-width: 860px; }
+
+/* ==========================================================================
+   Featured image on a post: cover banner, not a full-height square
+   The theme used height:auto, so a square source rendered 800x800 and pushed
+   the article below the fold.
+   ========================================================================== */
+body .post-image-single img {
+  width: 100%;
+  aspect-ratio: 5 / 2;
+  max-height: 340px;
+  object-fit: cover;
+}
+
+/* ==========================================================================
+   Header logo: bug glyph in the accent colour, no filled tile
+   ========================================================================== */
+.logo-bug-mark {
+  width: auto;
+  height: auto;
+  border-radius: 0;
+  background-color: transparent;
+  color: var(--accent-primary);
+}
+.logo-bug-mark svg { width: 30px; height: 30px; }
+.logo-link.logo-bug:hover .logo-bug-mark {
+  transform: translateY(-1px);
+  box-shadow: none;
+  color: var(--accent-hover);
+}
+
+/* About prose: the page now spans the full width, which would otherwise give
+   ~115-character lines. Cap the measure; the sidebar still holds the left
+   edge so the block reads as full width. */
+body .about-split .about-main { max-width: 820px; }

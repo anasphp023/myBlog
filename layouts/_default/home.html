@@ -64,14 +64,20 @@
     <section class="posts-section">
       <h2 class="posts-title">{{ i18n "recentPosts" }}</h2>
 
-      {{/* Grid, not the theme's vertical list: six cards across two rows take
-           roughly the height three stacked cards did, so the YouTube block and
-           the "All posts" button stay reachable without a long scroll. */}}
+      {{/* Grid, not the theme's vertical list: one row of three uses the
+           horizontal space instead of stacking, so the YouTube block below
+           stays reachable without a long scroll. */}}
       <div class="posts-list posts-grid">
-        {{ range first 6 $posts }}
+        {{ range first 3 $posts }}
           {{/* limit 2: three tags wrap to a second row in a grid column. */}}
           {{ partial "post-card.html" (dict "page" . "limit" 2) }}
         {{ end }}
+      </div>
+
+      <div class="home-seeall">
+        <a class="hero-btn hero-btn-ghost" href="{{ "/posts/" | relLangURL }}">
+          See all posts &rarr;
+        </a>
       </div>
     </section>
 
@@ -122,10 +128,7 @@
       </section>
     {{ end }}
 
-    <div class="home-allposts">
-      <a class="hero-btn hero-btn-ghost" href="{{ "/posts/" | relLangURL }}">
-        {{ i18n "allPosts" | default "All posts" }} &rarr;
-      </a>
-    </div>
+    {{/* The "see all posts" button now sits directly under the grid, where it
+         follows the posts it refers to; a second copy down here was redundant. */}}
   </div>
 {{ end }}
