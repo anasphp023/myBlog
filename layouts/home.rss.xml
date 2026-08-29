@@ -1,0 +1,47 @@
+{{- /*
+  Home feed = blog posts only.
+
+  Hugo's embedded RSS template feeds the home page from site.RegularPages,
+  which is every regular page on the site. That pushed /impressum/ (with a
+  home address), /datenschutz/ (the full privacy policy, and an empty
+  <title> because that page sets title: ""), /about/, /cv/, /de/cv/ and
+  /youtube/ into subscribers' readers -- 13 items for 7 posts.
+*/ -}}
+{{- $pages := where site.RegularPages "Type" "posts" -}}
+{{- $limit := site.Config.Services.RSS.Limit -}}
+{{- if ge $limit 1 -}}
+  {{- $pages = $pages | first $limit -}}
+{{- end -}}
+{{- printf "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>" | safeHTML }}
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>{{ site.Title }}</title>
+    <link>{{ .Permalink }}</link>
+    <description>{{ site.Params.description | default (printf "Recent content on %s" site.Title) }}</description>
+    <generator>Hugo</generator>
+    <language>{{ site.Language.LanguageCode }}</language>
+    {{- with site.Params.author }}
+      <managingEditor>{{ . }}</managingEditor>
+      <webMaster>{{ . }}</webMaster>
+    {{- end }}
+    <copyright>{{ now.Year }} {{ site.Params.author | default site.Title }}</copyright>
+    {{- with $pages }}
+      <lastBuildDate>{{ (index . 0).Date.UTC.Format "Mon, 02 Jan 2006 15:04:05 -0700" | safeHTML }}</lastBuildDate>
+    {{- end }}
+    {{- with .OutputFormats.Get "RSS" }}
+      {{ printf "<atom:link href=%q rel=\"self\" type=%q />" .Permalink .MediaType | safeHTML }}
+    {{- end }}
+    {{- range $pages }}
+      <item>
+        <title>{{ .Title }}</title>
+        <link>{{ .Permalink }}</link>
+        <pubDate>{{ .Date.UTC.Format "Mon, 02 Jan 2006 15:04:05 -0700" | safeHTML }}</pubDate>
+        <guid>{{ .Permalink }}</guid>
+        <description>{{ .Description | default .Summary | plainify }}</description>
+        {{- range .Params.tags }}
+          <category>{{ . }}</category>
+        {{- end }}
+      </item>
+    {{- end }}
+  </channel>
+</rss>
