@@ -134,7 +134,7 @@ defaultContentLanguageInSubdir = false
         value = "#1"
         label = "Hall of Fame"
       [[languages.en.params.heroStats]]
-        value = "2"
+        value = "2+"
         label = "Years"
       [[languages.en.params.heroStats]]
         value = "B2"
@@ -180,7 +180,7 @@ defaultContentLanguageInSubdir = false
         value = "#1"
         label = "Hall of Fame"
       [[languages.de.params.heroStats]]
-        value = "2"
+        value = "2+"
         label = "Jahre"
       [[languages.de.params.heroStats]]
         value = "B2"
