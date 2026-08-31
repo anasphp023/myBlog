@@ -1,9 +1,9 @@
 ---
 title: "Lebenslauf"
 type: "cv"
-description: "Lebenslauf von Anas Hamidi — Penetration Tester und Application-Security-Spezialist in Deutschland. 3+ Jahre Offensive-Security-Erfahrung, 50+ gemeldete Schwachstellen."
+description: "Lebenslauf von Anas Hamidi — Penetration Tester und Application-Security-Spezialist in Deutschland. 2+ Jahre Offensive-Security-Erfahrung, 50+ gemeldete Schwachstellen."
 subtitle: "Application Security · Penetration Tester · Cybersecurity-Spezialist"
-location: "Deutschland"
+location: "Gerbrunn (Raum Würzburg), Deutschland"
 pdf: "/Anas-Hamidi-CV.pdf"
 lang_switch:
   label: "English"
@@ -22,29 +22,30 @@ contact:
     - { label: "Bugcrowd", url: "https://bugcrowd.com/h/Betisi94" }
     - { label: "Telegram", url: "https://t.me/anas_hmaidy" }
 skills:
-  - { group: "Web- & API-Sicherheit", items: "Burp Suite, OWASP ZAP, Metasploit, Postman" }
+  - { group: "Web- & API-Sicherheit", items: "Burp Suite, OWASP ZAP, Metasploit (Grundlagen), Postman" }
   - { group: "Schwachstellen-Scanning", items: "Nessus, Metasploit, Nmap" }
   - { group: "Exploitation & Recon", items: "SQLmap, FFUF, Subfinder, Amass, Nuclei" }
   - { group: "Mobile Pentesting", items: "Android (Frida-Grundlagen, APK-Analyse), OWASP MASVS" }
   - { group: "Methodologien", items: "OWASP Top 10, OWASP API Security Top 10, OWASP MASVS, SANS Top 25" }
   - { group: "Automatisierung / KI", items: "LLM-gestützte Recon, Payload-Generierung & Code-Analyse; eigene Skripte" }
-  - { group: "Scripting", items: "Bash, Python, PHP, JavaScript (Grundlagen)" }
+  - { group: "Scripting", items: "Bash (fortgeschritten), Python, PHP, JavaScript (Grundlagen)" }
   - { group: "Betriebssysteme", items: "Linux (Kali, Ubuntu), Windows" }
+  - { group: "Soft Skills", items: "Analytisches und kreatives Denken, strukturierte Dokumentation, Teamfähigkeit, eigenverantwortliches Arbeiten" }
 focus: "IDOR · XSS · SSRF · SQLi · Authentifizierungs- & OTP/2FA-Bypass · Business-Logic-Fehler · Informationspreisgabe · OWASP Top 10 & API Top 10"
 education:
-  - { degree: "M.Sc. Information Systems", org: "Julius-Maximilians-Universität (JMU) Würzburg" }
-  - { degree: "B.Sc. Information Technology Engineering", org: "Universität Aleppo (2024)" }
+  - { degree: "M.Sc. Wirtschaftsinformatik (Information Systems)", org: "Julius-Maximilians-Universität (JMU) Würzburg — bereits immatrikuliert, Studienbeginn Oktober 2026" }
+  - { degree: "B.Sc. Informationstechnik-Engineering", org: "Universität Aleppo — Abschluss 02/2024" }
 languages:
   - { name: "Arabisch", level: "Muttersprache" }
-  - { name: "Englisch", level: "Verhandlungssicher" }
-  - { name: "Deutsch", level: "B2 (telc)" }
+  - { name: "Englisch", level: "Fließend" }
+  - { name: "Deutsch", level: "Verhandlungssicher (telc B2)" }
 ---
 
-Penetration Tester und Application-Security-Spezialist mit mehr als 3 Jahren praktischer Erfahrung in der Offensive Security. Spezialisiert auf Web- und API-Penetrationstests, mit Erfahrung in Mobile-App-Sicherheit, Business-Logic-Schwachstellen und Sicherheitsautomatisierung. Ich setze LLM-gestützte Workflows ein, um Recon, Payload-Generierung und Code-Analyse zu beschleunigen.
+Penetration Tester und Application-Security-Spezialist mit über zwei Jahren praktischer Erfahrung in der Offensive Security. Spezialisiert auf Web- und API-Penetrationstests, mit Erfahrung in Mobile-App-Sicherheit, Business-Logic-Schwachstellen und Sicherheitsautomatisierung. Ich setze LLM-gestützte Workflows ein, um Recon, Payload-Generierung und Code-Analyse zu beschleunigen. Immatrikuliert im Master Wirtschaftsinformatik an der Universität Würzburg — offen für Praktika oder Festanstellungen im Bereich IT-Sicherheit.
 
 ## Kernerfolge
 
-- **$$,$$$ Bounty** für Schwachstellen bei **Canva**
+- **15.000 USD Bounty** für eine kritische Sicherheitslücke bei **Canva**
 - **#1** in der Hall of Fame von zwei privaten HackerOne-Programmen (je 50+ Researcher)
 - **#9** in der Hall of Fame von Canva (200+ Researcher)
 - Kontinuierliche fünfstellige (USD) Bug-Bounty-Auszahlungen durch systematische Recherche
@@ -59,12 +60,18 @@ Penetration Tester und Application-Security-Spezialist mit mehr als 3 Jahren pra
 
 - Praxisnahe Web- und API-Penetrationstests aus Angreiferperspektive für internationale Plattformen
 - 50+ Schwachstellen gefunden und verantwortungsvoll gemeldet: IDOR, XSS, SSRF, SQLi, Authentifizierungs- und Business-Logic-Fehler
+- Aufdeckung einer kritischen Sicherheitslücke bei Canva, ausgezeichnet mit einer Belohnung in Höhe von 15.000 USD
 - Analyse von Web Application Firewalls (WAF) und Filter-Bypass-Techniken
 - Professionelle technische Reports mit Reproduktionsschritten, CVSS-Bewertung und Remediation-Empfehlungen
 - Eigene Python- und Bash-Tools zur Automatisierung von Recon, Triage und Datenanalyse entwickelt
 - LLM-gestützte Workflows (ChatGPT, Claude) für Recon-Automatisierung, Payload-Generierung und Quellcode-Analyse genutzt
 - Erste praktische Erfahrung im Mobile Pentesting (Android, OWASP)
 - Entwicklungsteams zu identifizierten Problemen und Secure-Coding-Empfehlungen beraten
+
+## Weiterbildung
+
+- **PNPT** und **HTB CPTS** — aktuell in Vorbereitung im Selbststudium
+- **TryHackMe** — Hands-on-Trainings im Bereich Web Security und Pentesting
 
 ## Community & Mentoring
 

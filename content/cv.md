@@ -1,9 +1,9 @@
 ---
 title: "CV"
 type: "cv"
-description: "CV of Anas Hamidi — Penetration Tester and Application Security specialist based in Germany. 3+ years of offensive-security experience, 50+ reported vulnerabilities."
+description: "CV of Anas Hamidi — Penetration Tester and Application Security specialist based in Germany. 2+ years of offensive-security experience, 50+ reported vulnerabilities."
 subtitle: "Application Security · Penetration Tester · Cybersecurity Specialist"
-location: "Germany"
+location: "Gerbrunn (Würzburg), Germany"
 pdf: "/Anas-Hamidi-CV.pdf"
 lang_switch:
   label: "Deutsch"
@@ -16,29 +16,30 @@ contact:
     - { label: "Bugcrowd", url: "https://bugcrowd.com/h/Betisi94" }
     - { label: "Telegram", url: "https://t.me/anas_hmaidy" }
 skills:
-  - { group: "Web & API Security", items: "Burp Suite, OWASP ZAP, Metasploit, Postman" }
+  - { group: "Web & API Security", items: "Burp Suite, OWASP ZAP, Metasploit (basics), Postman" }
   - { group: "Vulnerability Scanning", items: "Nessus, Metasploit, Nmap" }
   - { group: "Exploitation & Recon", items: "SQLmap, FFUF, Subfinder, Amass, Nuclei" }
   - { group: "Mobile Pentesting", items: "Android (Frida basics, APK analysis), OWASP MASVS" }
   - { group: "Methodologies", items: "OWASP Top 10, OWASP API Security Top 10, OWASP MASVS, SANS Top 25" }
   - { group: "Automation / AI", items: "LLM-assisted recon, payload generation & code analysis; custom scripts" }
-  - { group: "Scripting", items: "Bash, Python, PHP, JavaScript (basics)" }
+  - { group: "Scripting", items: "Bash (advanced), Python, PHP, JavaScript (basics)" }
   - { group: "Operating Systems", items: "Linux (Kali, Ubuntu), Windows" }
+  - { group: "Soft Skills", items: "Analytical and creative thinking, structured documentation, teamwork, self-directed work" }
 focus: "IDOR · XSS · SSRF · SQLi · authentication & OTP/2FA bypass · business-logic flaws · sensitive information disclosure · OWASP Top 10 & API Top 10"
 education:
-  - { degree: "M.Sc. Information Systems", org: "Julius-Maximilians-Universität (JMU) Würzburg" }
-  - { degree: "B.Sc. Information Technology Engineering", org: "University of Aleppo (2024)" }
+  - { degree: "M.Sc. Information Systems (Wirtschaftsinformatik)", org: "Julius-Maximilians-Universität (JMU) Würzburg — enrolled, starting October 2026" }
+  - { degree: "B.Sc. Information Technology Engineering", org: "University of Aleppo — graduated 02/2024" }
 languages:
   - { name: "Arabic", level: "Native" }
   - { name: "English", level: "Fluent" }
-  - { name: "German", level: "B2 (telc)" }
+  - { name: "German", level: "Business fluent (telc B2)" }
 ---
 
-Penetration Tester and Application Security specialist with 3+ years of hands-on offensive-security experience. Specialized in web and API penetration testing, with experience in mobile app security, business-logic vulnerabilities, and security automation. I integrate LLM-assisted workflows to speed up recon, payload generation, and code analysis.
+Penetration Tester and Application Security specialist with 2+ years of hands-on offensive-security experience. Specialized in web and API penetration testing, with experience in mobile app security, business-logic vulnerabilities, and security automation. I integrate LLM-assisted workflows to speed up recon, payload generation, and code analysis. Enrolled in the M.Sc. Information Systems programme at the University of Würzburg — open to internships and permanent roles in IT security.
 
 ## Key Achievements
 
-- **$$,$$$ bounty** for vulnerabilities at **Canva**
+- **$15,000 bounty** for a critical vulnerability at **Canva**
 - **#1** in the Hall of Fame of two private HackerOne programs (50+ researchers each)
 - **#9** in Canva's Hall of Fame (200+ researchers)
 - Consistent five-figure (USD) bug-bounty payouts through sustained research
@@ -53,12 +54,18 @@ Penetration Tester and Application Security specialist with 3+ years of hands-on
 
 - Real-world web and API penetration testing from an attacker's perspective for international platforms
 - Found and responsibly reported 50+ vulnerabilities: IDOR, XSS, SSRF, SQLi, authentication and business-logic flaws
+- Uncovered a critical vulnerability at Canva, rewarded with a $15,000 bounty
 - Web Application Firewall (WAF) analysis and filter-bypass techniques
 - Professional technical reports with reproduction steps, CVSS scoring, and remediation guidance
 - Built custom Python and Bash tooling to automate recon, vulnerability triage, and data analysis
 - Used LLM-assisted workflows (ChatGPT, Claude) for recon automation, payload generation, and source-code analysis
 - Early hands-on mobile pentesting (Android, OWASP)
 - Advised development teams on identified issues and secure-coding recommendations
+
+## Training & Certifications
+
+- **PNPT** and **HTB CPTS** — currently preparing through self-study
+- **TryHackMe** — hands-on training in web security and penetration testing
 
 ## Community & Mentoring
 

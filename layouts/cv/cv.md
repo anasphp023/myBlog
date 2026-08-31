@@ -6,7 +6,7 @@ subtitle: "Penetration Tester · Cybersecurity Specialist"
 
 ## Profile
 
-Penetration Tester and Security Researcher with 3+ years of hands-on experience in offensive security. Specialized in web and API penetration testing, with experience in mobile app security, business-logic vulnerabilities, and security-relevant automation. I've responsibly reported 50+ vulnerabilities to international companies such as Canva, Pexels, and Lichess — including a critical vulnerability at Canva (reward $15,000). Experienced in integrating AI-assisted workflows (LLMs) to accelerate recon, payload generation, and code analysis. Structured, analytical, and team-oriented, with a clear focus on reproducible technical reports and concrete mitigation recommendations.
+Penetration Tester and Security Researcher with 2+ years of hands-on experience in offensive security. Specialized in web and API penetration testing, with experience in mobile app security, business-logic vulnerabilities, and security-relevant automation. I've responsibly reported 50+ vulnerabilities to international companies such as Canva, Pexels, and Lichess — including a critical vulnerability at Canva (reward $15,000). Experienced in integrating AI-assisted workflows (LLMs) to accelerate recon, payload generation, and code analysis. Structured, analytical, and team-oriented, with a clear focus on reproducible technical reports and concrete mitigation recommendations.
 
 ## Experience
 
