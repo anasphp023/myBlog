@@ -13,8 +13,6 @@ Hey everyone!
 
 I hope you're having a good day. Long time no write — well, with the rise of AI we've nearly forgotten how to read and write like back in the old days. We're just using AI for everything. Anyway, I'm not going to speak very deep tech here, it's going to be just a few thoughts about tools I heavily use every day in my Bug Bounty workflows. I want to share some of them which I found — very nice — to have. Most of the tools I'm going to speak about are simple, but efficient and going to save you a lot of time I think. The list is randomly ordered, I'll just put whatever comes to my mind.
 
-![Tuxedo Winnie the Pooh meme: "Bug" on top, "Bug Bounty" on the bottom](meme.jpg)
-
 ---
 
 ## 1. httpx from ProjectDiscovery
@@ -103,6 +101,8 @@ go install -v github.com/tomnomnom/anew@latest
 I would say that every request you test MUST go through Param Miner. This tool can fuzz parameters, headers, cookies and body params. It can also help you find Web Cache bugs, SSRF and DoS. Personally, I've been able to find many bugs starting with Param Miner. You can discover more here: <https://github.com/PortSwigger/param-miner>
 
 **Install** in both Community and Professional Burp Suite → Extensions → BApp Store.
+
+![Tuxedo Winnie the Pooh meme: "Bug" on top, "Bug Bounty" on the bottom](meme.jpg)
 
 ---
 
