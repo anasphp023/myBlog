@@ -39,7 +39,7 @@ Penetration Tester and Application Security specialist with 2+ years of hands-on
 
 ## Key Achievements
 
-- **$15,000 bounty** for a critical vulnerability at **Canva**
+- **$$,$$$ bounty** for a critical vulnerability at **Canva**
 - **#1** in the Hall of Fame of two private HackerOne programs (50+ researchers each)
 - **#9** in Canva's Hall of Fame (200+ researchers)
 - Consistent five-figure (USD) bug-bounty payouts through sustained research
@@ -54,7 +54,7 @@ Penetration Tester and Application Security specialist with 2+ years of hands-on
 
 - Real-world web and API penetration testing from an attacker's perspective for international platforms
 - Found and responsibly reported 50+ vulnerabilities: IDOR, XSS, SSRF, SQLi, authentication and business-logic flaws
-- Uncovered a critical vulnerability at Canva, rewarded with a $15,000 bounty
+- Uncovered a critical vulnerability at Canva, rewarded with a $$,$$$ bounty
 - Web Application Firewall (WAF) analysis and filter-bypass techniques
 - Professional technical reports with reproduction steps, CVSS scoring, and remediation guidance
 - Built custom Python and Bash tooling to automate recon, vulnerability triage, and data analysis
