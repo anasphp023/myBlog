@@ -7,7 +7,7 @@ location: "Gerbrunn (Würzburg), Germany"
 pdf: "/Anas-Hamidi-CV.pdf"
 lang_switch:
   label: "Deutsch"
-  url: "/de/cv/"
+  url: "/cv/"
 contact:
   email: "contact@anashamidi.com"
   links:

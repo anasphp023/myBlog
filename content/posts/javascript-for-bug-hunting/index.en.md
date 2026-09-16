@@ -50,4 +50,4 @@ A few JS-related bug reports worth studying:
 - API leak in a JS file — [report](https://hackerone.com/reports/1218754)
 - JavaScript injection and JS bridge takeover — [report](https://hackerone.com/reports/1343300)
 
-I'm no JS master — I just wanted to share some helpful experience. Don't forget to check out my previous [write-up](/posts/how-one-bug-scored-me-double-rewards/). Hope you found this interesting!
+I'm no JS master — I just wanted to share some helpful experience. Don't forget to check out my previous [write-up](/en/posts/how-one-bug-scored-me-double-rewards/). Hope you found this interesting!

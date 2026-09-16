@@ -22,3 +22,6 @@ postsInEnglish = "The write-ups themselves are in English."
 latestVideo = "Latest video"
 popularTags = "Popular tags"
 elsewhere = "Elsewhere"
+
+# Footer nav: the German menu calls it "Lebenslauf", so the footer should too.
+cvLabel = "CV"

@@ -7,7 +7,7 @@ location: "Gerbrunn (Raum Würzburg), Deutschland"
 pdf: "/Anas-Hamidi-CV.pdf"
 lang_switch:
   label: "English"
-  url: "/cv/"
+  url: "/en/cv/"
 labels:
   skills: "Fähigkeiten &amp; Tools"
   focus: "Schwerpunkte"

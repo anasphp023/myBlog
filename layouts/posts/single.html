@@ -8,10 +8,11 @@
       <header class="post-header">
         {{ partial "breadcrumb.html" . }}
 
+        {{ $tagsBase := partial "tags-base.html" . }}
         {{ with .Params.tags }}
           <div class="post-tags-top">
             {{ range . }}
-              <a href="{{ "/tags/" | relURL }}{{ . | urlize }}" class="post-tag">{{ . }}</a>
+              <a href="{{ $tagsBase }}{{ . | urlize }}/" class="post-tag">{{ . }}</a>
             {{ end }}
           </div>
         {{ end }}

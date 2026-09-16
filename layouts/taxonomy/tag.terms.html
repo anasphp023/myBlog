@@ -6,7 +6,7 @@
   {{ $terms := .Data.Terms.ByCount }}
   {{ $fallback := false }}
   {{ if not $terms }}
-    {{ with (index site.Sites 0).Taxonomies.tags }}
+    {{ with (partial "posts-site.html" .).Taxonomies.tags }}
       {{ $terms = .ByCount }}
       {{ $fallback = true }}
     {{ end }}

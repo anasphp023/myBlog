@@ -12,6 +12,6 @@ Außerdem betreue ich Studierende im Bereich Offensive Security bei [Rushd](http
 
 ## Offen für neue Aufgaben
 
-Ich bin aktuell offen für Positionen in **Penetration Testing, Application Security oder Security Engineering** (in Deutschland). Alle Details finden Sie in meinem **[Lebenslauf](/de/cv/)**.
+Ich bin aktuell offen für Positionen in **Penetration Testing, Application Security oder Security Engineering** (in Deutschland). Alle Details finden Sie in meinem **[Lebenslauf](/cv/)**.
 
 Kontakt über [LinkedIn](https://www.linkedin.com/in/anas-hmaidy/), [Telegram](https://t.me/anas_hmaidy) oder **contact@anashamidi.com**.

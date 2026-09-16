@@ -1,0 +1,12 @@
+{{/* Base URL for tag TERM pages, e.g. "/en/tags/".
+
+     Tag terms are generated only on the site the posts live in (English), so
+     these links must not follow the current language the way the rest of the
+     chrome does -- /tags/<term>/ simply does not exist for German. Only the
+     /tags/ index page itself exists in both languages.
+
+     This used to be spelled `"/tags/" | relURL`, which resolved to the site
+     root. That was right only while English was the default language and owned
+     the root; German owns it now, so relURL points every tag chip at a German
+     term page that was never built. */}}
+{{ return (printf "%stags/" (partial "posts-site.html" .).Home.RelPermalink) }}

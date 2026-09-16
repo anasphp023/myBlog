@@ -8,6 +8,12 @@
   /youtube/ into subscribers' readers -- 13 items for 7 posts.
 */ -}}
 {{- $pages := where site.RegularPages "Type" "posts" -}}
+{{- /* German is the default language and owns /index.xml, but the posts are
+       English-only, so this feed came out with zero items. Borrow the English
+       site's posts the same way the home and posts-list layouts do. */ -}}
+{{- if not $pages -}}
+  {{- $pages = where (partial "posts-site.html" .).RegularPages "Type" "posts" -}}
+{{- end -}}
 {{- $limit := site.Config.Services.RSS.Limit -}}
 {{- if ge $limit 1 -}}
   {{- $pages = $pages | first $limit -}}

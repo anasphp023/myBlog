@@ -1,0 +1,16 @@
+{{/* Returns the site the posts actually live in.
+
+     Posts are written in English only, so the German pages have to borrow the
+     English site's pages and taxonomies. This used to be spelled
+     `index site.Sites 0`, which worked only by accident: site.Sites is ordered
+     by language weight, and English happened to be weight 1. German is the
+     default language now and carries weight 1, so that index returns the empty
+     German site and every borrowed listing comes out blank. Match on the
+     language code instead, which survives any future reordering. */}}
+{{ $posts := site }}
+{{ range site.Sites }}
+  {{ if eq .Language.Lang "en" }}
+    {{ $posts = . }}
+  {{ end }}
+{{ end }}
+{{ return $posts }}

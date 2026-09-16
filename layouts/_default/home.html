@@ -4,7 +4,7 @@
        articles; the surrounding page stays German. */}}
   {{ $posts := where site.RegularPages "Type" "posts" }}
   {{ if not $posts }}
-    {{ $posts = where (index site.Sites 0).RegularPages "Type" "posts" }}
+    {{ $posts = where (partial "posts-site.html" .).RegularPages "Type" "posts" }}
   {{ end }}
 
   <!-- Hero: deliberately compact so the first post is visible without scrolling -->
@@ -38,8 +38,7 @@
           {{ end }}
 
           <div class="hero-cta">
-            {{/* relURL: the blog is English-only, /de/posts/ does not exist. */}}
-            <a class="hero-btn" href="{{ "/posts/" | relURL }}">{{ i18n "readBlog" | default "Read the blog" }}</a>
+            <a class="hero-btn" href="{{ "/posts/" | relLangURL }}">{{ i18n "readBlog" | default "Read the blog" }}</a>
             <a class="hero-btn hero-btn-ghost" href="{{ "/youtube/" | relLangURL }}">
               <svg viewBox="0 0 24 24" aria-hidden="true" width="16" height="16"><path fill="currentColor" d="M23.5 6.2a3 3 0 0 0-2.12-2.14C19.5 3.55 12 3.55 12 3.55s-7.5 0-9.38.51A3 3 0 0 0 .5 6.2C0 8.08 0 12 0 12s0 3.92.5 5.8a3 3 0 0 0 2.12 2.14c1.88.51 9.38.51 9.38.51s7.5 0 9.38-.51A3 3 0 0 0 23.5 17.8C24 15.92 24 12 24 12s0-3.92-.5-5.8ZM9.55 15.57V8.43L15.82 12l-6.27 3.57Z"/></svg>
               {{ i18n "watchOnYouTube" | default "Watch on YouTube" }}
@@ -82,7 +81,7 @@
       </div>
 
       <div class="home-seeall">
-        <a class="hero-btn hero-btn-ghost" href="{{ "/posts/" | relURL }}">
+        <a class="hero-btn hero-btn-ghost" href="{{ "/posts/" | relLangURL }}">
           {{ i18n "seeAllPosts" | default "See all posts" }} &rarr;
         </a>
       </div>

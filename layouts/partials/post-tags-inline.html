@@ -1,12 +1,14 @@
-{{/* Project override: tag links use relURL, not relLangURL. Tags come from
-     the English-only posts, so /de/tags/<term> is never generated. */}}
+{{/* Project override: tag links always point at the English site. Tags come
+     from the English-only posts, so a German tag term page is never
+     generated -- see partials/tags-base.html. */}}
+{{ $tagsBase := partial "tags-base.html" . }}
 {{ $limit := default 0 .limit }}
 {{ if .Params.tags }}
   <div class="post-tags">
     {{ if gt $limit 0 }}
       {{ range first $limit .Params.tags }}
         <a
-          href="{{ "/tags/" | relURL }}{{ . | urlize }}"
+          href="{{ $tagsBase }}{{ . | urlize }}/"
           class="post-tag"
           onclick="event.stopPropagation();"
           >{{ . }}</a
@@ -15,7 +17,7 @@
     {{ else }}
       {{ range .Params.tags }}
         <a
-          href="{{ "/tags/" | relURL }}{{ . | urlize }}"
+          href="{{ $tagsBase }}{{ . | urlize }}/"
           class="post-tag"
           onclick="event.stopPropagation();"
           >{{ . }}</a

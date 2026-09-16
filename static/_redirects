@@ -1,0 +1,15 @@
+# German became the default language and took the site root, so the English
+# pages moved under /en/ and the old German /de/ prefix disappeared. These keep
+# every previously shared link working.
+#
+# Placeholders (:slug) require a non-empty path segment, so /posts/ and /tags/
+# themselves are NOT matched -- those are the German listing pages and must
+# keep serving. A splat (/posts/*) would match them and redirect the German
+# blog away, so do not switch these to splats.
+
+# Old German URLs -> the root, which is German now.
+/de/*            /:splat              301
+
+# Old English URLs -> /en/.
+/posts/:slug/    /en/posts/:slug/     301
+/tags/:tag/      /en/tags/:tag/       301

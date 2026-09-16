@@ -7,7 +7,7 @@
         {{ if .Params.tags }}
           <div class="post-tags-top">
             {{ range .Params.tags }}
-              <a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}" class="post-tag">{{ . }}</a>
+              <a href="{{ partial "tags-base.html" $ }}{{ . | urlize }}/" class="post-tag">{{ . }}</a>
             {{ end }}
           </div>
         {{ end }}
@@ -31,7 +31,7 @@
         <footer class="post-footer">
           <div class="post-tags-top">
             {{ range .Params.tags }}
-              <a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}" class="post-tag">{{ . }}</a>
+              <a href="{{ partial "tags-base.html" $ }}{{ . | urlize }}/" class="post-tag">{{ . }}</a>
             {{ end }}
           </div>
         </footer>

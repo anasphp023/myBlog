@@ -10,8 +10,11 @@ baseURL = 'https://anashamidi.com/'
 # homepage tab was blank and inner tabs read "Posts | ".
 title = 'Anas Hamidi'
 theme = "mana"
-defaultContentLanguage = "en"
-# English stays at the site root, German lives under /de/.
+defaultContentLanguage = "de"
+# German is the default and stays at the site root; English lives under /en/.
+# Because the default language owns every unsuffixed filename, all English
+# content carries an explicit .en.md suffix -- without it those files would be
+# read as German and collide with the real .de.md translations.
 defaultContentLanguageInSubdir = false
 
 [pagination]
@@ -112,16 +115,17 @@ defaultContentLanguageInSubdir = false
   latestId = "8Qdxsi_jSKo"
 
 # =============================================================================
-# Languages. English is the full site; German covers the recruiter-facing
-# pages (home, About, CV, YouTube, legal). Posts stay English on purpose --
-# the language switcher only shows on pages that actually have a translation,
-# so nobody lands on an empty German blog.
+# Languages. German is the default and serves the site root; English lives
+# under /en/ and is the language the posts are written in. German covers the
+# recruiter-facing pages (home, About, Lebenslauf, YouTube, legal) and its
+# post listings fall back to the English articles, so the German blog is not
+# empty -- see layouts/_default/home.html and layouts/posts/list.html.
 # =============================================================================
 [languages]
   [languages.en]
     languageName = "English"
     languageCode = "en"
-    weight = 1
+    weight = 2
     title = "Anas Hamidi"
     [languages.en.params]
       description = "Personal blog on offensive security: Bug Bounty, Penetration Test, write-ups, tooling notes, and curated cyber news."
@@ -149,15 +153,15 @@ defaultContentLanguageInSubdir = false
     weight = 20
   [[languages.en.menus.main]]
     name = "About"
-    url = "/about/"
+    pageRef = "/about"
     weight = 30
   [[languages.en.menus.main]]
     name = "CV"
-    url = "/cv/"
+    pageRef = "/cv"
     weight = 45
   [[languages.en.menus.main]]
     name = "YouTube"
-    url = "/youtube/"
+    pageRef = "/youtube"
     weight = 50
   [[languages.en.menus.main]]
     name = "Tags"
@@ -167,7 +171,7 @@ defaultContentLanguageInSubdir = false
   [languages.de]
     languageName = "Deutsch"
     languageCode = "de"
-    weight = 2
+    weight = 1
     title = "Anas Hamidi"
     [languages.de.params]
       description = "Blog über Offensive Security: Bug Bounty, Penetration Testing, Write-ups, Tooling-Notizen und ausgewählte Security-News."
@@ -195,15 +199,15 @@ defaultContentLanguageInSubdir = false
     weight = 20
   [[languages.de.menus.main]]
     name = "Über mich"
-    url = "/de/about/"
+    pageRef = "/about"
     weight = 30
   [[languages.de.menus.main]]
-    name = "CV"
-    url = "/de/cv/"
+    name = "Lebenslauf"
+    pageRef = "/cv"
     weight = 45
   [[languages.de.menus.main]]
     name = "YouTube"
-    url = "/de/youtube/"
+    pageRef = "/youtube"
     weight = 50
   [[languages.de.menus.main]]
     name = "Tags"
