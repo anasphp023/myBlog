@@ -1357,6 +1357,21 @@ body .sticky-header.scrolled {
   border-color: var(--accent-primary);
 }
 
+/* The CTF button. Ghost-weight so it does not outrank "Read the blog", but
+   tinted with the accent so the one off-site link in the row still reads as
+   the interesting one. Declared after .hero-btn-ghost on purpose: theme.css is
+   a flat file and these are the same specificity, so source order decides. */
+.hero-btn-ctf {
+  background: color-mix(in srgb, var(--accent-primary) 12%, transparent);
+  color: var(--accent-primary);
+  border-color: color-mix(in srgb, var(--accent-primary) 45%, transparent);
+}
+.hero-btn-ctf:hover {
+  background: var(--accent-primary);
+  color: #fff;
+  border-color: var(--accent-primary);
+}
+
 /* "All posts" button closing the home page */
 .home-seeall {
   display: flex;

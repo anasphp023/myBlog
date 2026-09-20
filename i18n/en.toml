@@ -25,3 +25,6 @@ elsewhere = "Elsewhere"
 
 # Footer nav: the German menu calls it "Lebenslauf", so the footer should too.
 cvLabel = "CV"
+
+# Hero button linking to the CTF at ctf.anashamidi.com.
+playCtf = "Play my CTF"

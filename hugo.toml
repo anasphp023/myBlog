@@ -64,6 +64,9 @@ defaultContentLanguageInSubdir = false
   # Must stay above every [params.*] sub-table: a TOML key written after one
   # belongs to that sub-table, not to [params].
   ogImage = "images/og-image.png"
+  # CTF built for Rushd.sy. Empty or removed -> the hero button disappears.
+  # Must stay above the [params.*] sub-tables for the same reason ogImage does.
+  ctfUrl = "https://ctf.anashamidi.com"
 
   # Byline shown above every post (layouts/partials/author-card.html).
   [params.authorBio]
