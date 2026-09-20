@@ -1372,22 +1372,6 @@ body .sticky-header.scrolled {
   border-color: var(--accent-primary);
 }
 
-/* External nav entries (the CTF). The arrow sits on the baseline next to the
-   label and dims until hover so it reads as a hint, not a second icon
-   competing with the label. */
-.menu-link-external {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.3rem;
-}
-.menu-external-icon {
-  opacity: 0.55;
-  flex-shrink: 0;
-}
-.menu-link-external:hover .menu-external-icon {
-  opacity: 1;
-}
-
 /* "All posts" button closing the home page */
 .home-seeall {
   display: flex;
@@ -2097,19 +2081,6 @@ body .post-image-single { margin: 1.5rem 0 2rem; }
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-}
-
-/* The nav gained a seventh entry (CTF), and with flex: 0 1 300px / min-width: 0
-   this field just absorbed the loss: measured 219px -> 135px at 1100px and
-   150px -> 67px at 1024px, with the placeholder clipped to "B.". Collapse it to
-   the magnifier alone across that band instead -- search stays one click away
-   and the nav gets its ~200px back. */
-@media (max-width: 1200px) {
-  .header-search {
-    flex: 0 0 auto;
-    padding: 0.45rem 0.6rem;
-  }
-  .header-search-text { display: none; }
 }
 
 /* Below the nav breakpoint the hamburger takes over and the mobile menu has
