@@ -1,0 +1,27 @@
+{{/* Project override of the theme's menu.html.
+
+     The theme pipes every entry through `relLangURL`, which is right for the
+     internal pageRefs but wrong for an absolute URL -- the CTF entry points at
+     ctf.anashamidi.com, a different host. Entries whose URL already carries a
+     scheme are passed through untouched and opened in a new tab, with an
+     arrow so the nav tells you it is about to leave the site rather than
+     springing it on you.
+
+     Rendered by both the desktop header and the mobile menu, so the override
+     covers both. */}}
+<ul class="menu-list">
+  {{ range site.Menus.main }}
+    {{ $external := or (hasPrefix .URL "http://") (hasPrefix .URL "https://") }}
+    <li class="menu-item">
+      <a
+        href="{{ if $external }}{{ .URL }}{{ else }}{{ .URL | relLangURL }}{{ end }}"
+        {{ if $external }}target="_blank" rel="noopener"{{ end }}
+        class="menu-link{{ if $external }} menu-link-external{{ end }}{{ if $.IsMenuCurrent "main" . }} active{{ end }}">
+        {{ .Name }}
+        {{- if $external }}
+          <svg class="menu-external-icon" viewBox="0 0 24 24" aria-hidden="true" width="11" height="11"><path fill="currentColor" d="M14 3a1 1 0 0 0 0 2h3.59l-8.3 8.29a1 1 0 0 0 1.42 1.42L19 6.41V10a1 1 0 0 0 2 0V4a1 1 0 0 0-1-1h-6ZM5 5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-5a1 1 0 1 0-2 0v5H5V7h5a1 1 0 0 0 0-2H5Z"/></svg>
+        {{- end }}
+      </a>
+    </li>
+  {{ end }}
+</ul>

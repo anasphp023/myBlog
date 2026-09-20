@@ -166,6 +166,13 @@ defaultContentLanguageInSubdir = false
     name = "YouTube"
     pageRef = "/youtube"
     weight = 50
+  # CTF lives on its own host, so this is a url, not a pageRef. See
+  # layouts/partials/menu.html, which passes absolute URLs through untouched
+  # and marks them with an external-link arrow.
+  [[languages.en.menus.main]]
+    name = "CTF"
+    url = "https://ctf.anashamidi.com"
+    weight = 55
   [[languages.en.menus.main]]
     name = "Tags"
     pageRef = "/tags"
@@ -212,6 +219,13 @@ defaultContentLanguageInSubdir = false
     name = "YouTube"
     pageRef = "/youtube"
     weight = 50
+  # CTF lives on its own host, so this is a url, not a pageRef. See
+  # layouts/partials/menu.html, which passes absolute URLs through untouched
+  # and marks them with an external-link arrow.
+  [[languages.de.menus.main]]
+    name = "CTF"
+    url = "https://ctf.anashamidi.com"
+    weight = 55
   [[languages.de.menus.main]]
     name = "Tags"
     pageRef = "/tags"
