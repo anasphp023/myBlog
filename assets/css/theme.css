@@ -1342,19 +1342,46 @@ body .sticky-header.scrolled {
   text-decoration: none;
   background: var(--accent-primary);
   color: #fff;
+  box-shadow: 0 1px 2px color-mix(in srgb, var(--accent-primary) 30%, transparent);
   transition: background 0.18s ease, color 0.18s ease,
-              border-color 0.18s ease, transform 0.18s ease;
+              border-color 0.18s ease, transform 0.18s ease,
+              box-shadow 0.18s ease;
 }
-.hero-btn:hover { background: var(--accent-hover); color: #fff; transform: translateY(-1px); }
+.hero-btn:hover {
+  background: var(--accent-hover);
+  color: #fff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px color-mix(in srgb, var(--accent-primary) 32%, transparent);
+}
+/* Pressed. Without a real :active the filled button had nothing to contrast
+   against, so its resting state read as already-pushed -- especially next to
+   the nav, where a blue pill means "current page". Now resting sits raised,
+   hover lifts, and a click visibly pushes it back down. */
+.hero-btn:active {
+  transform: translateY(1px);
+  box-shadow: none;
+}
+.hero-btn:focus-visible {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 2px;
+}
+
+/* The outline buttons. --border-color is #eceef2 in light mode, which is
+   near-white on a white page, and the label used --text-secondary; a hairline
+   border around grey text is how disabled controls are drawn, so these read as
+   dead. Full-strength label and a border mixed from the text colour, which
+   holds up in both themes. */
 .hero-btn-ghost {
   background: transparent;
-  color: var(--text-secondary);
-  border-color: var(--border-color);
+  color: var(--text-primary);
+  box-shadow: none;
+  border-color: color-mix(in srgb, var(--text-primary) 24%, transparent);
 }
 .hero-btn-ghost:hover {
-  background: transparent;
+  background: color-mix(in srgb, var(--accent-primary) 8%, transparent);
   color: var(--accent-primary);
   border-color: var(--accent-primary);
+  box-shadow: none;
 }
 
 /* The CTF button. Ghost-weight so it does not outrank "Read the blog", but
@@ -1364,7 +1391,8 @@ body .sticky-header.scrolled {
 .hero-btn-ctf {
   background: color-mix(in srgb, var(--accent-primary) 12%, transparent);
   color: var(--accent-primary);
-  border-color: color-mix(in srgb, var(--accent-primary) 45%, transparent);
+  border-color: color-mix(in srgb, var(--accent-primary) 55%, transparent);
+  box-shadow: none;
 }
 .hero-btn-ctf:hover {
   background: var(--accent-primary);
