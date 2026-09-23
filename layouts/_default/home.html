@@ -39,16 +39,15 @@
 
           <div class="hero-cta">
             <a class="hero-btn" href="{{ "/posts/" | relLangURL }}">{{ i18n "readBlog" | default "Read the blog" }}</a>
-            <a class="hero-btn hero-btn-ghost" href="{{ "/youtube/" | relLangURL }}">
+            <a class="hero-btn" href="{{ "/youtube/" | relLangURL }}">
               <svg viewBox="0 0 24 24" aria-hidden="true" width="16" height="16"><path fill="currentColor" d="M23.5 6.2a3 3 0 0 0-2.12-2.14C19.5 3.55 12 3.55 12 3.55s-7.5 0-9.38.51A3 3 0 0 0 .5 6.2C0 8.08 0 12 0 12s0 3.92.5 5.8a3 3 0 0 0 2.12 2.14c1.88.51 9.38.51 9.38.51s7.5 0 9.38-.51A3 3 0 0 0 23.5 17.8C24 15.92 24 12 24 12s0-3.92-.5-5.8ZM9.55 15.57V8.43L15.82 12l-6.27 3.57Z"/></svg>
               {{ i18n "watchOnYouTube" | default "Watch on YouTube" }}
             </a>
             {{/* Lives on its own domain, so this is the one hero link that
-                 leaves the site -- hence the flag icon and the accent styling,
-                 which mark it as a thing to go play rather than a page to
-                 read. Drop site.Params.ctfUrl and the button disappears. */}}
+                 leaves the site -- hence the flag icon and the new tab. Drop
+                 site.Params.ctfUrl and the button disappears. */}}
             {{ with site.Params.ctfUrl }}
-              <a class="hero-btn hero-btn-ctf" href="{{ . }}" target="_blank" rel="noopener">
+              <a class="hero-btn" href="{{ . }}" target="_blank" rel="noopener">
                 <svg viewBox="0 0 24 24" aria-hidden="true" width="16" height="16"><path fill="currentColor" d="M5 3a1 1 0 0 1 1 1v.37l2.9-.73a5 5 0 0 1 3.32.32 5 5 0 0 0 3.32.32l2.71-.68A1 1 0 0 1 19.5 4.6v7.66a1 1 0 0 1-.76.97l-3.18.79a5 5 0 0 1-3.32-.32 5 5 0 0 0-3.32-.32L6 14.1V20a1 1 0 1 1-2 0V4a1 1 0 0 1 1-1Z"/></svg>
                 {{ i18n "playCtf" | default "Play my CTF" }}
               </a>
@@ -91,7 +90,7 @@
       </div>
 
       <div class="home-seeall">
-        <a class="hero-btn hero-btn-ghost" href="{{ "/posts/" | relLangURL }}">
+        <a class="hero-btn" href="{{ "/posts/" | relLangURL }}">
           {{ i18n "seeAllPosts" | default "See all posts" }} &rarr;
         </a>
       </div>

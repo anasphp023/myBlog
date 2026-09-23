@@ -1336,27 +1336,36 @@ body .sticky-header.scrolled {
   gap: 0.45rem;
   padding: 0.55rem 1.15rem;
   border-radius: 999px;
-  border: 1px solid transparent;
+  border: 1px solid var(--accent-primary);
   font-size: 0.88rem;
   font-weight: 600;
   text-decoration: none;
-  background: var(--accent-primary);
-  color: #fff;
-  box-shadow: 0 1px 2px color-mix(in srgb, var(--accent-primary) 30%, transparent);
+  background: transparent;
+  color: var(--accent-primary);
   transition: background 0.18s ease, color 0.18s ease,
               border-color 0.18s ease, transform 0.18s ease,
               box-shadow 0.18s ease;
 }
+
+/* One style for every hero button -- there is no filled "primary" variant any
+   more. A single solid pill among outlines read as a selected tab rather than
+   the main action, and the old outline treatment (near-white --border-color,
+   grey --text-secondary label) read as disabled. Accent border plus accent
+   label says "control" on its own, and filling solid on hover gives every
+   button the same obvious response.
+
+   Icons inside use fill="currentColor", so they follow the label from accent
+   to white without their own rule. */
 .hero-btn:hover {
-  background: var(--accent-hover);
+  background: var(--accent-primary);
   color: #fff;
+  border-color: var(--accent-primary);
   transform: translateY(-1px);
   box-shadow: 0 4px 12px color-mix(in srgb, var(--accent-primary) 32%, transparent);
 }
-/* Pressed. Without a real :active the filled button had nothing to contrast
-   against, so its resting state read as already-pushed -- especially next to
-   the nav, where a blue pill means "current page". Now resting sits raised,
-   hover lifts, and a click visibly pushes it back down. */
+
+/* Pressed. Without a real :active there was nothing for the resting state to
+   contrast against, which is half of why it looked already-pushed. */
 .hero-btn:active {
   transform: translateY(1px);
   box-shadow: none;
@@ -1364,40 +1373,6 @@ body .sticky-header.scrolled {
 .hero-btn:focus-visible {
   outline: 2px solid var(--accent-primary);
   outline-offset: 2px;
-}
-
-/* The outline buttons. --border-color is #eceef2 in light mode, which is
-   near-white on a white page, and the label used --text-secondary; a hairline
-   border around grey text is how disabled controls are drawn, so these read as
-   dead. Full-strength label and a border mixed from the text colour, which
-   holds up in both themes. */
-.hero-btn-ghost {
-  background: transparent;
-  color: var(--text-primary);
-  box-shadow: none;
-  border-color: color-mix(in srgb, var(--text-primary) 24%, transparent);
-}
-.hero-btn-ghost:hover {
-  background: color-mix(in srgb, var(--accent-primary) 8%, transparent);
-  color: var(--accent-primary);
-  border-color: var(--accent-primary);
-  box-shadow: none;
-}
-
-/* The CTF button. Ghost-weight so it does not outrank "Read the blog", but
-   tinted with the accent so the one off-site link in the row still reads as
-   the interesting one. Declared after .hero-btn-ghost on purpose: theme.css is
-   a flat file and these are the same specificity, so source order decides. */
-.hero-btn-ctf {
-  background: color-mix(in srgb, var(--accent-primary) 12%, transparent);
-  color: var(--accent-primary);
-  border-color: color-mix(in srgb, var(--accent-primary) 55%, transparent);
-  box-shadow: none;
-}
-.hero-btn-ctf:hover {
-  background: var(--accent-primary);
-  color: #fff;
-  border-color: var(--accent-primary);
 }
 
 /* "All posts" button closing the home page */
