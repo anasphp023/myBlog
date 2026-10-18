@@ -1,7 +1,7 @@
 ---
 title: "CV"
 type: "cv"
-description: "CV of Anas Hamidi — Penetration Tester and Application Security specialist based in Germany. 2+ years of offensive-security experience, 50+ reported vulnerabilities."
+description: "CV of Anas Hamidi — Penetration Tester and Application Security specialist based in Germany. 3 years of offensive-security experience, 50+ reported vulnerabilities."
 subtitle: "Application Security · Penetration Tester · Cybersecurity Specialist"
 location: "Gerbrunn (Würzburg), Germany"
 pdf: "/Anas-Hamidi-CV.pdf"
@@ -35,7 +35,7 @@ languages:
   - { name: "German", level: "Business fluent" }
 ---
 
-Penetration Tester and Application Security specialist with 2+ years of hands-on offensive-security experience. Specialized in web and API penetration testing, with experience in mobile app security, business-logic vulnerabilities, and security automation. I integrate LLM-assisted workflows to speed up recon, payload generation, and code analysis. Enrolled in the M.Sc. Information Systems programme at the University of Würzburg — open to internships and permanent roles in IT security.
+Penetration Tester and Application Security specialist with 3 years of hands-on offensive-security experience. Specialized in web and API penetration testing, with experience in mobile app security, business-logic vulnerabilities, and security automation. I integrate LLM-assisted workflows to speed up recon, payload generation, and code analysis. Enrolled in the M.Sc. Information Systems programme at the University of Würzburg — open to internships and permanent roles in IT security.
 
 ## Key Achievements
 

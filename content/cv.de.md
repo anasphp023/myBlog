@@ -1,7 +1,7 @@
 ---
 title: "Lebenslauf"
 type: "cv"
-description: "Lebenslauf von Anas Hamidi — Penetration Tester und Application-Security-Spezialist in Deutschland. 2+ Jahre Offensive-Security-Erfahrung, 50+ gemeldete Schwachstellen."
+description: "Lebenslauf von Anas Hamidi — Penetration Tester und Application-Security-Spezialist in Deutschland. 3 Jahre Offensive-Security-Erfahrung, 50+ gemeldete Schwachstellen."
 subtitle: "Application Security · Penetration Tester · Cybersecurity-Spezialist"
 location: "Gerbrunn (Raum Würzburg), Deutschland"
 pdf: "/Anas-Hamidi-CV.pdf"
@@ -41,7 +41,7 @@ languages:
   - { name: "Deutsch", level: "Verhandlungssicher" }
 ---
 
-Penetration Tester und Application-Security-Spezialist mit über zwei Jahren praktischer Erfahrung in der Offensive Security. Spezialisiert auf Web- und API-Penetrationstests, mit Erfahrung in Mobile-App-Sicherheit, Business-Logic-Schwachstellen und Sicherheitsautomatisierung. Ich setze LLM-gestützte Workflows ein, um Recon, Payload-Generierung und Code-Analyse zu beschleunigen. Immatrikuliert im Master Wirtschaftsinformatik an der Universität Würzburg — offen für Praktika oder Festanstellungen im Bereich IT-Sicherheit.
+Penetration Tester und Application-Security-Spezialist mit drei Jahren praktischer Erfahrung in der Offensive Security. Spezialisiert auf Web- und API-Penetrationstests, mit Erfahrung in Mobile-App-Sicherheit, Business-Logic-Schwachstellen und Sicherheitsautomatisierung. Ich setze LLM-gestützte Workflows ein, um Recon, Payload-Generierung und Code-Analyse zu beschleunigen. Immatrikuliert im Master Wirtschaftsinformatik an der Universität Würzburg — offen für Praktika oder Festanstellungen im Bereich IT-Sicherheit.
 
 ## Kernerfolge
 
