@@ -38,7 +38,7 @@ education:
 languages:
   - { name: "Arabisch", level: "Muttersprache" }
   - { name: "Englisch", level: "Fließend" }
-  - { name: "Deutsch", level: "Verhandlungssicher (telc B2)" }
+  - { name: "Deutsch", level: "Verhandlungssicher" }
 ---
 
 Penetration Tester und Application-Security-Spezialist mit über zwei Jahren praktischer Erfahrung in der Offensive Security. Spezialisiert auf Web- und API-Penetrationstests, mit Erfahrung in Mobile-App-Sicherheit, Business-Logic-Schwachstellen und Sicherheitsautomatisierung. Ich setze LLM-gestützte Workflows ein, um Recon, Payload-Generierung und Code-Analyse zu beschleunigen. Immatrikuliert im Master Wirtschaftsinformatik an der Universität Würzburg — offen für Praktika oder Festanstellungen im Bereich IT-Sicherheit.

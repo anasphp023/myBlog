@@ -32,7 +32,7 @@ education:
 languages:
   - { name: "Arabic", level: "Native" }
   - { name: "English", level: "Fluent" }
-  - { name: "German", level: "Business fluent (telc B2)" }
+  - { name: "German", level: "Business fluent" }
 ---
 
 Penetration Tester and Application Security specialist with 2+ years of hands-on offensive-security experience. Specialized in web and API penetration testing, with experience in mobile app security, business-logic vulnerabilities, and security automation. I integrate LLM-assisted workflows to speed up recon, payload generation, and code analysis. Enrolled in the M.Sc. Information Systems programme at the University of Würzburg — open to internships and permanent roles in IT security.

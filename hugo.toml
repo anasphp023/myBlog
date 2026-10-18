@@ -143,9 +143,6 @@ defaultContentLanguageInSubdir = false
       [[languages.en.params.heroStats]]
         value = "2+"
         label = "Years"
-      [[languages.en.params.heroStats]]
-        value = "B2"
-        label = "German"
   [[languages.en.menus.main]]
     name = "Home"
     pageRef = "/"
@@ -189,9 +186,6 @@ defaultContentLanguageInSubdir = false
       [[languages.de.params.heroStats]]
         value = "2+"
         label = "Jahre"
-      [[languages.de.params.heroStats]]
-        value = "B2"
-        label = "Deutsch"
   [[languages.de.menus.main]]
     name = "Start"
     pageRef = "/"

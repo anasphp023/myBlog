@@ -63,5 +63,5 @@ Led technical teams organizing an international programming contest.
 ## Languages
 
 - **Arabic** — Native
-- **German** — B2 (telc certified)
+- **German** — Business fluent
 - **English** — Fluent
